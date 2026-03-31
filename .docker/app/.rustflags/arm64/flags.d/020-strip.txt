@@ -1,0 +1,1 @@
+-C strip=symbols                     # Strip debug symbols

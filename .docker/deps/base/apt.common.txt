@@ -1,0 +1,2 @@
+build-essential                          # Informational list of build-essential packages
+pkg-config                               # manage compile and link flags for libraries (transitional package)

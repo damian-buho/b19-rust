@@ -1,0 +1,1 @@
+-C link-arg=-fuse-ld=mold           # Use mold linker (faster; filtered if mold absent)

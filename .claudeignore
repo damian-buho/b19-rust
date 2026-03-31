@@ -1,0 +1,12 @@
+# Secrets
+.secrets/
+
+# Fetched/cached downloads
+.fetch/
+
+# Logs
+*.log
+logs/
+
+# Rust
+target/

@@ -1,0 +1,9 @@
+.compose
+.env
+.git
+.gitignore
+.idea
+.makefile
+.ci
+.secrets/
+docs

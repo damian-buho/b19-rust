@@ -1,0 +1,6 @@
+[submodule ".makefile/m6e"]
+	path = .makefile/m6e
+	url = ../../m6e/common.git
+[submodule ".makefile/rust"]
+	path = .makefile/rust
+	url = ../../m6e/rust.git

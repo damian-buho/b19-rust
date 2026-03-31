@@ -1,0 +1,93 @@
+# Ukrainian translations for b19-rust package.
+# Copyright (C) 2026 b19
+# This file is distributed under the same license as the b19-rust package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: b19-rust\n"
+"Report-Msgid-Bugs-To: i18n@b19.dev\n"
+"POT-Creation-Date: 2026-02-23 02:59-0300\n"
+"PO-Revision-Date: 2026-02-18 00:00+0000\n"
+"Last-Translator: b19 team\n"
+"Language-Team: Ukrainian\n"
+"Language: uk\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
+
+#: .docker/build.d/install-from-cargo:19
+msgid "Install package"
+msgstr "Встановити"
+
+#: .docker/build.d/install-from-cargo:23
+msgid "Remove"
+msgstr ""
+
+#: .docker/build.d/base/post/500-install-rust.sh:29
+msgid "Extract %s"
+msgstr ""
+
+#: .docker/build.d/base/post/500-install-rust.sh:35
+msgid "Install"
+msgstr "Встановити"
+
+#: .docker/build.d/base/post/050-install-compile-cache.sh:6
+msgid "Compile cache: off"
+msgstr "Кеш компіляції: вимкнено"
+
+#: .docker/build.d/base/post/050-install-compile-cache.sh:11
+msgid "ccache does not support Rust, disabling compile cache"
+msgstr "ccache не підтримує Rust, вимикаю кеш компіляції"
+
+#: .docker/build.d/base/post/050-install-compile-cache.sh:22
+msgid "Install sccache"
+msgstr "Встановити sccache"
+
+#: .docker/build.d/setup-build:59
+msgid "Create sccache cache directory"
+msgstr "Створити директорію кешу sccache"
+
+#: .docker/build.d/setup-build:64
+msgid "Compile cache: sccache + Redis (%s)"
+msgstr "Кеш компіляції: sccache + Redis (%s)"
+
+#: .docker/build.d/setup-build:68
+msgid "Compile cache: sccache (%s)"
+msgstr "Кеш компіляції: sccache (%s)"
+
+#: .docker/build.d/compile-rust/post/900-show-cache-stats.i.sh:4
+msgid "stats: %s"
+msgstr "статистика: %s"
+
+#: .docker/build.d/compile-rust/post/900-show-cache-stats.i.sh:5
+msgid "Compile cache was disabled, no stats"
+msgstr "Кеш компіляції був вимкнений, статистики немає"
+
+#~ msgid "Configure"
+#~ msgstr "Налаштувати"
+
+#~ msgid "Build"
+#~ msgstr "Зібрати"
+
+#~ msgid "Upgrade"
+#~ msgstr "Оновити"
+
+#~ msgid "Link"
+#~ msgstr "Посилання"
+
+#~ msgid "Clean"
+#~ msgstr "Очистити"
+
+#~ msgid "Clone"
+#~ msgstr "Клонувати"
+
+#~ msgid "Checkout"
+#~ msgstr "Переключитись"
+
+#~ msgid "Dependencies list is detected"
+#~ msgstr "Знайдено список залежностей"
+
+#~ msgid "Dependencies list is not detected"
+#~ msgstr "Список залежностей не знайдено"

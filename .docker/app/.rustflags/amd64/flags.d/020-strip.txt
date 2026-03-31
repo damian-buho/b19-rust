@@ -1,0 +1,1 @@
+-C strip=symbols                     # Strip debug symbols (rustc 1.59+, confirmed supported)

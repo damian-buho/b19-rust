@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+  set -e
+
+  # shellcheck source=../tools.d/b19-i18n
+  . b19-i18n
+
+  DEPSLIST="/deps/${STAGE}/cargo.txt"
+
+  if [[ -f "${DEPSLIST}" ]]; then
+
+    b19-log good "CARGO" "Dependencies list is detected"
+
+    # Ensure newline in the end
+    [[ $(tail -n 1 "${DEPSLIST}") != "" ]] && echo "" >> "${DEPSLIST}"
+
+    while read -r PACKAGE;
+    do
+        [ -z "${PACKAGE}" ] || b19-run "CARGO" "$(_ "Install package") ${PACKAGE}"  \
+            cargo install --locked "${PACKAGE}"
+    done < "${DEPSLIST}"
+
+    b19-run "CARGO" "$(_ "Remove") ${DEPSLIST}" \
+      rm "${DEPSLIST}" # We don't need inheritance here
+  else
+    b19-log warn "CARGO" "Dependencies list is not detected"
+  fi
+  # We WON'T clean cache to save BuildKit optimizations
