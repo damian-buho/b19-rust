@@ -370,13 +370,13 @@ Generate a report from the Docker container
 
 > Source: m6e/docker/container.mk
 
-### `shell`
+### `exec-shell`
 
 Open a shell in the running Docker container
 
 > Source: m6e/docker/container.mk
 
-### `new-shell`
+### `run-shell`
 
 Open a shell in the new Docker container
 
