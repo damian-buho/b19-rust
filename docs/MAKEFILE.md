@@ -440,6 +440,12 @@ Ensure that ssh-agent is running
 
 ## Fetch
 
+### `fetch`
+
+Pre-download all external dependencies
+
+> Source: m6e/docker/fetch.mk
+
 ### `fetch-clean`
 
 Remove pre-downloaded files
