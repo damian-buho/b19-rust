@@ -498,20 +498,6 @@ Remove the Docker network
 
 > Source: m6e/docker/network.mk
 
-## Secrets
-
-### `check-secrets`
-
-Check and generate missing secrets
-
-> Source: m6e/docker/secrets.mk
-
-### `generate-secrets`
-
-Generate all declared secrets
-
-> Source: m6e/docker/secrets.mk
-
 ## Git
 
 ### `git-optimize`
