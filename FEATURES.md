@@ -8,12 +8,12 @@
 ## Rust Toolchain (upstream installer, not APT)
 
 - Rust is installed from the official upstream `.tar.xz` distribution, not the Ubuntu APT package.
-- The version is pinned in `.docker/deps/rust/version.txt`.
+- The version is pinned in `.container/base/deps/rust/version.txt`.
 - The tarball is downloaded via `b19-fetch` with per-arch URL and SHA-512 hash verification.
 - Both amd64 (`x86_64-unknown-linux-gnu`) and arm64 (`aarch64-unknown-linux-gnu`) tarballs are supported.
 - The installer runs with `--without=rust-docs,rust-docs-json-preview` to keep image size down.
 - With this image you don't have to: manage the upstream installer, hash verification, or arch-specific URL selection yourself.
-- Customization: pin a specific release by editing `.docker/deps/rust/version.txt`; supply per-arch SHA-512 hashes in `.docker/deps/rust/{arch}.sha512`; override the download source via `SOURCE_DOCKER_REGISTRY` (used by `b19-fetch` cache tier).
+- Customization: pin a specific release by editing `.container/base/deps/rust/version.txt`; supply per-arch SHA-512 hashes in `.container/base/deps/rust/{arch}.sha512`; override the download source via `SOURCE_DOCKER_REGISTRY` (used by `b19-fetch` cache tier).
 
 ---
 
@@ -33,7 +33,7 @@
 - `build-essential` satisfies the C linker dependency that `cargo` requires for crates with native code (`cc`, `openssl-sys`, etc.).
 - `pkg-config` is available for crates that probe system libraries at compile time.
 - With this image you don't have to: add `build-essential` or `pkg-config` manually in every downstream Dockerfile that compiles crates with native dependencies.
-- Customization: no env vars control this feature; additional system libraries can be added via `.docker/deps/base/apt.*.txt` in child images.
+- Customization: no env vars control this feature; additional system libraries can be added via `.container/base/deps/base/apt.*.txt` in child images.
 
 ---
 
@@ -56,19 +56,19 @@
 - It probes every `RUSTFLAGS` entry from `flags.d/*.txt` individually against a dummy `fn main() {}` program.
 - Only flags accepted by `rustc` are exported; unsupported flags are discarded silently.
 - With this image you don't have to: compute CPU-scaled job counts or probe RUSTFLAGS compatibility manually in each downstream build stage.
-- Customization: `B19_BUILD_PROC_RATIO` (float, default `0.8`) controls the CPU fraction used for `CARGO_BUILD_JOBS`; add or remove flags by editing `.docker/app/.rustflags/<arch>/flags.d/*.txt` in child images.
+- Customization: `B19_BUILD_PROC_RATIO` (float, default `0.8`) controls the CPU fraction used for `CARGO_BUILD_JOBS`; add or remove flags by editing `.container/base/app/.rustflags/<arch>/flags.d/*.txt` in child images.
 
 ---
 
 ## Arch-specific RUSTFLAGS Probing
 
-- Flag files in `.docker/app/.rustflags/<arch>/flags.d/` define desired compiler flags per architecture.
+- Flag files in `.container/base/app/.rustflags/<arch>/flags.d/` define desired compiler flags per architecture.
 - For amd64: covers the mold linker, symbol stripping, and the full x86-64-v3 ISA feature set (17 individual features: SSE through AVX2, BMI1/2, FMA, etc.).
 - For arm64: covers the mold linker, symbol stripping, and Armv8.x extensions (crc, lse, rdm, dotprod, lse2).
 - Each flag is probed independently at build time by `setup-build` and dropped silently if unsupported.
 - This makes the image portable across VMs, emulators, and hardware that does not implement all extensions.
 - With this image you don't have to: maintain or probe per-arch RUSTFLAGS sets yourself.
-- Customization: add, remove, or replace flags by placing `.txt` files under `.docker/app/.rustflags/amd64/flags.d/` or `.docker/app/.rustflags/arm64/flags.d/` in child images; each line is one flag and is probed independently at build time.
+- Customization: add, remove, or replace flags by placing `.txt` files under `.container/base/app/.rustflags/amd64/flags.d/` or `.container/base/app/.rustflags/arm64/flags.d/` in child images; each line is one flag and is probed independently at build time.
 
 ---
 
@@ -76,11 +76,11 @@
 
 - The `install-from-cargo` script reads `/deps/${STAGE}/cargo.txt` during the user build stage.
 - It calls `cargo install --locked` for each package listed in the file.
-- Child images declare binaries to install by placing a `cargo.txt` file in `.docker/deps/user/` (or another stage directory).
+- Child images declare binaries to install by placing a `cargo.txt` file in `.container/user/deps/user/` (or another stage directory).
 - The script is idempotent: if the file is absent it logs a warning and exits cleanly.
 - The installed Cargo cache is intentionally not cleaned after installation to preserve BuildKit layer reuse.
 - With this image you don't have to: write explicit `cargo install` loops in every downstream Dockerfile.
-- Customization: declare packages in `.docker/deps/user/cargo.txt` (one `name[@version]` per line) in child images; the `STAGE` env var selects which deps directory is read (default `user`).
+- Customization: declare packages in `.container/user/deps/user/cargo.txt` (one `name[@version]` per line) in child images; the `STAGE` env var selects which deps directory is read (default `user`).
 
 ---
 
@@ -90,6 +90,6 @@
 - The lineage file is available at runtime and consumed by the `make read-lineage` target.
 - Operators can determine the exact toolchain version baked into an image without inspecting environment variables or running `rustc --version`.
 - With this image you don't have to: add a lineage recording step explicitly in every downstream image.
-- Customization: no env vars control lineage recording; the recorded version is whatever `M6E_UPSTREAM_VERSION` resolves to at build time (set by the makefile from `.docker/deps/rust/version.txt`).
+- Customization: no env vars control lineage recording; the recorded version is whatever `M6E_UPSTREAM_VERSION` resolves to at build time (set by the makefile from `.container/base/deps/rust/version.txt`).
 
 ---

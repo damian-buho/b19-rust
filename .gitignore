@@ -3,3 +3,4 @@
 .secrets/
 /.env
 /.idea
+/.container/*/locale/*.mo

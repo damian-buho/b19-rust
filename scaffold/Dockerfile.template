@@ -17,7 +17,7 @@ ARG M6E_PROJECT
 ARG M6E_VERSION
 ARG TARGETARCH
 
-COPY --chown=${B19_UID}:${B19_GID} .docker/   /
+COPY --chown=${B19_UID}:${B19_GID} .container/base/ /
 
 USER root
 
@@ -47,7 +47,7 @@ ARG M6E_PROJECT
 ARG M6E_VERSION
 ARG TARGETARCH
 
-COPY --chown=${B19_UID}:${B19_GID} .docker/   /
+COPY --chown=${B19_UID}:${B19_GID} .container/base/ /
 COPY --from=NAMESPACE-PROJECT-builder /export /
 
 USER root

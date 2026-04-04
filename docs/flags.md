@@ -7,7 +7,7 @@ toolchain versions and CPU architectures without manual flag maintenance.
 ## How it works
 
 During any build stage that includes `compile-rust`, the pre-hook
-`.docker/build.d/compile-rust/pre/100-setup-build.i.sh` sources `setup-build`,
+`.container/build.d/compile-rust/pre/100-setup-build.i.sh` sources `setup-build`,
 which performs two steps:
 
 1. **Job count** — reads `B19_BUILD_PROC_RATIO`, multiplies by `nproc`, exports
@@ -25,10 +25,10 @@ not set as a static `ENV` in the Dockerfile — it is computed fresh on each bui
 
 ## Flag files
 
-Flag files live in `.docker/app/` and are `COPY`'d into the image:
+Flag files live in `.container/app/` and are `COPY`'d into the image:
 
 ```
-.docker/app/
+.container/app/
 └── .rustflags/
     ├── amd64/flags.d/
     │   ├── 010-linker.txt    # -C link-arg=-fuse-ld=mold
@@ -83,7 +83,7 @@ Add a line to the relevant `flags.d/*.txt` file. If `rustc` rejects the flag,
 ## Customising in a downstream image
 
 A downstream `FROM b19/rust` image can override flag files by placing replacement
-files in `.docker/app/.rustflags/<arch>/flags.d/` and re-running `COPY .docker/ /`
+files in `.container/app/.rustflags/<arch>/flags.d/` and re-running `COPY .container/ /`
 before the `compile-rust` stage.
 
 ## Variables exported

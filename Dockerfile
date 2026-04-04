@@ -39,7 +39,7 @@ WORKDIR ${B19_HOME}
 
 USER root
 
-COPY --chown=${B19_UID}:${B19_GID} .docker/   /
+COPY --chown=${B19_UID}:${B19_GID} .container/base/ /
 
 RUN --mount=type=bind,from=fetch,source=.,target=/fetch                 \
     --mount=type=cache,target=${B19_DOWNLOAD_PATH},sharing=private      \
@@ -51,6 +51,8 @@ RUN --mount=type=bind,from=fetch,source=.,target=/fetch                 \
     build-stage base
 
 USER ${B19_USER}
+
+COPY --chown=${B19_UID}:${B19_GID} .container/user/ /
 
 RUN --mount=type=bind,from=fetch,source=.,target=/fetch                                               \
     --mount=type=cache,target=${B19_DOWNLOAD_PATH},sharing=private,uid=${B19_UID},gid=${B19_GID}      \
