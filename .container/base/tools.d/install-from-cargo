@@ -5,7 +5,7 @@
   # shellcheck source=../tools.d/b19-i18n
   . b19-i18n
 
-  DEPSLIST="/deps/${STAGE}/cargo.txt"
+  DEPSLIST="/deps/cargo.txt"
 
   if [[ -f "${DEPSLIST}" ]]; then
 

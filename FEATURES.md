@@ -74,7 +74,7 @@
 
 ## Declarative Cargo Package Installation (`install-from-cargo`)
 
-- The `install-from-cargo` script reads `/deps/${STAGE}/cargo.txt` during the user build stage.
+- The `install-from-cargo` script reads `/deps/cargo.txt` during the user build stage.
 - It calls `cargo install --locked` for each package listed in the file.
 - Child images declare binaries to install by placing a `cargo.txt` file in `.container/user/deps/user/` (or another stage directory).
 - The script is idempotent: if the file is absent it logs a warning and exits cleanly.
