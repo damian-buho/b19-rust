@@ -16,15 +16,17 @@
     CARGO_BUILD_JOBS="${JOBS}"
     export CARGO_BUILD_JOBS
 
+    B19_FLAGS_PATH="/flags"
+
     b19-log info "BUILD" "Using ${JOBS} jobs out of ${CPU_COUNT} CPUs with RATIO=${RATIO}"
 
     RUSTVERSION=$(rustc --version)
 
-    WANTED_RUSTFLAGS_FILE="/app/.rustflags/${TARGETARCH}/flags.txt"
-    SELECTED_FLAGS_FILE="/app/.rustflags/${TARGETARCH}/all.txt"
+    WANTED_RUSTFLAGS_FILE="${B19_FLAGS_PATH}/.rustflags/${TARGETARCH}/flags.txt"
+    SELECTED_FLAGS_FILE="${B19_FLAGS_PATH}/.rustflags/${TARGETARCH}/all.txt"
     DUMMY_RS_FILE="/tmp/dummy.rs"
 
-    cat /app/.rustflags/"${TARGETARCH}"/flags.d/*.txt | decomment > "${WANTED_RUSTFLAGS_FILE}"
+    cat "${B19_FLAGS_PATH}/.rustflags/${TARGETARCH}"/flags.d/*.txt | decomment > "${WANTED_RUSTFLAGS_FILE}"
 
     # Create a simple test Rust program
     echo 'fn main() {}' > "${DUMMY_RS_FILE}"

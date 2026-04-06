@@ -56,19 +56,19 @@
 - It probes every `RUSTFLAGS` entry from `flags.d/*.txt` individually against a dummy `fn main() {}` program.
 - Only flags accepted by `rustc` are exported; unsupported flags are discarded silently.
 - With this image you don't have to: compute CPU-scaled job counts or probe RUSTFLAGS compatibility manually in each downstream build stage.
-- Customization: `B19_BUILD_PROC_RATIO` (float, default `0.8`) controls the CPU fraction used for `CARGO_BUILD_JOBS`; add or remove flags by editing `.container/base/app/.rustflags/<arch>/flags.d/*.txt` in child images.
+- Customization: `B19_BUILD_PROC_RATIO` (float, default `0.8`) controls the CPU fraction used for `CARGO_BUILD_JOBS`; add or remove flags by editing `.container/base/flags/.rustflags/<arch>/flags.d/*.txt` in child images.
 
 ---
 
 ## Arch-specific RUSTFLAGS Probing
 
-- Flag files in `.container/base/app/.rustflags/<arch>/flags.d/` define desired compiler flags per architecture.
+- Flag files in `.container/base/flags/.rustflags/<arch>/flags.d/` define desired compiler flags per architecture.
 - For amd64: covers the mold linker, symbol stripping, and the full x86-64-v3 ISA feature set (17 individual features: SSE through AVX2, BMI1/2, FMA, etc.).
 - For arm64: covers the mold linker, symbol stripping, and Armv8.x extensions (crc, lse, rdm, dotprod, lse2).
 - Each flag is probed independently at build time by `setup-build` and dropped silently if unsupported.
 - This makes the image portable across VMs, emulators, and hardware that does not implement all extensions.
 - With this image you don't have to: maintain or probe per-arch RUSTFLAGS sets yourself.
-- Customization: add, remove, or replace flags by placing `.txt` files under `.container/base/app/.rustflags/amd64/flags.d/` or `.container/base/app/.rustflags/arm64/flags.d/` in child images; each line is one flag and is probed independently at build time.
+- Customization: add, remove, or replace flags by placing `.txt` files under `.container/base/flags/.rustflags/amd64/flags.d/` or `.container/base/flags/.rustflags/arm64/flags.d/` in child images; each line is one flag and is probed independently at build time.
 
 ---
 

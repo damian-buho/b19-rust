@@ -25,10 +25,10 @@ not set as a static `ENV` in the Dockerfile — it is computed fresh on each bui
 
 ## Flag files
 
-Flag files live in `.container/app/` and are `COPY`'d into the image:
+Flag files live in `.container/base/flags/` and are `COPY`'d into the image:
 
 ```
-.container/app/
+.container/base/flags/
 └── .rustflags/
     ├── amd64/flags.d/
     │   ├── 010-linker.txt    # -C link-arg=-fuse-ld=mold
@@ -83,8 +83,7 @@ Add a line to the relevant `flags.d/*.txt` file. If `rustc` rejects the flag,
 ## Customising in a downstream image
 
 A downstream `FROM b19/rust` image can override flag files by placing replacement
-files in `.container/app/.rustflags/<arch>/flags.d/` and re-running `COPY .container/ /`
-before the `compile-rust` stage.
+files in `.container/base/flags/.rustflags/<arch>/flags.d/` and re-running `COPY .container/ /`before the `compile-rust` stage.
 
 ## Variables exported
 
