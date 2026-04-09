@@ -1,8 +1,8 @@
 ---
-name: dev-b19-rust
+name: ${M6E_COMPOSE_PROJECT_NAME}
 services:
   b19-rust:
-    container_name: dev-b19-rust
+    container_name: ${DOCKER_CONTAINER_NAME}
     image: ${DOCKER_IMAGE_FULLNAME}
     labels:
       com.docker.compose.watch: 'true'
@@ -10,13 +10,13 @@ services:
     - sleep
     - infinity
     networks:
-    - dev-b19-network
+    - dev-network
     environment:
     - LANG
     volumes:
     - /etc/localtime:/etc/localtime:ro
 networks:
-  dev-b19-network:
-    name: dev-b19-network
+  dev-network:
+    name: ${M6E_DOCKER_NETWORK}
     external: true
 ...
