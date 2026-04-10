@@ -10,7 +10,7 @@ Run all linters (continues on failure, exits non-zero if any failed)
 
 ### `check-outdated`
 
-Check all outdated dependencies (continues on failure, exits non-zero if any failed)
+Check all outdated dependencies (informational, always succeeds)
 
 > Source: m6e/ci/outdated.mk
 
