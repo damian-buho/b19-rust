@@ -7,14 +7,14 @@ services:
     labels:
       com.docker.compose.watch: 'true'
     command:
-    - sleep
-    - infinity
+      - sleep
+      - infinity
     networks:
-    - dev-network
+      - dev-network
     environment:
-    - LANG
+      - LANG
     volumes:
-    - /etc/localtime:/etc/localtime:ro
+      - /etc/localtime:/etc/localtime:ro
 networks:
   dev-network:
     name: ${M6E_DOCKER_NETWORK}
