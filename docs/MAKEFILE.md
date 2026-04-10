@@ -2,126 +2,6 @@
 
 ## CI
 
-### `check-buf`
-
-Lint Protocol Buffer definitions with buf
-
-> Source: m6e/ci/file/buf.mk
-
-### `check-checkmake`
-
-Lint Makefile with checkmake
-
-> Source: m6e/ci/file/checkmake.mk
-
-### `scan-detect-secrets`
-
-Scan for secrets with detect-secrets
-
-> Source: m6e/ci/file/detect-secrets.mk
-
-### `analyze-dive`
-
-Analyze Docker image layers with dive
-
-> Source: m6e/ci/file/dive.mk
-
-### `check-editorconfig`
-
-Check EditorConfig compliance
-
-> Source: m6e/ci/file/editorconfig.mk
-
-### `check-dotenv-linter`
-
-Run dotenv-linter on .env files
-
-> Source: m6e/ci/file/env.mk
-
-### `check-folderslint`
-
-Lint folder structure with folderslint
-
-> Source: m6e/ci/file/folderslint.mk
-
-### `analyze-git-fame`
-
-Analyze git contribution statistics with git-fame
-
-> Source: m6e/ci/file/git-fame.mk
-
-### `scan-gitleaks`
-
-Scan for leaked secrets with gitleaks
-
-> Source: m6e/ci/file/gitleaks.mk
-
-### `scan-grype`
-
-Scan for vulnerabilities with grype
-
-> Source: m6e/ci/file/grype.mk
-
-### `check-jsonlint`
-
-Lint JSON files with jsonlint
-
-> Source: m6e/ci/file/jsonlint.mk
-
-### `check-ls-lint`
-
-Lint file and directory names with ls-lint
-
-> Source: m6e/ci/file/ls-lint.mk
-
-### `format-mdformat`
-
-Format Markdown files with mdformat
-
-> Source: m6e/ci/file/mdformat.mk
-
-### `check-shellcheck`
-
-Run shellcheck on shell scripts
-
-> Source: m6e/ci/file/shell.mk
-
-### `format-shfmt`
-
-Format shell scripts with shfmt
-
-> Source: m6e/ci/file/shfmt.mk
-
-### `scan-syft`
-
-Generate SBOM with syft
-
-> Source: m6e/ci/file/syft.mk
-
-### `scan-trivy`
-
-Scan for vulnerabilities with trivy
-
-> Source: m6e/ci/file/trivy.mk
-
-### `check-vacuum`
-
-Validate OpenAPI specification with vacuum
-
-> Source: m6e/ci/file/vacuum.mk
-
-### `check-yamllint`
-
-Run yamllint on YAML files
-
-> Source: m6e/ci/file/yaml.mk
-
-### `format-yamlfmt`
-
-Format YAML files with yamlfmt
-
-> Source: m6e/ci/file/yamlfmt.mk
-
 ### `lint`
 
 Run all linters (continues on failure, exits non-zero if any failed)
@@ -133,12 +13,6 @@ Run all linters (continues on failure, exits non-zero if any failed)
 Check all outdated dependencies (continues on failure, exits non-zero if any failed)
 
 > Source: m6e/ci/outdated.mk
-
-### `stamp-versions`
-
-Tag versions semantically
-
-> Source: m6e/ci/semrel.mk
 
 ## Bootstrap
 
