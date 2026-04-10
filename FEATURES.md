@@ -3,7 +3,7 @@
 > Inherits all features from [b19/ubuntu](../ubuntu/FEATURES.md): structured logging, safe execution, download caching, secrets, signal handling, health checks, entrypoint hooks, i18n, and more.
 > Features below are what this image adds on top.
 
----
+______________________________________________________________________
 
 ## Rust Toolchain (upstream installer, not APT)
 
@@ -15,7 +15,7 @@
 - With this image you don't have to: manage the upstream installer, hash verification, or arch-specific URL selection yourself.
 - Customization: pin a specific release by editing `.container/base/deps/rust/version.txt`; supply per-arch SHA-512 hashes in `.container/base/deps/rust/{arch}.sha512`; override the download source via `SOURCE_DOCKER_REGISTRY` (used by `b19-fetch` cache tier).
 
----
+______________________________________________________________________
 
 ## sccache Compiler Cache
 
@@ -25,7 +25,7 @@
 - With this image you don't have to: install sccache, set `RUSTC_WRAPPER`, wire up cache mounts, or add post-build stats logging
 - Customization: override `RUSTC_WRAPPER` to an empty string to disable sccache for a specific build; override `SCCACHE_DIR` to redirect the cache
 
----
+______________________________________________________________________
 
 ## Build Toolchain (gcc, make, pkg-config)
 
@@ -35,7 +35,7 @@
 - With this image you don't have to: add `build-essential` or `pkg-config` manually in every downstream Dockerfile that compiles crates with native dependencies.
 - Customization: no env vars control this feature; additional system libraries can be added via `.container/base/deps/base/apt.*.txt` in child images.
 
----
+______________________________________________________________________
 
 ## Cargo Environment Defaults
 
@@ -47,7 +47,7 @@
 - With this image you don't have to: configure `CARGO_HOME`, `CARGO_INSTALL_ROOT`, `CARGO_INCREMENTAL`, or `CARGO_REGISTRIES_CRATES_IO_PROTOCOL` in every downstream Dockerfile.
 - Customization: override any of these at build time with `--build-arg` or at runtime with `ENV`/`-e`; accepted values — `CARGO_INCREMENTAL`: `0` or `1`; `CARGO_REGISTRIES_CRATES_IO_PROTOCOL`: `sparse` or `git`; `CARGO_HOME` and `CARGO_INSTALL_ROOT`: any writable path.
 
----
+______________________________________________________________________
 
 ## Compile-stage Setup Hook (`setup-build`)
 
@@ -58,7 +58,7 @@
 - With this image you don't have to: compute CPU-scaled job counts or probe RUSTFLAGS compatibility manually in each downstream build stage.
 - Customization: `B19_BUILD_PROC_RATIO` (float, default `0.8`) controls the CPU fraction used for `CARGO_BUILD_JOBS`; add or remove flags by editing `.container/base/flags/.rustflags/<arch>/flags.d/*.txt` in child images.
 
----
+______________________________________________________________________
 
 ## Arch-specific RUSTFLAGS Probing
 
@@ -70,7 +70,7 @@
 - With this image you don't have to: maintain or probe per-arch RUSTFLAGS sets yourself.
 - Customization: add, remove, or replace flags by placing `.txt` files under `.container/base/flags/.rustflags/amd64/flags.d/` or `.container/base/flags/.rustflags/arm64/flags.d/` in child images; each line is one flag and is probed independently at build time.
 
----
+______________________________________________________________________
 
 ## Declarative Cargo Package Installation (`install-from-cargo`)
 
@@ -82,7 +82,7 @@
 - With this image you don't have to: write explicit `cargo install` loops in every downstream Dockerfile.
 - Customization: declare packages in `.container/user/deps/user/cargo.txt` (one `name[@version]` per line) in child images; the `STAGE` env var selects which deps directory is read (default `user`).
 
----
+______________________________________________________________________
 
 ## Lineage Recording
 
@@ -92,4 +92,4 @@
 - With this image you don't have to: add a lineage recording step explicitly in every downstream image.
 - Customization: no env vars control lineage recording; the recorded version is whatever `M6E_UPSTREAM_VERSION` resolves to at build time (set by the makefile from `.container/base/deps/rust/version.txt`).
 
----
+______________________________________________________________________

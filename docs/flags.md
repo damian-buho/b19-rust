@@ -11,13 +11,13 @@ During any build stage that includes `compile-rust`, the pre-hook
 which performs two steps:
 
 1. **Job count** — reads `B19_BUILD_PROC_RATIO`, multiplies by `nproc`, exports
-   `CARGO_BUILD_JOBS=<N>` (minimum 1).
+    `CARGO_BUILD_JOBS=<N>` (minimum 1).
 
-2. **RUSTFLAGS probing** — concatenates all `flags.d/*.txt` files through
-   `decomment`, then compiles a minimal `fn main() {}` with each flag
-   individually via `RUSTFLAGS="<FLAG>" rustc dummy.rs -o /tmp/dummy-out`.
-   Accepted flags are written to `all.txt`; rejected ones are logged as `BAD`.
-   The surviving set is joined with spaces and exported as `RUSTFLAGS`.
+1. **RUSTFLAGS probing** — concatenates all `flags.d/*.txt` files through
+    `decomment`, then compiles a minimal `fn main() {}` with each flag
+    individually via `RUSTFLAGS="<FLAG>" rustc dummy.rs -o /tmp/dummy-out`.
+    Accepted flags are written to `all.txt`; rejected ones are logged as `BAD`.
+    The surviving set is joined with spaces and exported as `RUSTFLAGS`.
 
 Both variables are exported into the shell environment so every subsequent
 `cargo` invocation in the same build stage inherits them. `CARGO_BUILD_JOBS` is
@@ -87,7 +87,7 @@ files in `.container/base/flags/.rustflags/<arch>/flags.d/` and re-running `COPY
 
 ## Variables exported
 
-| Variable           | Set by      | Description                       |
-|--------------------|-------------|-----------------------------------|
-| `RUSTFLAGS`        | setup-build | Accepted rustc flags (space-joined)|
-| `CARGO_BUILD_JOBS` | setup-build | Job count based on nproc × ratio  |
+| Variable           | Set by      | Description                         |
+| ------------------ | ----------- | ----------------------------------- |
+| `RUSTFLAGS`        | setup-build | Accepted rustc flags (space-joined) |
+| `CARGO_BUILD_JOBS` | setup-build | Job count based on nproc × ratio    |

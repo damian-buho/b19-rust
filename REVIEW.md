@@ -10,7 +10,7 @@ The image is a single-stage `FROM b19/ubuntu` build (named `b19-rust`) with two 
 
 1. **Root stage (`base`)**: Installs `build-essential` + `pkg-config` via APT, downloads and installs the Rust toolchain from `static.rust-lang.org`, and installs `sccache` from GitHub releases. Both downloads use `b19-resolve-dep` + `b19-fetch` with pinned versions and SHA-512 hashes.
 
-2. **User stage (`user`)**: Runs `install-from-cargo` to install packages declared in `/deps/cargo.txt` (if present).
+1. **User stage (`user`)**: Runs `install-from-cargo` to install packages declared in `/deps/cargo.txt` (if present).
 
 A secondary set of hooks under `build.d/compile-rust/` is provided for downstream images that `FROM b19/rust` and need to compile Rust code. The pre-hook sources `setup-build`, which probes RUSTFLAGS and configures sccache. The post-hooks install cargo packages and show cache stats.
 
@@ -104,16 +104,16 @@ The `M6E_NAMESPACE` and `M6E_PROJECT` ARGs are declared (lines 22-23) but never 
 
 1. **Add the missing lineage hook.** Create `.container/user/build.d/user/post/990-write-lineage.sh` with `write-lineage "b19/rust" "${M6E_UPSTREAM_VERSION}"` to match the documented behavior in FEATURES.md. Alternatively, if lineage is handled by a hook inherited from b19/ubuntu, update FEATURES.md to clarify that.
 
-2. **Regenerate the POT file.** Run `make i18n-extract` to update source path references from `.docker/` to `.container/`. This will also pick up any new or changed strings since the migration.
+1. **Regenerate the POT file.** Run `make i18n-extract` to update source path references from `.docker/` to `.container/`. This will also pick up any new or changed strings since the migration.
 
-3. **Add `set -eo pipefail` to test scripts.** Per convention, `test.d/*.sh` must set their own error handling. Adding `set -eo pipefail` to `1100-rust-version.sh` and `1200-cargo-version.sh` would be consistent and safer for future changes.
+1. **Add `set -eo pipefail` to test scripts.** Per convention, `test.d/*.sh` must set their own error handling. Adding `set -eo pipefail` to `1100-rust-version.sh` and `1200-cargo-version.sh` would be consistent and safer for future changes.
 
-4. **Simplify the version test comparison.** In `1100-rust-version.sh`, replace the `[ A != B ] && exit 1 || exit 0` pattern with `[ "${EXPECTED_VERSION}" = "${ACTUAL_VERSION}" ]` for clarity and correctness.
+1. **Simplify the version test comparison.** In `1100-rust-version.sh`, replace the `[ A != B ] && exit 1 || exit 0` pattern with `[ "${EXPECTED_VERSION}" = "${ACTUAL_VERSION}" ]` for clarity and correctness.
 
-5. **Consider adding `CARGO_HOME` cache mount to the user stage.** This would help downstream images that install cargo packages in the user stage. It would look like `--mount=type=cache,target=${CARGO_HOME},sharing=private,uid=${B19_UID},gid=${B19_GID}` in the user stage `RUN` block.
+1. **Consider adding `CARGO_HOME` cache mount to the user stage.** This would help downstream images that install cargo packages in the user stage. It would look like `--mount=type=cache,target=${CARGO_HOME},sharing=private,uid=${B19_UID},gid=${B19_GID}` in the user stage `RUN` block.
 
-6. **Extract ccache validation to a shared utility.** The "ccache does not support Rust" warning appears in two places (`050-install-compile-cache.sh` and `setup-build`). A small function in `tools.d/` could centralize this logic and keep the two stages consistent.
+1. **Extract ccache validation to a shared utility.** The "ccache does not support Rust" warning appears in two places (`050-install-compile-cache.sh` and `setup-build`). A small function in `tools.d/` could centralize this logic and keep the two stages consistent.
 
-7. **Add a `rustfmt --version` test.** The image installs the full Rust toolchain including rustfmt. A `1300-rustfmt-version.sh` test would verify the formatter is available, which is useful since downstream CI images often depend on it.
+1. **Add a `rustfmt --version` test.** The image installs the full Rust toolchain including rustfmt. A `1300-rustfmt-version.sh` test would verify the formatter is available, which is useful since downstream CI images often depend on it.
 
-8. **Consider adding `CARGO_NET_OFFLINE=true` as a conditional ENV.** When `B19_OFFGRID_MODE` is set, setting `CARGO_NET_OFFLINE=true` would prevent cargo from attempting network access, providing clearer error messages in offline builds.
+1. **Consider adding `CARGO_NET_OFFLINE=true` as a conditional ENV.** When `B19_OFFGRID_MODE` is set, setting `CARGO_NET_OFFLINE=true` would prevent cargo from attempting network access, providing clearer error messages in offline builds.
