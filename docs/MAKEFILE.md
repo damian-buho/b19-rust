@@ -2,6 +2,12 @@
 
 ## CI
 
+### `format`
+
+Run all formatters (continues on failure, exits non-zero if any failed)
+
+> Source: m6e/ci/format.mk
+
 ### `lint`
 
 Run all linters (continues on failure, exits non-zero if any failed)
