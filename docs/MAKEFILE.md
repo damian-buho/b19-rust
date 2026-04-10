@@ -498,6 +498,20 @@ Remove the Docker network
 
 > Source: m6e/docker/network.mk
 
+## Image
+
+### `docker-image-remove`
+
+Remove the locally built Docker image
+
+> Source: m6e/docker/remove.mk
+
+### `docker-image-list`
+
+List local Docker images matching this project
+
+> Source: m6e/docker/remove.mk
+
 ## Git
 
 ### `git-optimize`
