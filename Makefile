@@ -9,10 +9,10 @@ DESTINATION_DOCKER_REGISTRY	?= registry.example.com
 NAMESPACE	?= b19
 PROJECT		?= rust
 
-all: .makefile/m6e/bootstrap.mk
+all: .makefile/m6e/initialize.mk
 	$(MAKE) pipeline
 
-.makefile/m6e/bootstrap.mk:
+.makefile/m6e/initialize.mk:
 	@git submodule update --init --recursive
 	@$(MAKE) bootstrap
 
