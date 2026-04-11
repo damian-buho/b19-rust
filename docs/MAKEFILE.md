@@ -14,23 +14,11 @@ Run all linters (continues on failure, exits non-zero if any failed)
 
 > Source: m6e/ci/lint.mk
 
-### `check-outdated`
-
-Check all outdated dependencies (informational, always succeeds)
-
-> Source: m6e/ci/outdated.mk
-
 ## Bootstrap
 
 ### `check-is-compose-plugin-installed`
 
 Check if Compose Plugin is installed
-
-> Source: m6e/compose/commands.mk
-
-### `check-is-old-compose-installed`
-
-Check for old docker-compose
 
 > Source: m6e/compose/commands.mk
 
@@ -54,35 +42,35 @@ Check Docker Engine version
 
 > Source: m6e/docker.mk
 
-### `check-is-buildx-plugin-installed`
-
-Check if BuildX Plugin is installed
-
-> Source: m6e/docker/build.mk
-
-### `check-binfmt`
-
-Check if QEMU binfmt support is available for cross-arch builds
-
-> Source: m6e/docker/build.mk
-
 ### `check-buildah-installed`
 
 Check if buildah is installed
 
-> Source: m6e/docker/buildah.mk
+> Source: m6e/docker/backends/buildah.mk
 
-### `check-yq-installed`
+### `check-yq-version`
 
-Check if yq is installed
+Check if yq v4 (mikefarah) is installed
 
-> Source: m6e/docker/buildah.mk
+> Source: m6e/docker/backends/buildah.mk
 
 ### `check-jq-installed`
 
 Check if jq is installed
 
-> Source: m6e/docker/buildah.mk
+> Source: m6e/docker/backends/buildah.mk
+
+### `check-is-buildx-plugin-installed`
+
+Check if BuildX Plugin is installed
+
+> Source: m6e/docker/backends/buildx.mk
+
+### `check-binfmt`
+
+Check if QEMU binfmt support is available for cross-arch builds
+
+> Source: m6e/docker/backends/buildx.mk
 
 ### `bootstrap`
 
@@ -210,7 +198,7 @@ Development mode without cache
 
 ### `get-history`
 
-Get docker history of image
+Get $(M6E_CONTAINER_RUNTIME) history of image
 
 > Source: m6e/docker/analyze.mk
 
@@ -235,6 +223,12 @@ Read the health status of the Docker container
 ### `healthcheck.d`
 
 Check the healthcheck of the Docker container
+
+> Source: m6e/docker/container.mk
+
+### `test`
+
+Run all registered test targets
 
 > Source: m6e/docker/container.mk
 
@@ -270,13 +264,37 @@ Inspect the Docker container
 
 ## Build
 
+### `build-with-buildah`
+
+Build with buildah + project.yaml
+
+> *Internal target*
+
+> Source: m6e/docker/backends/buildah.mk
+
+### `build-push-with-buildah`
+
+Build with buildah and push to registry
+
+> *Internal target*
+
+> Source: m6e/docker/backends/buildah.mk
+
+### `build-with-buildah-nc`
+
+Build with buildah without cache
+
+> *Internal target*
+
+> Source: m6e/docker/backends/buildah.mk
+
 ### `build-with-buildx`
 
 Build with BuildX (cached)
 
 > *Internal target*
 
-> Source: m6e/docker/build.mk
+> Source: m6e/docker/backends/buildx.mk
 
 ### `build-with-buildx-nc`
 
@@ -284,7 +302,15 @@ Build with BuildX (no cache)
 
 > *Internal target*
 
-> Source: m6e/docker/build.mk
+> Source: m6e/docker/backends/buildx.mk
+
+### `build-push-with-buildx`
+
+Build with BuildX and push to registry
+
+> *Internal target*
+
+> Source: m6e/docker/backends/buildx.mk
 
 ### `build`
 
@@ -303,38 +329,6 @@ Build docker image without cache
 Build and push image to registry
 
 > Source: m6e/docker/build.mk
-
-### `build-push-with-buildx`
-
-Build with BuildX and push to registry
-
-> *Internal target*
-
-> Source: m6e/docker/build.mk
-
-### `build-with-buildah`
-
-Build with buildah + project.yaml
-
-> *Internal target*
-
-> Source: m6e/docker/buildah.mk
-
-### `build-push-with-buildah`
-
-Build with buildah and push to registry
-
-> *Internal target*
-
-> Source: m6e/docker/buildah.mk
-
-### `build-with-buildah-nc`
-
-Build with buildah without cache
-
-> *Internal target*
-
-> Source: m6e/docker/buildah.mk
 
 ### `ensure-ssh-agent`
 
