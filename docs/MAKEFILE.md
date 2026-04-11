@@ -270,45 +270,69 @@ Inspect the Docker container
 
 ## Build
 
-### `build-with-cache`
+### `build-with-buildx`
 
-Build docker image with caching
+Build with BuildX (cached)
+
+> *Internal target*
 
 > Source: m6e/docker/build.mk
 
-### `build-no-cache`
+### `build-with-buildx-nc`
 
-Build docker image without caching
+Build with BuildX (no cache)
+
+> *Internal target*
 
 > Source: m6e/docker/build.mk
 
 ### `build`
 
-Alias for build-with-cache
+Build docker image (dispatches to configured backend)
 
 > Source: m6e/docker/build.mk
 
 ### `build-nc`
 
-Alias for build-no-cache
+Build docker image without cache
 
 > Source: m6e/docker/build.mk
 
-### `buildah-build`
+### `build-push`
 
-Build image using buildah + project.yaml
+Build and push image to registry
+
+> Source: m6e/docker/build.mk
+
+### `build-push-with-buildx`
+
+Build with BuildX and push to registry
+
+> *Internal target*
+
+> Source: m6e/docker/build.mk
+
+### `build-with-buildah`
+
+Build with buildah + project.yaml
+
+> *Internal target*
 
 > Source: m6e/docker/buildah.mk
 
-### `buildah-push`
+### `build-push-with-buildah`
 
-Build image using buildah and push
+Build with buildah and push to registry
+
+> *Internal target*
 
 > Source: m6e/docker/buildah.mk
 
-### `buildah-build-nc`
+### `build-with-buildah-nc`
 
-Build image using buildah without cache
+Build with buildah without cache
+
+> *Internal target*
 
 > Source: m6e/docker/buildah.mk
 
