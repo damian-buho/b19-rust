@@ -2,7 +2,7 @@
 name: ${M6E_COMPOSE_PROJECT_NAME}
 services:
   b19-rust:
-    container_name: ${M6E_CONTAINER_NAME}
+    container_name: ${M6E_CONTAINER_INSTANCE}
     image: ${M6E_IMAGE_FULLNAME}
     labels:
       com.docker.compose.watch: 'true'
