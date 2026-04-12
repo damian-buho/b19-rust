@@ -3,8 +3,7 @@
 -include .makefile/m6e/initialize.mk
 -include .makefile/rust/initialize.mk
 
-SOURCE_DOCKER_REGISTRY		?= registry.example.com
-DESTINATION_DOCKER_REGISTRY	?= registry.example.com
+
 
 NAMESPACE	?= b19
 PROJECT		?= rust
