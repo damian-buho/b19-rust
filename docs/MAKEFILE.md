@@ -8,6 +8,36 @@ Check if Compose Plugin is installed
 
 > Source: m6e/compose/commands.mk
 
+### `check-is-docker-installed`
+
+Check if Docker is installed
+
+> Source: m6e/container.mk
+
+### `check-docker-version`
+
+Check Docker Engine version
+
+> Source: m6e/container.mk
+
+### `check-buildah-installed`
+
+Check if buildah is installed
+
+> Source: m6e/container/backends/buildah.mk
+
+### `check-is-buildx-plugin-installed`
+
+Check if BuildX Plugin is installed
+
+> Source: m6e/container/backends/buildx.mk
+
+### `check-binfmt`
+
+Check if QEMU binfmt support is available for cross-arch builds
+
+> Source: m6e/container/backends/buildx.mk
+
 ### `check`
 
 Run all system requirement checks
@@ -25,36 +55,6 @@ Check if yq v4 (mikefarah) is installed
 Check if jq is installed
 
 > Source: m6e/core/080-check.mk
-
-### `check-is-docker-installed`
-
-Check if Docker is installed
-
-> Source: m6e/docker.mk
-
-### `check-docker-version`
-
-Check Docker Engine version
-
-> Source: m6e/docker.mk
-
-### `check-buildah-installed`
-
-Check if buildah is installed
-
-> Source: m6e/docker/backends/buildah.mk
-
-### `check-is-buildx-plugin-installed`
-
-Check if BuildX Plugin is installed
-
-> Source: m6e/docker/backends/buildx.mk
-
-### `check-binfmt`
-
-Check if QEMU binfmt support is available for cross-arch builds
-
-> Source: m6e/docker/backends/buildx.mk
 
 ### `bootstrap`
 
@@ -178,25 +178,25 @@ Development mode without cache
 
 Build docker image (dispatches to configured backend)
 
-> Source: m6e/docker/010-build.mk
+> Source: m6e/container/010-build.mk
 
 ### `build-nc`
 
 Build docker image without cache
 
-> Source: m6e/docker/010-build.mk
+> Source: m6e/container/010-build.mk
 
 ### `build-push`
 
 Build and push image to registry
 
-> Source: m6e/docker/010-build.mk
+> Source: m6e/container/010-build.mk
 
 ### `ensure-ssh-agent`
 
 Ensure that ssh-agent is running
 
-> Source: m6e/docker/080-ssh-agent.mk
+> Source: m6e/container/080-ssh-agent.mk
 
 ### `build-with-buildah`
 
@@ -204,7 +204,7 @@ Build with buildah + project.yaml
 
 > *Internal target*
 
-> Source: m6e/docker/backends/buildah.mk
+> Source: m6e/container/backends/buildah.mk
 
 ### `build-push-with-buildah`
 
@@ -212,7 +212,7 @@ Build with buildah and push to registry
 
 > *Internal target*
 
-> Source: m6e/docker/backends/buildah.mk
+> Source: m6e/container/backends/buildah.mk
 
 ### `build-with-buildah-nc`
 
@@ -220,7 +220,7 @@ Build with buildah without cache
 
 > *Internal target*
 
-> Source: m6e/docker/backends/buildah.mk
+> Source: m6e/container/backends/buildah.mk
 
 ### `build-with-buildx`
 
@@ -228,7 +228,7 @@ Build with BuildX (cached)
 
 > *Internal target*
 
-> Source: m6e/docker/backends/buildx.mk
+> Source: m6e/container/backends/buildx.mk
 
 ### `build-with-buildx-nc`
 
@@ -236,7 +236,7 @@ Build with BuildX (no cache)
 
 > *Internal target*
 
-> Source: m6e/docker/backends/buildx.mk
+> Source: m6e/container/backends/buildx.mk
 
 ### `build-push-with-buildx`
 
@@ -244,7 +244,7 @@ Build with BuildX and push to registry
 
 > *Internal target*
 
-> Source: m6e/docker/backends/buildx.mk
+> Source: m6e/container/backends/buildx.mk
 
 ## Container
 
@@ -252,49 +252,49 @@ Build with BuildX and push to registry
 
 Get the lineage of the Docker container
 
-> Source: m6e/docker/020-container.mk
+> Source: m6e/container/020-container.mk
 
 ### `read-health`
 
 Read the health status of the Docker container
 
-> Source: m6e/docker/020-container.mk
+> Source: m6e/container/020-container.mk
 
 ### `healthcheck.d`
 
 Check the healthcheck of the Docker container
 
-> Source: m6e/docker/020-container.mk
+> Source: m6e/container/020-container.mk
 
 ### `test.d`
 
 Run tests in the Docker container
 
-> Source: m6e/docker/020-container.mk
+> Source: m6e/container/020-container.mk
 
 ### `report.d`
 
 Generate a report from the Docker container
 
-> Source: m6e/docker/020-container.mk
+> Source: m6e/container/020-container.mk
 
 ### `exec-shell`
 
 Open a shell in the running Docker container
 
-> Source: m6e/docker/020-container.mk
+> Source: m6e/container/020-container.mk
 
 ### `run-shell`
 
 Open a shell in the new Docker container
 
-> Source: m6e/docker/020-container.mk
+> Source: m6e/container/020-container.mk
 
 ### `inspect`
 
 Inspect the Docker container
 
-> Source: m6e/docker/020-container.mk
+> Source: m6e/container/020-container.mk
 
 ## Fetch
 
@@ -302,13 +302,13 @@ Inspect the Docker container
 
 Pre-download all external dependencies
 
-> Source: m6e/docker/040-fetch.mk
+> Source: m6e/container/040-fetch.mk
 
 ### `fetch-clean`
 
 Remove pre-downloaded files
 
-> Source: m6e/docker/040-fetch.mk
+> Source: m6e/container/040-fetch.mk
 
 ## I18N
 
@@ -316,31 +316,31 @@ Remove pre-downloaded files
 
 Extract translatable strings into .pot template
 
-> Source: m6e/docker/050-i18n.mk
+> Source: m6e/container/050-i18n.mk
 
 ### `i18n-init-LANG`
 
 Initialize new language (usage: make i18n-init-LANG LANG=uk)
 
-> Source: m6e/docker/050-i18n.mk
+> Source: m6e/container/050-i18n.mk
 
 ### `i18n-update`
 
 Update .po files from .pot template
 
-> Source: m6e/docker/050-i18n.mk
+> Source: m6e/container/050-i18n.mk
 
 ### `i18n-compile`
 
 Compile .po files into .mo binaries
 
-> Source: m6e/docker/050-i18n.mk
+> Source: m6e/container/050-i18n.mk
 
 ### `i18n-stats`
 
 Show translation statistics per language
 
-> Source: m6e/docker/050-i18n.mk
+> Source: m6e/container/050-i18n.mk
 
 ## Image
 
@@ -348,25 +348,25 @@ Show translation statistics per language
 
 Get $(M6E_CONTAINER_RUNTIME) history of image
 
-> Source: m6e/docker/060-image.mk
+> Source: m6e/container/060-image.mk
 
 ### `inspect-image`
 
 Call inspect on docker image
 
-> Source: m6e/docker/060-image.mk
+> Source: m6e/container/060-image.mk
 
 ### `docker-image-remove`
 
 Remove the locally built Docker image
 
-> Source: m6e/docker/060-image.mk
+> Source: m6e/container/060-image.mk
 
 ### `docker-image-list`
 
 List local Docker images matching this project
 
-> Source: m6e/docker/060-image.mk
+> Source: m6e/container/060-image.mk
 
 ## Network
 
@@ -374,13 +374,13 @@ List local Docker images matching this project
 
 Ensure the Docker network exists
 
-> Source: m6e/docker/070-network.mk
+> Source: m6e/container/070-network.mk
 
 ### `remove-docker-network`
 
 Remove the Docker network
 
-> Source: m6e/docker/070-network.mk
+> Source: m6e/container/070-network.mk
 
 ## Git
 
