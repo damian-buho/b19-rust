@@ -3,11 +3,6 @@
 -include .makefile/m6e/initialize.mk
 -include .makefile/rust/initialize.mk
 
-
-
-NAMESPACE	?= b19
-PROJECT		?= rust
-
 all: .makefile/m6e/initialize.mk
 	$(MAKE) pipeline
 

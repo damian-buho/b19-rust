@@ -1,0 +1,12 @@
+namespace: b19
+project: rust
+title:
+  en: B19 Rust Base Image
+description:
+  en: Rust runtime and toolchain
+license: MIT
+
+platforms:
+  supported:
+    - linux/amd64
+    - linux/arm64
