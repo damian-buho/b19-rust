@@ -1,19 +1,5 @@
 # Makefile Targets
 
-## CI
-
-### `format`
-
-Run all formatters (continues on failure, exits non-zero if any failed)
-
-> Source: m6e/ci/format.mk
-
-### `lint`
-
-Run all linters (continues on failure, exits non-zero if any failed)
-
-> Source: m6e/ci/lint.mk
-
 ## Bootstrap
 
 ### `check-is-compose-plugin-installed`
@@ -26,7 +12,17 @@ Check if Compose Plugin is installed
 
 Run all system requirement checks
 
-> *Internal target*
+> Source: m6e/core/080-check.mk
+
+### `check-yq-version`
+
+Check if yq v4 (mikefarah) is installed
+
+> Source: m6e/core/080-check.mk
+
+### `check-jq-installed`
+
+Check if jq is installed
 
 > Source: m6e/core/080-check.mk
 
@@ -45,18 +41,6 @@ Check Docker Engine version
 ### `check-buildah-installed`
 
 Check if buildah is installed
-
-> Source: m6e/docker/backends/buildah.mk
-
-### `check-yq-version`
-
-Check if yq v4 (mikefarah) is installed
-
-> Source: m6e/docker/backends/buildah.mk
-
-### `check-jq-installed`
-
-Check if jq is installed
 
 > Source: m6e/docker/backends/buildah.mk
 
@@ -92,18 +76,6 @@ Show config Docker Compose services
 
 > Source: m6e/compose/commands.mk
 
-### `dc-up`
-
-Bring up Docker Compose services (foreground)
-
-> Source: m6e/compose/commands.mk
-
-### `dc-up-d`
-
-Bring up Docker Compose services (detached)
-
-> Source: m6e/compose/commands.mk
-
 ### `dc-down`
 
 Stop and remove Docker Compose services
@@ -113,36 +85,6 @@ Stop and remove Docker Compose services
 ### `dc-down-v`
 
 Stop and remove Docker Compose services and volumes
-
-> Source: m6e/compose/commands.mk
-
-### `dc-ps`
-
-List Docker Compose services
-
-> Source: m6e/compose/commands.mk
-
-### `w-dc-ps`
-
-Watch a list of Docker Compose services
-
-> Source: m6e/compose/commands.mk
-
-### `dc-top`
-
-Display the running processes of Docker Compose services
-
-> Source: m6e/compose/commands.mk
-
-### `dc-start`
-
-Start stopped Docker Compose services
-
-> Source: m6e/compose/commands.mk
-
-### `dc-stop`
-
-Stop running Docker Compose services
 
 > Source: m6e/compose/commands.mk
 
@@ -158,15 +100,51 @@ Follow logs of Docker Compose services
 
 > Source: m6e/compose/commands.mk
 
+### `dc-ps`
+
+List Docker Compose services
+
+> Source: m6e/compose/commands.mk
+
 ### `dc-restart`
 
 Restart Docker Compose services
 
 > Source: m6e/compose/commands.mk
 
-### `clean`
+### `dc-start`
 
-Shut down all containers and remove volumes
+Start stopped Docker Compose services
+
+> Source: m6e/compose/commands.mk
+
+### `dc-stop`
+
+Stop running Docker Compose services
+
+> Source: m6e/compose/commands.mk
+
+### `dc-top`
+
+Display the running processes of Docker Compose services
+
+> Source: m6e/compose/commands.mk
+
+### `dc-up`
+
+Bring up Docker Compose services (foreground)
+
+> Source: m6e/compose/commands.mk
+
+### `dc-up-d`
+
+Bring up Docker Compose services (detached)
+
+> Source: m6e/compose/commands.mk
+
+### `w-dc-ps`
+
+Watch a list of Docker Compose services
 
 > Source: m6e/compose/commands.mk
 
@@ -194,75 +172,31 @@ Development mode without cache
 
 > Source: m6e/compose/pipeline.mk
 
-## Container
-
-### `get-history`
-
-Get $(M6E_CONTAINER_RUNTIME) history of image
-
-> Source: m6e/docker/analyze.mk
-
-### `inspect-image`
-
-Call inspect on docker image
-
-> Source: m6e/docker/analyze.mk
-
-### `read-lineage`
-
-Get the lineage of the Docker container
-
-> Source: m6e/docker/container.mk
-
-### `read-health`
-
-Read the health status of the Docker container
-
-> Source: m6e/docker/container.mk
-
-### `healthcheck.d`
-
-Check the healthcheck of the Docker container
-
-> Source: m6e/docker/container.mk
-
-### `test`
-
-Run all registered test targets
-
-> Source: m6e/docker/container.mk
-
-### `test.d`
-
-Run tests in the Docker container
-
-> Source: m6e/docker/container.mk
-
-### `report.d`
-
-Generate a report from the Docker container
-
-> Source: m6e/docker/container.mk
-
-### `exec-shell`
-
-Open a shell in the running Docker container
-
-> Source: m6e/docker/container.mk
-
-### `run-shell`
-
-Open a shell in the new Docker container
-
-> Source: m6e/docker/container.mk
-
-### `inspect`
-
-Inspect the Docker container
-
-> Source: m6e/docker/container.mk
-
 ## Build
+
+### `build`
+
+Build docker image (dispatches to configured backend)
+
+> Source: m6e/docker/010-build.mk
+
+### `build-nc`
+
+Build docker image without cache
+
+> Source: m6e/docker/010-build.mk
+
+### `build-push`
+
+Build and push image to registry
+
+> Source: m6e/docker/010-build.mk
+
+### `ensure-ssh-agent`
+
+Ensure that ssh-agent is running
+
+> Source: m6e/docker/090-ssh-agent.mk
 
 ### `build-with-buildah`
 
@@ -312,29 +246,55 @@ Build with BuildX and push to registry
 
 > Source: m6e/docker/backends/buildx.mk
 
-### `build`
+## Container
 
-Build docker image (dispatches to configured backend)
+### `read-lineage`
 
-> Source: m6e/docker/build.mk
+Get the lineage of the Docker container
 
-### `build-nc`
+> Source: m6e/docker/030-container.mk
 
-Build docker image without cache
+### `read-health`
 
-> Source: m6e/docker/build.mk
+Read the health status of the Docker container
 
-### `build-push`
+> Source: m6e/docker/030-container.mk
 
-Build and push image to registry
+### `healthcheck.d`
 
-> Source: m6e/docker/build.mk
+Check the healthcheck of the Docker container
 
-### `ensure-ssh-agent`
+> Source: m6e/docker/030-container.mk
 
-Ensure that ssh-agent is running
+### `test.d`
 
-> Source: m6e/docker/ssh-agent.mk
+Run tests in the Docker container
+
+> Source: m6e/docker/030-container.mk
+
+### `report.d`
+
+Generate a report from the Docker container
+
+> Source: m6e/docker/030-container.mk
+
+### `exec-shell`
+
+Open a shell in the running Docker container
+
+> Source: m6e/docker/030-container.mk
+
+### `run-shell`
+
+Open a shell in the new Docker container
+
+> Source: m6e/docker/030-container.mk
+
+### `inspect`
+
+Inspect the Docker container
+
+> Source: m6e/docker/030-container.mk
 
 ## Fetch
 
@@ -342,13 +302,13 @@ Ensure that ssh-agent is running
 
 Pre-download all external dependencies
 
-> Source: m6e/docker/fetch.mk
+> Source: m6e/docker/050-fetch.mk
 
 ### `fetch-clean`
 
 Remove pre-downloaded files
 
-> Source: m6e/docker/fetch.mk
+> Source: m6e/docker/050-fetch.mk
 
 ## I18N
 
@@ -356,31 +316,57 @@ Remove pre-downloaded files
 
 Extract translatable strings into .pot template
 
-> Source: m6e/docker/i18n.mk
+> Source: m6e/docker/060-i18n.mk
 
 ### `i18n-init-LANG`
 
 Initialize new language (usage: make i18n-init-LANG LANG=uk)
 
-> Source: m6e/docker/i18n.mk
+> Source: m6e/docker/060-i18n.mk
 
 ### `i18n-update`
 
 Update .po files from .pot template
 
-> Source: m6e/docker/i18n.mk
+> Source: m6e/docker/060-i18n.mk
 
 ### `i18n-compile`
 
 Compile .po files into .mo binaries
 
-> Source: m6e/docker/i18n.mk
+> Source: m6e/docker/060-i18n.mk
 
 ### `i18n-stats`
 
 Show translation statistics per language
 
-> Source: m6e/docker/i18n.mk
+> Source: m6e/docker/060-i18n.mk
+
+## Image
+
+### `get-history`
+
+Get $(M6E_CONTAINER_RUNTIME) history of image
+
+> Source: m6e/docker/070-image.mk
+
+### `inspect-image`
+
+Call inspect on docker image
+
+> Source: m6e/docker/070-image.mk
+
+### `docker-image-remove`
+
+Remove the locally built Docker image
+
+> Source: m6e/docker/070-image.mk
+
+### `docker-image-list`
+
+List local Docker images matching this project
+
+> Source: m6e/docker/070-image.mk
 
 ## Network
 
@@ -388,27 +374,13 @@ Show translation statistics per language
 
 Ensure the Docker network exists
 
-> Source: m6e/docker/network.mk
+> Source: m6e/docker/080-network.mk
 
 ### `remove-docker-network`
 
 Remove the Docker network
 
-> Source: m6e/docker/network.mk
-
-## Image
-
-### `docker-image-remove`
-
-Remove the locally built Docker image
-
-> Source: m6e/docker/remove.mk
-
-### `docker-image-list`
-
-List local Docker images matching this project
-
-> Source: m6e/docker/remove.mk
+> Source: m6e/docker/080-network.mk
 
 ## Git
 
@@ -601,3 +573,17 @@ Update and commit global makefile
 > *Internal target*
 
 > Source: m6e/meta/m6e.mk
+
+## Workflow
+
+### `clean`
+
+Shut down all containers and remove volumes
+
+> Source: m6e/workflow/clean.mk
+
+### `test`
+
+Run all registered test targets
+
+> Source: m6e/workflow/test.mk
