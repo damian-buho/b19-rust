@@ -28,7 +28,7 @@ Run all system requirement checks
 
 > *Internal target*
 
-> Source: m6e/core/200-check.mk
+> Source: m6e/core/080-check.mk
 
 ### `check-is-docker-installed`
 
