@@ -7,8 +7,8 @@ all: .makefile/m6e/initialize.mk
 	$(MAKE) pipeline
 
 .makefile/m6e/initialize.mk:
-	@git submodule update --init --recursive
-	@$(MAKE) bootstrap
+	git submodule update --init --recursive
+	$(MAKE) bootstrap
 
 -include 	.makefile/m6e/docker.mk
 -include 	.makefile/m6e/compose.mk

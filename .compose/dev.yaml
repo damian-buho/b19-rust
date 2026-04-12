@@ -2,8 +2,8 @@
 name: ${M6E_COMPOSE_PROJECT_NAME}
 services:
   b19-rust:
-    container_name: ${DOCKER_CONTAINER_NAME}
-    image: ${DOCKER_IMAGE_FULLNAME}
+    container_name: ${M6E_CONTAINER_NAME}
+    image: ${M6E_IMAGE_FULLNAME}
     labels:
       com.docker.compose.watch: 'true'
     command:
@@ -17,6 +17,6 @@ services:
       - /etc/localtime:/etc/localtime:ro
 networks:
   dev-network:
-    name: ${M6E_DOCKER_NETWORK}
+    name: ${M6E_NETWORK}
     external: true
 ...

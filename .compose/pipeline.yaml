@@ -3,7 +3,7 @@ name: ${M6E_PIPELINE_PROJECT_NAME}
 services:
   b19-rust:
     container_name: ${M6E_PIPELINE_CONTAINER_NAME}
-    image: ${DOCKER_IMAGE_FULLNAME}
+    image: ${M6E_IMAGE_FULLNAME}
     command:
       - sleep
       - infinity
@@ -15,6 +15,6 @@ services:
       - /etc/localtime:/etc/localtime:ro
 networks:
   dev-network:
-    name: ${M6E_DOCKER_NETWORK}
+    name: ${M6E_NETWORK}
     external: true
 ...
