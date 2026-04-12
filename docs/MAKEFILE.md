@@ -196,7 +196,7 @@ Build and push image to registry
 
 Ensure that ssh-agent is running
 
-> Source: m6e/docker/090-ssh-agent.mk
+> Source: m6e/docker/080-ssh-agent.mk
 
 ### `build-with-buildah`
 
@@ -252,49 +252,49 @@ Build with BuildX and push to registry
 
 Get the lineage of the Docker container
 
-> Source: m6e/docker/030-container.mk
+> Source: m6e/docker/020-container.mk
 
 ### `read-health`
 
 Read the health status of the Docker container
 
-> Source: m6e/docker/030-container.mk
+> Source: m6e/docker/020-container.mk
 
 ### `healthcheck.d`
 
 Check the healthcheck of the Docker container
 
-> Source: m6e/docker/030-container.mk
+> Source: m6e/docker/020-container.mk
 
 ### `test.d`
 
 Run tests in the Docker container
 
-> Source: m6e/docker/030-container.mk
+> Source: m6e/docker/020-container.mk
 
 ### `report.d`
 
 Generate a report from the Docker container
 
-> Source: m6e/docker/030-container.mk
+> Source: m6e/docker/020-container.mk
 
 ### `exec-shell`
 
 Open a shell in the running Docker container
 
-> Source: m6e/docker/030-container.mk
+> Source: m6e/docker/020-container.mk
 
 ### `run-shell`
 
 Open a shell in the new Docker container
 
-> Source: m6e/docker/030-container.mk
+> Source: m6e/docker/020-container.mk
 
 ### `inspect`
 
 Inspect the Docker container
 
-> Source: m6e/docker/030-container.mk
+> Source: m6e/docker/020-container.mk
 
 ## Fetch
 
@@ -302,13 +302,13 @@ Inspect the Docker container
 
 Pre-download all external dependencies
 
-> Source: m6e/docker/050-fetch.mk
+> Source: m6e/docker/040-fetch.mk
 
 ### `fetch-clean`
 
 Remove pre-downloaded files
 
-> Source: m6e/docker/050-fetch.mk
+> Source: m6e/docker/040-fetch.mk
 
 ## I18N
 
@@ -316,31 +316,31 @@ Remove pre-downloaded files
 
 Extract translatable strings into .pot template
 
-> Source: m6e/docker/060-i18n.mk
+> Source: m6e/docker/050-i18n.mk
 
 ### `i18n-init-LANG`
 
 Initialize new language (usage: make i18n-init-LANG LANG=uk)
 
-> Source: m6e/docker/060-i18n.mk
+> Source: m6e/docker/050-i18n.mk
 
 ### `i18n-update`
 
 Update .po files from .pot template
 
-> Source: m6e/docker/060-i18n.mk
+> Source: m6e/docker/050-i18n.mk
 
 ### `i18n-compile`
 
 Compile .po files into .mo binaries
 
-> Source: m6e/docker/060-i18n.mk
+> Source: m6e/docker/050-i18n.mk
 
 ### `i18n-stats`
 
 Show translation statistics per language
 
-> Source: m6e/docker/060-i18n.mk
+> Source: m6e/docker/050-i18n.mk
 
 ## Image
 
@@ -348,25 +348,25 @@ Show translation statistics per language
 
 Get $(M6E_CONTAINER_RUNTIME) history of image
 
-> Source: m6e/docker/070-image.mk
+> Source: m6e/docker/060-image.mk
 
 ### `inspect-image`
 
 Call inspect on docker image
 
-> Source: m6e/docker/070-image.mk
+> Source: m6e/docker/060-image.mk
 
 ### `docker-image-remove`
 
 Remove the locally built Docker image
 
-> Source: m6e/docker/070-image.mk
+> Source: m6e/docker/060-image.mk
 
 ### `docker-image-list`
 
 List local Docker images matching this project
 
-> Source: m6e/docker/070-image.mk
+> Source: m6e/docker/060-image.mk
 
 ## Network
 
@@ -374,13 +374,13 @@ List local Docker images matching this project
 
 Ensure the Docker network exists
 
-> Source: m6e/docker/080-network.mk
+> Source: m6e/docker/070-network.mk
 
 ### `remove-docker-network`
 
 Remove the Docker network
 
-> Source: m6e/docker/080-network.mk
+> Source: m6e/docker/070-network.mk
 
 ## Git
 
