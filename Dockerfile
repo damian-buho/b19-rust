@@ -32,7 +32,7 @@ ENV B19_BUILD_PROC_RATIO=0.8                            \
     B19_USER=${B19_USER}                                \
     CARGO_HOME=${B19_HOME}/.cargo                       \
     CARGO_INCREMENTAL=0                                 \
-    CARGO_INSTALL_ROOT="${B19_BIN_PATH}"                \
+    CARGO_INSTALL_ROOT="/usr/local"                     \
     CARGO_REGISTRIES_CRATES_IO_PROTOCOL=sparse
 
 
