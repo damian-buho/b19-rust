@@ -32,7 +32,7 @@ ENV B19_BUILD_PROC_RATIO=0.8                            \
     B19_USER=${B19_USER}                                \
     CARGO_HOME=${B19_HOME}/.cargo                       \
     CARGO_INCREMENTAL=0                                 \
-    CARGO_INSTALL_ROOT="${B19_HOME}"                    \
+    CARGO_INSTALL_ROOT="${B19_BIN_PATH}"                \
     CARGO_REGISTRIES_CRATES_IO_PROTOCOL=sparse
 
 
@@ -43,9 +43,9 @@ USER root
 COPY --chown=${B19_UID}:${B19_GID} .container/base/ /
 
 RUN --mount=type=bind,from=fetch,source=.,target=/fetch                 \
+    --mount=type=cache,target=${B19_COMPILE_CACHE_PATH},sharing=private \
     --mount=type=cache,target=${B19_DOWNLOAD_PATH},sharing=private      \
     --mount=type=cache,target=${CARGO_HOME},sharing=private             \
-    --mount=type=cache,target=${B19_COMPILE_CACHE_PATH},sharing=private \
     --mount=type=cache,target=/var/cache/apt,sharing=private            \
     --mount=type=cache,target=/var/lib/apt,sharing=private              \
     --mount=type=tmpfs,target=${B19_TEMP_PATH}                          \
