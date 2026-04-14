@@ -73,10 +73,10 @@
         ;;
       off)
         unset RUSTC_WRAPPER
-        b19-log warn "BUILD" "$(_ "Compile cache: off")"
+        b19-log warn "BUILD" "$(_p "Compile cache: %s" "${B19_COMPILE_CACHE}")"
         ;;
       ccache)
-        b19-log bad "BUILD" "$(_ "ccache does not support Rust, disabling compile cache")"
+        b19-log bad "BUILD" "$(_p "%s does not support Rust, disabling compile cache" "ccache")"
         unset RUSTC_WRAPPER
         ;;
     esac

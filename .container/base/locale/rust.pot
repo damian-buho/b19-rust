@@ -3,11 +3,12 @@
 # This file is distributed under the same license as the rust package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
+#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: rust \n"
+"Project-Id-Version: rust development\n"
 "Report-Msgid-Bugs-To: i18n@b19.dev\n"
-"POT-Creation-Date: 2026-02-23 02:59-0300\n"
+"POT-Creation-Date: 2026-04-13 23:27+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,50 +17,60 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: .docker/build.d/install-from-cargo:19
+#: .container/base/tools.d/install-from-cargo:19
 msgid "Install package"
 msgstr ""
 
-#: .docker/build.d/install-from-cargo:23
+#: .container/base/tools.d/install-from-cargo:23
 msgid "Remove"
 msgstr ""
 
-#: .docker/build.d/base/post/500-install-rust.sh:29
-msgid "Extract %s"
-msgstr ""
-
-#: .docker/build.d/base/post/500-install-rust.sh:35
-msgid "Install"
-msgstr ""
-
-#: .docker/build.d/base/post/050-install-compile-cache.sh:6
-msgid "Compile cache: off"
-msgstr ""
-
-#: .docker/build.d/base/post/050-install-compile-cache.sh:11
-msgid "ccache does not support Rust, disabling compile cache"
-msgstr ""
-
-#: .docker/build.d/base/post/050-install-compile-cache.sh:22
-msgid "Install sccache"
-msgstr ""
-
-#: .docker/build.d/setup-build:59
+#: .container/base/tools.d/setup-build:64
 msgid "Create sccache cache directory"
 msgstr ""
 
-#: .docker/build.d/setup-build:64
+#: .container/base/tools.d/setup-build:69
 msgid "Compile cache: sccache + Redis (%s)"
 msgstr ""
 
-#: .docker/build.d/setup-build:68
+#: .container/base/tools.d/setup-build:71
 msgid "Compile cache: sccache (%s)"
 msgstr ""
 
-#: .docker/build.d/compile-rust/post/900-show-cache-stats.i.sh:4
+#: .container/base/tools.d/setup-build:76
+msgid "Compile cache: %s"
+msgstr ""
+
+#: .container/base/tools.d/setup-build:79
+msgid "%s does not support Rust, disabling compile cache"
+msgstr ""
+
+#: .container/base/build.d/compile-rust/post/900-show-cache-stats.i.sh:4
 msgid "stats: %s"
 msgstr ""
 
-#: .docker/build.d/compile-rust/post/900-show-cache-stats.i.sh:5
-msgid "Compile cache was disabled, no stats"
+#: .container/base/build.d/compile-rust/post/900-show-cache-stats.i.sh:5
+#: .container/base/build.d/compile-rust/post/900-show-cache-stats.i.sh:6
+msgid "Compile cache was disabled (%s), no stats"
+msgstr ""
+
+#: .container/base/build.d/base/post/050-install-compile-cache.sh:4
+msgid "Compile cache: off"
+msgstr ""
+
+#: .container/base/build.d/base/post/050-install-compile-cache.sh:9
+msgid "ccache does not support Rust, disabling compile cache"
+msgstr ""
+
+#: .container/base/build.d/base/post/050-install-compile-cache.sh:19
+#: .container/base/build.d/base/post/500-install-rust.sh:10
+msgid "Extract %s"
+msgstr ""
+
+#: .container/base/build.d/base/post/050-install-compile-cache.sh:25
+msgid "Install sccache"
+msgstr ""
+
+#: .container/base/build.d/base/post/500-install-rust.sh:16
+msgid "Install"
 msgstr ""
