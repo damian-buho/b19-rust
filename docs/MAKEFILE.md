@@ -1,5 +1,37 @@
 # Makefile Targets
 
+## I18N
+
+### `i18n-extract`
+
+Extract translatable strings into .pot template
+
+> Source: m6e/ci/i18n.mk
+
+### `i18n-init-LANG`
+
+Initialize new language (usage: make i18n-init-LANG LANG=uk)
+
+> Source: m6e/ci/i18n.mk
+
+### `i18n-update`
+
+Update .po files from .pot template
+
+> Source: m6e/ci/i18n.mk
+
+### `i18n-compile`
+
+Compile .po files into .mo binaries
+
+> Source: m6e/ci/i18n.mk
+
+### `i18n-stats`
+
+Show translation statistics per language
+
+> Source: m6e/ci/i18n.mk
+
 ## Bootstrap
 
 ### `check-is-compose-plugin-installed`
@@ -152,25 +184,39 @@ Watch a list of Docker Compose services
 
 Run the pipeline (clean + build + test + clean)
 
-> Source: m6e/compose/pipeline.mk
+> Source: m6e/workflow/pipeline.mk
 
 ### `pipeline-nc`
 
 Run the pipeline without cache
 
-> Source: m6e/compose/pipeline.mk
+> Source: m6e/workflow/pipeline.mk
 
 ### `dev`
 
 Development mode (build + up with logs)
 
-> Source: m6e/compose/pipeline.mk
+> Source: m6e/workflow/pipeline.mk
 
 ### `dev-nc`
 
 Development mode without cache
 
-> Source: m6e/compose/pipeline.mk
+> Source: m6e/workflow/pipeline.mk
+
+## Network
+
+### `check-docker-network`
+
+Ensure the Docker network exists
+
+> Source: m6e/compose/network.mk
+
+### `remove-docker-network`
+
+Remove the Docker network
+
+> Source: m6e/compose/network.mk
 
 ## Build
 
@@ -252,95 +298,49 @@ Build with BuildX and push to registry
 
 Get the lineage of the Docker container
 
-> Source: m6e/container/020-container.mk
+> Source: m6e/container/020-runtime.mk
 
 ### `read-health`
 
 Read the health status of the Docker container
 
-> Source: m6e/container/020-container.mk
+> Source: m6e/container/020-runtime.mk
 
 ### `healthcheck.d`
 
 Check the healthcheck of the Docker container
 
-> Source: m6e/container/020-container.mk
+> Source: m6e/container/020-runtime.mk
 
 ### `test.d`
 
 Run tests in the Docker container
 
-> Source: m6e/container/020-container.mk
+> Source: m6e/container/020-runtime.mk
 
 ### `report.d`
 
 Generate a report from the Docker container
 
-> Source: m6e/container/020-container.mk
+> Source: m6e/container/020-runtime.mk
 
 ### `exec-shell`
 
 Open a shell in the running Docker container
 
-> Source: m6e/container/020-container.mk
+> Source: m6e/container/020-runtime.mk
 
 ### `run-shell`
 
 Open a shell in the new Docker container
 
-> Source: m6e/container/020-container.mk
+> Source: m6e/container/020-runtime.mk
 
 ### `inspect`
 
 Inspect the Docker container
 
-> Source: m6e/container/020-container.mk
-
-## Fetch
-
-### `fetch`
-
-Pre-download all external dependencies
-
-> Source: m6e/container/040-fetch.mk
-
-### `fetch-clean`
-
-Remove pre-downloaded files
-
-> Source: m6e/container/040-fetch.mk
-
-## I18N
-
-### `i18n-extract`
-
-Extract translatable strings into .pot template
-
-> Source: m6e/container/050-i18n.mk
-
-### `i18n-init-LANG`
-
-Initialize new language (usage: make i18n-init-LANG LANG=uk)
-
-> Source: m6e/container/050-i18n.mk
-
-### `i18n-update`
-
-Update .po files from .pot template
-
-> Source: m6e/container/050-i18n.mk
-
-### `i18n-compile`
-
-Compile .po files into .mo binaries
-
-> Source: m6e/container/050-i18n.mk
-
-### `i18n-stats`
-
-Show translation statistics per language
-
-> Source: m6e/container/050-i18n.mk
+> Source: m6e/container/020-runtime.mk
 
 ## Image
 
@@ -368,153 +368,139 @@ List local Docker images matching this project
 
 > Source: m6e/container/060-image.mk
 
-## Network
-
-### `check-docker-network`
-
-Ensure the Docker network exists
-
-> Source: m6e/container/070-network.mk
-
-### `remove-docker-network`
-
-Remove the Docker network
-
-> Source: m6e/container/070-network.mk
-
 ## Git
 
 ### `git-optimize`
 
 Optimize the repository by running all cleanup and optimization tasks
 
-> Source: m6e/git/git.mk
+> Source: m6e/git/tools.mk
 
 ### `git-reflog-clean`
 
 Clean up reflog
 
-> Source: m6e/git/git.mk
+> Source: m6e/git/tools.mk
 
 ### `git-disk-usage`
 
 Disk usage of the repository
 
-> Source: m6e/git/git.mk
+> Source: m6e/git/tools.mk
 
 ### `git-fetch-prune-all`
 
 Fetch and prune stale branches from all remotes
 
-> Source: m6e/git/git.mk
+> Source: m6e/git/tools.mk
 
 ### `git-fetch-prune`
 
 Fetch and prune stale remote branches
 
-> Source: m6e/git/git.mk
+> Source: m6e/git/tools.mk
 
 ### `git-push-force-all`
 
 Force push all branches to all remotes
 
-> Source: m6e/git/git.mk
+> Source: m6e/git/tools.mk
 
 ### `git-gc`
 
 Garbage collection (includes pruning unreachable objects)
 
-> Source: m6e/git/git.mk
+> Source: m6e/git/tools.mk
 
 ### `git-list-remotes`
 
 List all remotes and their URLs
 
-> Source: m6e/git/git.mk
+> Source: m6e/git/tools.mk
 
 ### `git-pack-refs`
 
 Pack refs for efficiency
 
-> Source: m6e/git/git.mk
+> Source: m6e/git/tools.mk
 
 ### `git-push-current`
 
 Push the current branch to all remotes
 
-> Source: m6e/git/git.mk
+> Source: m6e/git/tools.mk
 
 ### `git-push-all`
 
 Push to all remotes
 
-> Source: m6e/git/git.mk
+> Source: m6e/git/tools.mk
 
 ### `git-rebuild-repo`
 
 Rebuild repository (export/import)
 
-> Source: m6e/git/git.mk
+> Source: m6e/git/tools.mk
 
 ### `git-clean-ignored`
 
 Remove all ignored files
 
-> Source: m6e/git/git.mk
+> Source: m6e/git/tools.mk
 
 ### `git-remove-merged`
 
 Remove all merged local branches
 
-> Source: m6e/git/git.mk
+> Source: m6e/git/tools.mk
 
 ### `git-prune-tags`
 
 Remove local tags not present on any remote
 
-> Source: m6e/git/git.mk
+> Source: m6e/git/tools.mk
 
 ### `git-clean-untracked`
 
 Remove untracked files and directories
 
-> Source: m6e/git/git.mk
+> Source: m6e/git/tools.mk
 
 ### `git-repack`
 
 Repack loose objects into packs
 
-> Source: m6e/git/git.mk
+> Source: m6e/git/tools.mk
 
 ### `git-reset-current`
 
 Reset local branch to match its remote counterpart
 
-> Source: m6e/git/git.mk
+> Source: m6e/git/tools.mk
 
 ### `git-stats`
 
 Show repository statistics
 
-> Source: m6e/git/git.mk
+> Source: m6e/git/tools.mk
 
 ### `git-verify`
 
 Verify repository integrity
 
-> Source: m6e/git/git.mk
+> Source: m6e/git/tools.mk
 
 ### `git-pull-all`
 
 Pull from all remotes
 
-> Source: m6e/git/git.mk
+> Source: m6e/git/tools.mk
 
 ### `git-submodules-pull-all`
 
 Pull all git submodules
 
-> Source: m6e/git/git.mk
+> Source: m6e/git/tools.mk
 
 ## Help
 
@@ -587,3 +573,17 @@ Shut down all containers and remove volumes
 Run all registered test targets
 
 > Source: m6e/workflow/test.mk
+
+## Fetch
+
+### `fetch`
+
+Pre-download all external dependencies
+
+> Source: m6e/workflow/fetch.mk
+
+### `fetch-clean`
+
+Remove pre-downloaded files
+
+> Source: m6e/workflow/fetch.mk
