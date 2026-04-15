@@ -3,6 +3,8 @@
 -include .makefile/m6e/initialize.mk
 -include .makefile/rust/initialize.mk
 
+export B19_UBUNTU_SERIES=noble
+
 all: .makefile/m6e/initialize.mk
 	$(MAKE) pipeline
 
