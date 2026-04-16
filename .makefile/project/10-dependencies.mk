@@ -18,6 +18,24 @@ $(FETCH_PATH)/.rust.1.94.1.arm64.stamp: .container/base/deps/rust/url.arm64.txt 
 
 PREREQUISITES += .container/base/deps/rust/hash.arm64.txt
 
+$(FETCH_PATH)/.rust-std-musl.1.94.1.amd64.stamp: .container/base/deps/rust-std-musl/url.amd64.txt .container/base/deps/rust-std-musl/version.txt
+	M6E_DEPS_STAGE=base TARGETARCH=amd64 .makefile/m6e/scripts/fetch.sh rust-std-musl
+	touch $@
+
+.container/base/deps/rust-std-musl/hash.amd64.txt: $(FETCH_PATH)/.rust-std-musl.1.94.1.amd64.stamp
+	M6E_DEPS_STAGE=base TARGETARCH=amd64 .makefile/m6e/scripts/update-hash.sh rust-std-musl
+
+PREREQUISITES += .container/base/deps/rust-std-musl/hash.amd64.txt
+
+$(FETCH_PATH)/.rust-std-musl.1.94.1.arm64.stamp: .container/base/deps/rust-std-musl/url.arm64.txt .container/base/deps/rust-std-musl/version.txt
+	M6E_DEPS_STAGE=base TARGETARCH=arm64 .makefile/m6e/scripts/fetch.sh rust-std-musl
+	touch $@
+
+.container/base/deps/rust-std-musl/hash.arm64.txt: $(FETCH_PATH)/.rust-std-musl.1.94.1.arm64.stamp
+	M6E_DEPS_STAGE=base TARGETARCH=arm64 .makefile/m6e/scripts/update-hash.sh rust-std-musl
+
+PREREQUISITES += .container/base/deps/rust-std-musl/hash.arm64.txt
+
 $(FETCH_PATH)/.sccache.0.14.0.amd64.stamp: .container/base/deps/sccache/url.amd64.txt .container/base/deps/sccache/version.txt
 	M6E_DEPS_STAGE=base TARGETARCH=amd64 .makefile/m6e/scripts/fetch.sh sccache
 	touch $@

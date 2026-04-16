@@ -1,4 +1,5 @@
 
+ARG B19_RUST_LIBC=gnu
 ARG B19_COMPILE_CACHE=sccache
 ARG B19_COMPILE_CACHE_REDIS
 ARG B19_GROUP=rust
@@ -22,6 +23,7 @@ ARG M6E_NEAR_CACHE_HOST
 ARG M6E_NAMESPACE
 ARG M6E_PROJECT
 ARG M6E_VERSION
+ARG B19_RUST_LIBC
 ARG TARGETARCH
 
 ENV B19_BUILD_PROC_RATIO=0.8                            \
@@ -29,6 +31,7 @@ ENV B19_BUILD_PROC_RATIO=0.8                            \
     B19_COMPILE_CACHE_PATH=/compile-cache               \
     B19_COMPILE_CACHE_REDIS=${B19_COMPILE_CACHE_REDIS}  \
     B19_GROUP=${B19_GROUP}                              \
+    B19_RUST_LIBC=${B19_RUST_LIBC}                      \
     B19_USER=${B19_USER}                                \
     CARGO_HOME=${B19_HOME}/.cargo                       \
     CARGO_INCREMENTAL=0                                 \

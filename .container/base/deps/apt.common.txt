@@ -1,3 +1,4 @@
 build-essential                          # Informational list of build-essential packages
 pkg-config                               # manage compile and link flags for libraries (transitional package)
 git                                      # fast, scalable, distributed revision control system
+musl-tools                               # musl libc cross-compilation support (needed for musl Rust target)
