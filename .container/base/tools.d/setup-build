@@ -1,0 +1,106 @@
+#!/usr/bin/env bash
+
+# SPDX-FileCopyrightText: 2026 Damián Búho <damian.buho@proton.me>
+#
+# SPDX-License-Identifier: MIT
+
+    set -e
+
+    # Default RATIO value if not set
+    RATIO="${B19_BUILD_PROC_RATIO:-0.8}"
+    # Calculate the number of jobs based on nproc and RATIO
+    # Ensure integer division and handle edge cases
+    CPU_COUNT=$(nproc)
+    JOBS=$(awk -v cpus="${CPU_COUNT}" -v ratio="${RATIO}" 'BEGIN {
+      jobs = int(cpus * ratio);
+      if (jobs < 1) jobs = 1; # Ensure at least 1 job
+      print jobs;
+    }')
+
+    CARGO_BUILD_JOBS="${JOBS}"
+    export CARGO_BUILD_JOBS
+
+    B19_FLAGS_PATH="/flags"
+
+    b19-log info "BUILD" "Using ${JOBS} jobs out of ${CPU_COUNT} CPUs with RATIO=${RATIO}"
+
+    RUSTVERSION=$(rustc --version)
+
+    WANTED_RUSTFLAGS_FILE="${B19_FLAGS_PATH}/.rustflags/${TARGETARCH}/flags.txt"
+    SELECTED_FLAGS_FILE="${B19_FLAGS_PATH}/.rustflags/${TARGETARCH}/all.txt"
+    DUMMY_RS_FILE="/tmp/dummy.rs"
+
+    cat "${B19_FLAGS_PATH}/.rustflags/${TARGETARCH}"/flags.d/*.flags | decomment > "${WANTED_RUSTFLAGS_FILE}"
+
+    # Create a simple test Rust program
+    echo 'fn main() {}' > "${DUMMY_RS_FILE}"
+
+    # Clear the SELECTED_FLAGS_FILE
+    echo > "${SELECTED_FLAGS_FILE}"
+
+    # Iterate through each flag in WANTED_RUSTFLAGS_FILE
+    while read -r FLAG; do
+        # Attempt to compile the dummy program with the flag
+        if RUSTFLAGS="${FLAG}" rustc "${DUMMY_RS_FILE}" -o /tmp/dummy-out 2>/dev/null; then
+            echo "${FLAG}" >> "${SELECTED_FLAGS_FILE}"
+        else
+            b19-log bad "RUSTC" "Not supported: ${FLAG}"
+        fi
+    done < "${WANTED_RUSTFLAGS_FILE}"
+
+    # Clean up
+    rm -f "${DUMMY_RS_FILE}" /tmp/dummy-out
+
+    # Logging and build setup
+    b19-log info "BUILD" "Setup flags for ${TARGETARCH} and ${RUSTVERSION}"
+
+    RUSTFLAGS=$(tr '\n' ' ' < "${SELECTED_FLAGS_FILE}")
+    export RUSTFLAGS
+
+    b19-log good "BUILD" "RUSTFLAGS: ${RUSTFLAGS}"
+    b19-log good "BUILD" "CARGO_BUILD_JOBS: ${CARGO_BUILD_JOBS}"
+
+    # --- Compile cache activation ---
+    # Remote endpoint configured via SCCACHE_REDIS_ENDPOINT (native sccache env
+    # var) — passed through verbatim from the Dockerfile ENV, no b19-level
+    # scheme transformation.
+    # Probe: dump the resolved compile-cache env delimited + byte length so
+    # hidden characters (trailing space/CR from forge vars) and the effective
+    # verbosity surface in the log. warn level so it shows even at the warn
+    # default; not wrapped in _() — a token dump, not translatable prose.
+    # Bind first: ${#VAR} (byte length) has no :-default form, so under the
+    # set -u inherited from the sourcing Make recipe it aborts on an unset env.
+    # Use bound copies, not the env vars themselves, to keep the unset/empty
+    # distinction that the sccache-fallback logic below relies on.
+    _v_verbosity="${B19_VERBOSITY:-}"
+    _v_sccache_redis="${SCCACHE_REDIS_ENDPOINT:-}"
+    b19-log warn "BUILD" "compile-cache=[${B19_COMPILE_CACHE:-<unset>}] verbosity=[${_v_verbosity:-<unset>}](${#_v_verbosity}) sccache-redis=[${_v_sccache_redis:-<unset>}](${#_v_sccache_redis})"
+    unset _v_verbosity _v_sccache_redis
+    case "${B19_COMPILE_CACHE:-}" in
+      sccache)
+        SCCACHE_DIR="${B19_COMPILE_CACHE_PATH:-}/sccache"
+        RUSTC_WRAPPER=/usr/local/bin/sccache
+        b19-run "BUILD" "$(_ "Create sccache cache directory")" --  mkdir -p "${SCCACHE_DIR}"
+        export SCCACHE_DIR RUSTC_WRAPPER
+        if [ -n "${SCCACHE_REDIS_ENDPOINT:-}" ]; then
+          b19-log info "BUILD" "$(_p "Compile cache: sccache + remote (%s)" "${SCCACHE_REDIS_ENDPOINT}")"
+        else
+          # No remote endpoint: UNSET so sccache 0.14.0 falls back to its local
+          # disk cache. The Dockerfile bakes SCCACHE_REDIS_ENDPOINT=${...} into
+          # ENV unconditionally, so when no endpoint build-arg is passed the var
+          # is present-but-EMPTY — which sccache 0.14.0 misreads as "enable
+          # redis" and hangs dialing tcp://127.0.0.1:6379 (no redis running),
+          # surfacing as "Timed out waiting for server startup". Empty = local.
+          unset SCCACHE_REDIS_ENDPOINT
+          b19-log info "BUILD" "$(_p "Compile cache: sccache (%s)" "${SCCACHE_DIR}")"
+        fi
+        ;;
+      off)
+        unset RUSTC_WRAPPER
+        b19-log warn "BUILD" "$(_p "Compile cache: %s" "${B19_COMPILE_CACHE:-}")"
+        ;;
+      ccache)
+        b19-log bad "BUILD" "$(_p "%s does not support Rust, disabling compile cache" "ccache")"
+        unset RUSTC_WRAPPER
+        ;;
+    esac

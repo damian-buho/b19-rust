@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+
+# SPDX-FileCopyrightText: 2026 Damián Búho <damian.buho@proton.me>
+#
+# SPDX-License-Identifier: MIT
+
+  set -e
+
+  # shellcheck source=/dev/null
+  . b19-i18n
+
+  DEPSLIST="/deps/cargo.deps"
+
+  if [[ -f "${DEPSLIST}" ]]; then
+
+    b19-log good "CARGO" "Dependencies list ${DEPSLIST} is detected"
+
+    # Ensure newline in the end
+    [[ $(tail -n 1 "${DEPSLIST}") != "" ]] && echo "" >> "${DEPSLIST}"
+
+    while read -r PACKAGE;
+    do
+        [ -z "${PACKAGE}" ] || PKG_CONFIG_ALLOW_CROSS=1 b19-run "CARGO" "$(_ "Install package") ${PACKAGE}" --   \
+            cargo install --locked "${PACKAGE}"
+    done < <(decomment < "${DEPSLIST}")
+
+    b19-run "CARGO" "$(_ "Remove") ${DEPSLIST}" --  \
+      rm "${DEPSLIST}" # We don't need inheritance here
+  else
+    b19-log warn "CARGO" "Dependencies list ${DEPSLIST} is not detected"
+  fi
+  # We WON'T clean cache to save BuildKit optimizations

@@ -1,0 +1,21 @@
+# SPDX-FileCopyrightText: 2026 Damián Búho <damian.buho@proton.me>
+#
+# SPDX-License-Identifier: MIT
+
+-C target-feature=+sse              # SSE (x86-64-v1)
+-C target-feature=+sse2             # SSE2 (x86-64-v1)
+-C target-feature=+sse3             # SSE3 (x86-64-v2)
+-C target-feature=+ssse3            # SSSE3 (x86-64-v2)
+-C target-feature=+sse4.1           # SSE4.1 (x86-64-v2)
+-C target-feature=+sse4.2           # SSE4.2 (x86-64-v2)
+-C target-feature=+popcnt           # Population count (x86-64-v2)
+-C target-feature=+cmpxchg16b       # 128-bit CAS (x86-64-v2)
+-C target-feature=+avx              # AVX (x86-64-v3)
+-C target-feature=+avx2             # AVX2 (x86-64-v3)
+-C target-feature=+bmi1             # Bit manipulation 1 (x86-64-v3)
+-C target-feature=+bmi2             # Bit manipulation 2 (x86-64-v3)
+-C target-feature=+f16c             # Half-precision conversion (x86-64-v3)
+-C target-feature=+fma              # Fused multiply-add (x86-64-v3)
+-C target-feature=+lzcnt            # Leading zero count (x86-64-v3)
+-C target-feature=+movbe            # Move big-endian (x86-64-v3)
+-C target-feature=+xsave            # Extended save/restore (x86-64-v3)

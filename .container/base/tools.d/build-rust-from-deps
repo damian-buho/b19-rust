@@ -1,0 +1,131 @@
+#!/usr/bin/env bash
+
+# SPDX-FileCopyrightText: 2026 Damián Búho <damian.buho@proton.me>
+#
+# SPDX-License-Identifier: MIT
+
+  set -e
+
+  # shellcheck source=/dev/null
+  . b19-i18n
+
+  # Cross-compile Rust Dependencies
+  # Each package in /deps/build.cargo.deps is cross-built once per arch in
+  # B19_RUST_CROSS_TARGETS, producing ${CARGO_INSTALL_ROOT}/bin/<binary>.<arch>.
+  # Used to break OS-layer bootstrap cycles (e.g. b19/fd emits fd.{amd64,arm64,riscv64}
+  # from a single amd64 builder so b19/ubuntu can pick the right one per arch).
+
+  DEPSLIST="/deps/build.cargo.deps"
+
+  _arch_to_triple() {
+    case "${1}" in
+      amd64)   printf "x86_64-unknown-linux-%s"   "${B19_RUST_CROSS_VARIANT}" ;;
+      arm64)   printf "aarch64-unknown-linux-%s"   "${B19_RUST_CROSS_VARIANT}" ;;
+      riscv64) printf "riscv64gc-unknown-linux-%s"  "${B19_RUST_CROSS_VARIANT}" ;;
+      *)       return 1 ;;
+    esac
+  }
+
+  if [[ -f "${DEPSLIST}" ]]; then
+    b19-log good "RUSTCROSS" "$(_p "Cross-build dep list detected: %s" "${DEPSLIST}")"
+
+    # Ensure newline at the end (so the last line is read correctly)
+    if [[ -s "${DEPSLIST}" && $(tail -n 1 "${DEPSLIST}") != "" ]]; then
+      echo "" >> "${DEPSLIST}"
+    fi
+
+    ARCHES="${B19_RUST_CROSS_TARGETS:-amd64 arm64 riscv64}"
+    b19-log good "RUSTCROSS" "$(_p "Target arches: %s" "${ARCHES}")"
+    b19-log good "RUSTCROSS" "$(_p "Variant: %s" "${B19_RUST_CROSS_VARIANT}")"
+
+    # Create musl-cross-gcc symlinks so build.rs scripts (e.g. jemalloc)
+    # that derive CC from the target triple can find the GNU cross-compiler
+    for _ARCH in ${ARCHES}; do
+      [[ "${_ARCH}" == "${TARGETARCH}" ]] && continue
+      case "${_ARCH}" in
+        arm64)   _MUSL_CC="aarch64-linux-musl-gcc"; _GNU_CC="aarch64-linux-gnu-gcc" ;;
+        riscv64) _MUSL_CC="riscv64-linux-musl-gcc";  _GNU_CC="riscv64-linux-gnu-gcc" ;;
+        *)       continue ;;
+      esac
+      if ! command -v "${_MUSL_CC}" &>/dev/null && command -v "${_GNU_CC}" &>/dev/null; then
+        ln -sf "$(command -v "${_GNU_CC}")" "/usr/local/bin/${_MUSL_CC}"
+        b19-log info "RUSTCROSS" "$(_p "Symlinked %s → %s" "${_MUSL_CC}" "${_GNU_CC}")"
+      fi
+    done
+
+    mkdir -p "${CARGO_INSTALL_ROOT}/bin"
+
+    while read -r PACKAGE; do
+      [[ -z "${PACKAGE}" ]] && continue
+
+      CRATE="${PACKAGE%@*}"
+      CRATE="${CRATE##*/}"
+
+      for ARCH in ${ARCHES}; do
+        TRIPLE="$(_arch_to_triple "${ARCH}")" || {
+          b19-log error "RUSTCROSS" "$(_p "Unknown arch: %s" "${ARCH}")"
+          exit 1
+        }
+
+        TMPROOT="$(mktemp --directory)"
+
+        # Build cross-env: strip host-only flags and set cross linker/CC
+        if [[ "${ARCH}" != "${TARGETARCH}" ]]; then
+          CROSS_ENV=(
+            "RUSTFLAGS=$(echo "${RUSTFLAGS}" | sed -E 's/-C (link-arg=-fuse-ld=mold|target-feature=[^ ]+) ?//g')"
+          )
+          case "${ARCH}" in
+            arm64)
+              CROSS_ENV+=(
+                "CARGO_TARGET_AARCH64_UNKNOWN_LINUX_MUSL_LINKER=aarch64-linux-gnu-gcc"
+                "CC_aarch64_unknown_linux_musl=aarch64-linux-gnu-gcc"
+              ) ;;
+            riscv64)
+              CROSS_ENV+=(
+                "CARGO_TARGET_RISCV64GC_UNKNOWN_LINUX_MUSL_LINKER=riscv64-linux-gnu-gcc"
+                "CC_riscv64gc_unknown_linux_musl=riscv64-linux-gnu-gcc"
+              )
+              # The GNU cross-sysroot does not auto-link libm (pow, sqrt, etc.)
+              # while musl-native includes it; append -lm for riscv64 cross builds.
+              # +crt-static forces Rust to use its own musl sysroot; without it,
+              # riscv64gc-unknown-linux-musl does not auto-infer link-self-contained
+              # (unlike aarch64-unknown-linux-musl) and the GNU linker's glibc
+              # sysroot wins, producing a dynamic glibc binary instead of static musl.
+              CROSS_ENV[0]="${CROSS_ENV[0]} -C link-arg=-lm -C target-feature=+crt-static"
+              ;;
+          esac
+          b19-log info "RUSTCROSS" "$(_p "RUSTFLAGS (cross): %s" "${CROSS_ENV[0]}")"
+        else
+          CROSS_ENV=("RUSTFLAGS=${RUSTFLAGS}")
+        fi
+
+        PKG_CONFIG_ALLOW_CROSS=1 b19-run "RUSTCROSS" "$(_p "Cross-build %s for %s (%s)" "${CRATE}" "${ARCH}" "${TRIPLE}")" --  \
+          env "${CROSS_ENV[@]}" \
+          cargo install --locked --target "${TRIPLE}" --root "${TMPROOT}" "${PACKAGE}"
+
+        # Discover the actual binary name produced by cargo install
+        # (crate name may differ from binary name, e.g. fd-find → fd)
+        INSTALLED_BIN="$(find "${TMPROOT}/bin" -maxdepth 1 -type f -printf '%f\n' 2>/dev/null | head -n 1)"
+        if [[ -z "${INSTALLED_BIN}" ]]; then
+          b19-log error "RUSTCROSS" "$(_p "No binary found in %s for %s" "${TMPROOT}/bin" "${CRATE}")"
+          rm -rf "${TMPROOT}"
+          exit 1
+        fi
+
+        BINARY="${INSTALLED_BIN}"
+        mv "${TMPROOT}/bin/${BINARY}" "${CARGO_INSTALL_ROOT}/bin/${BINARY}.${ARCH}"
+        rm -rf "${TMPROOT}"
+      done
+
+      # Create plain-name symlink to the host arch binary
+      # so the image itself has a working binary (tests, direct use)
+      ln -s "${BINARY}.${TARGETARCH}" "${CARGO_INSTALL_ROOT}/bin/${BINARY}"
+
+    done < <(decomment < "${DEPSLIST}")
+
+    b19-run "RUSTCROSS" "$(_p "Remove %s" "${DEPSLIST}")" --  \
+      rm "${DEPSLIST}"
+  else
+    b19-log warn "RUSTCROSS" "$(_p "Cross-build dep list not found: %s" "${DEPSLIST}")"
+  fi
+  # We WON'T clean cache to save BuildKit optimizations

@@ -1,0 +1,9 @@
+# SPDX-FileCopyrightText: 2026 Damián Búho <damian.buho@proton.me>
+#
+# SPDX-License-Identifier: MIT
+
+-C target-feature=+crc              # CRC32 hardware (Armv8.0-A optional, near-universal)
+-C target-feature=+lse              # Large System Extensions atomics (Armv8.1-A)
+-C target-feature=+rdm              # Rounding Double Multiply-Add (Armv8.1-A)
+-C target-feature=+dotprod          # Dot product SIMD (Armv8.2-A)
+-C target-feature=+lse2             # Extended atomics (Armv8.4-A)

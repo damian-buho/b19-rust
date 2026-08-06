@@ -1,0 +1,123 @@
+# SPDX-FileCopyrightText: 2026 Damián Búho <damian.buho@proton.me>
+# Copyright (C) 2026 b19
+#
+# SPDX-License-Identifier: MIT
+msgid ""
+msgstr ""
+"Project-Id-Version: b19-rust\n"
+"Report-Msgid-Bugs-To: i18n@b19.dev\n"
+"POT-Creation-Date: 2026-05-10 12:00-0300\n"
+"PO-Revision-Date: 2026-02-18 00:00+0000\n"
+"Last-Translator: b19 team\n"
+"Language-Team: Spanish\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: .container/base/tools.d/install-from-cargo:19
+msgid "Install package"
+msgstr "Instalar"
+
+#: .container/base/tools.d/install-from-cargo:23
+msgid "Remove"
+msgstr "Eliminar"
+
+#: .container/base/tools.d/setup-build:64
+msgid "Create sccache cache directory"
+msgstr "Crear directorio de caché sccache"
+
+#: .container/base/tools.d/setup-build:69
+msgid "Compile cache: sccache + Redis (%s)"
+msgstr "Caché de compilación: sccache + Redis (%s)"
+
+#: .container/base/tools.d/setup-build:71
+msgid "Compile cache: sccache (%s)"
+msgstr "Caché de compilación: sccache (%s)"
+
+#: .container/base/tools.d/setup-build:76
+msgid "Compile cache: %s"
+msgstr "Caché de compilación: %s"
+
+#: .container/base/tools.d/setup-build:79
+msgid "%s does not support Rust, disabling compile cache"
+msgstr "%s no soporta Rust, desactivando caché de compilación"
+
+#: .container/base/build.d/compile-rust/post/900-show-cache-stats.i.sh:4
+msgid "stats: %s"
+msgstr "estadísticas: %s"
+
+#: .container/base/build.d/compile-rust/post/900-show-cache-stats.i.sh:5
+msgid "Compile cache was disabled (%s), no stats"
+msgstr "Caché de compilación desactivada (%s), sin estadísticas"
+
+#: .container/base/build.d/compile-rust/post/900-show-cache-stats.i.sh:6
+msgid "ccache is not supported for Rust (%s), no stats"
+msgstr "ccache no soporta Rust (%s), sin estadísticas"
+
+#: .container/base/build.d/base/post/050-install-compile-cache.sh:4
+msgid "Compile cache: off"
+msgstr "Caché de compilación: desactivada"
+
+#: .container/base/build.d/base/post/050-install-compile-cache.sh:9
+msgid "ccache does not support Rust, disabling compile cache"
+msgstr "ccache no soporta Rust, desactivando caché de compilación"
+
+#: .container/base/build.d/base/post/050-install-compile-cache.sh:19
+#: .container/base/build.d/base/post/500-install-rust.sh:10
+#: .container/base/build.d/base/post/500-install-rust.sh:26
+msgid "Extract %s"
+msgstr "Extraer %s"
+
+#: .container/base/build.d/base/post/050-install-compile-cache.sh:25
+msgid "Install sccache"
+msgstr "Instalar sccache"
+
+#: .container/base/build.d/base/post/500-install-rust.sh:16
+msgid "Install"
+msgstr "Instalar"
+
+#: .container/base/build.d/base/post/500-install-rust.sh:32
+msgid "Install musl target"
+msgstr "Instalar target musl"
+
+#: .container/base/build.d/base/post/500-install-rust.sh:74
+msgid "Install cross-target %s"
+msgstr "Instalar target cruzado %s"
+
+#: .container/base/build.d/base/post/500-install-rust.sh:82
+msgid "Configured linker for %s: %s"
+msgstr "Linker configurado para %s: %s"
+
+#: .container/base/build.d/base/post/500-install-rust.sh:86
+msgid "Cargo config:%s"
+msgstr "Config Cargo:%s"
+
+#: .container/base/tools.d/build-rust-from-deps:22
+msgid "Cross-build dep list detected: %s"
+msgstr "Lista de deps cross-build detectada: %s"
+
+#: .container/base/tools.d/build-rust-from-deps:31
+msgid "Target arches: %s"
+msgstr "Arquitecturas objetivo: %s"
+
+#: .container/base/tools.d/build-rust-from-deps:32
+msgid "Variant: %s"
+msgstr "Variante: %s"
+
+#: .container/base/tools.d/build-rust-from-deps:36
+msgid "Unknown arch: %s"
+msgstr "Arquitectura desconocida: %s"
+
+#: .container/base/tools.d/build-rust-from-deps:42
+msgid "Cross-build %s for %s (%s)"
+msgstr "Cross-build %s para %s (%s)"
+
+#: .container/base/tools.d/build-rust-from-deps:50
+msgid "Remove %s"
+msgstr "Eliminar %s"
+
+#: .container/base/tools.d/build-rust-from-deps:53
+msgid "Cross-build dep list not found: %s"
+msgstr "Lista de deps cross-build no encontrada: %s"

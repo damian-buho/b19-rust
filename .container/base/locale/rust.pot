@@ -1,0 +1,122 @@
+# SPDX-FileCopyrightText: 2026 Damián Búho <damian.buho@proton.me>
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+#
+# SPDX-License-Identifier: MIT
+msgid ""
+msgstr ""
+"Project-Id-Version: rust development\n"
+"Report-Msgid-Bugs-To: i18n@b19.dev\n"
+"POT-Creation-Date: 2026-05-10 12:00-0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: .container/base/tools.d/install-from-cargo:19
+msgid "Install package"
+msgstr ""
+
+#: .container/base/tools.d/install-from-cargo:23
+msgid "Remove"
+msgstr ""
+
+#: .container/base/tools.d/setup-build:64
+msgid "Create sccache cache directory"
+msgstr ""
+
+#: .container/base/tools.d/setup-build:69
+msgid "Compile cache: sccache + Redis (%s)"
+msgstr ""
+
+#: .container/base/tools.d/setup-build:71
+msgid "Compile cache: sccache (%s)"
+msgstr ""
+
+#: .container/base/tools.d/setup-build:76
+msgid "Compile cache: %s"
+msgstr ""
+
+#: .container/base/tools.d/setup-build:79
+msgid "%s does not support Rust, disabling compile cache"
+msgstr ""
+
+#: .container/base/build.d/compile-rust/post/900-show-cache-stats.i.sh:4
+msgid "stats: %s"
+msgstr ""
+
+#: .container/base/build.d/compile-rust/post/900-show-cache-stats.i.sh:5
+msgid "Compile cache was disabled (%s), no stats"
+msgstr ""
+
+#: .container/base/build.d/compile-rust/post/900-show-cache-stats.i.sh:6
+msgid "ccache is not supported for Rust (%s), no stats"
+msgstr ""
+
+#: .container/base/build.d/base/post/050-install-compile-cache.sh:4
+msgid "Compile cache: off"
+msgstr ""
+
+#: .container/base/build.d/base/post/050-install-compile-cache.sh:9
+msgid "ccache does not support Rust, disabling compile cache"
+msgstr ""
+
+#: .container/base/build.d/base/post/050-install-compile-cache.sh:19
+#: .container/base/build.d/base/post/500-install-rust.sh:10
+#: .container/base/build.d/base/post/500-install-rust.sh:26
+msgid "Extract %s"
+msgstr ""
+
+#: .container/base/build.d/base/post/050-install-compile-cache.sh:25
+msgid "Install sccache"
+msgstr ""
+
+#: .container/base/build.d/base/post/500-install-rust.sh:16
+msgid "Install"
+msgstr ""
+
+#: .container/base/build.d/base/post/500-install-rust.sh:32
+msgid "Install musl target"
+msgstr ""
+
+#: .container/base/build.d/base/post/500-install-rust.sh:74
+msgid "Install cross-target %s"
+msgstr ""
+
+#: .container/base/build.d/base/post/500-install-rust.sh:82
+msgid "Configured linker for %s: %s"
+msgstr ""
+
+#: .container/base/build.d/base/post/500-install-rust.sh:86
+msgid "Cargo config:%s"
+msgstr ""
+
+#: .container/base/tools.d/build-rust-from-deps:22
+msgid "Cross-build dep list detected: %s"
+msgstr ""
+
+#: .container/base/tools.d/build-rust-from-deps:31
+msgid "Target arches: %s"
+msgstr ""
+
+#: .container/base/tools.d/build-rust-from-deps:32
+msgid "Variant: %s"
+msgstr ""
+
+#: .container/base/tools.d/build-rust-from-deps:36
+msgid "Unknown arch: %s"
+msgstr ""
+
+#: .container/base/tools.d/build-rust-from-deps:42
+msgid "Cross-build %s for %s (%s)"
+msgstr ""
+
+#: .container/base/tools.d/build-rust-from-deps:50
+msgid "Remove %s"
+msgstr ""
+
+#: .container/base/tools.d/build-rust-from-deps:53
+msgid "Cross-build dep list not found: %s"
+msgstr ""
