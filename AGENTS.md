@@ -27,6 +27,17 @@ Rust toolchain image. Used as builder for minijinja, gleam, nginx (acme module),
 - `install-from-cargo` tool — reads `cargo.deps` dep file, calls `cargo install --locked`
 - `build-rust-from-deps` tool — reads `build.cargo.deps`, cross-builds for all arches in `B19_RUST_CROSS_TARGETS`
 
+## sccache deletes environment variables
+
+sccache drops `SOURCE_DATE_EPOCH`, `PWD`, `HOSTNAME`, `LD_PRELOAD`, `DESTDIR`,
+`CARGO_MAKEFLAGS` and the `RPM_*` names from the environment it gives to
+`rustc`. The denylist is in sccache `src/cmdline.rs`: such names would poison a
+cache key that many machines share. A crate that expands
+`env!("SOURCE_DATE_EPOCH")` therefore fails to compile, although the build stage
+exports the variable. Compile that one call without sccache —
+`env --unset=RUSTC_WRAPPER cargo install …` — and the rest of the image keeps
+its cache.
+
 ## musl variant
 
 Sets `config.toml` default build target to `{arch}-unknown-linux-musl`. All `cargo build` in downstream stages produce musl binaries without extra flags.
