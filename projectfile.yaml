@@ -6,7 +6,10 @@ $schema: https://projectfile.org/schema/v1.json
 identity:
   created: "2026-06-01"
   name: rust
-  summary: Rust toolchain with cross-compilation for GNU and musl
+  summary:
+    en: Rust toolchain with cross-compilation for GNU and musl
+    es: Cadena de herramientas de Rust con compilación cruzada para GNU y musl
+    uk: Інструментальний ланцюг Rust із крос-компіляцією для GNU та musl
   title: B19/Rust
 includes:
   - .makefile/b19/ci.yaml
