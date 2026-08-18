@@ -1,21 +1,15 @@
 <!--
 SPDX-FileCopyrightText: 2026 Damián Búho <damian.buho@proton.me>
 SPDX-License-Identifier: MIT
+pf-cli-managed: yes
 -->
 
-<!-- pf-cli-managed: yes -->
+[Español](docs/es/SUPPORT.md) · [Українська](docs/uk/SUPPORT.md)
 
 # Getting Support
 
 Thanks for using **B19/Rust**!
 This document explains where to get help and how to ask effective questions.
-
-## Before You Ask
-
-Please check these first — your question may already be answered:
-
-- [Issues on Codeberg](https://codeberg.org/b19/rust/issues)
-- [Issues on GitHub](https://github.com/damian-buho/b19-rust/issues)
 
 ## Where to Ask
 
@@ -34,9 +28,14 @@ To help us help you, please include:
 4. **Environment** — OS, version of B19/Rust, runtime version.
 5. **A minimal reproducible example**, if possible.
 
-See [Stack Overflow’s MCVE guide](https://stackoverflow.com/help/minimal-reproducible-example)
-for tips.
-
 ## Response Times
 
 This is a community-maintained project. Maintainers respond when they can — typically within a few days, but there are no guarantees. Please be patient and respectful.
+
+## Paid Support
+
+Paid support for B19/Rust is available:
+
+- [Support from author](https://dbuho.me)
+
+*Generated from projectfile ([learn how](https://projectfile.org/how-to/support))*
