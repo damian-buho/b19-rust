@@ -42,8 +42,8 @@ USER 0
 COPY --chown=${B19_UID}:${B19_GID} .container/base/ /
 
 RUN --mount=type=bind,from=fetch,source=.,target=/fetch                                                         \
-    --mount=type=cache,id=apt-cache-${B19_UBUNTU_SERIES},target=/var/cache/apt,sharing=shared                   \
-    --mount=type=cache,id=apt-lists-${B19_UBUNTU_SERIES},target=/var/lib/apt,sharing=shared                     \
+    --mount=type=cache,id=apt-cache-${B19_UBUNTU_SERIES}-${TARGETARCH},target=/var/cache/apt,sharing=shared      \
+    --mount=type=cache,id=apt-lists-${B19_UBUNTU_SERIES}-${TARGETARCH},target=/var/lib/apt,sharing=shared        \
     --mount=type=cache,id=cargo-build-${B19_RUST_LIBC},target=${XDG_CACHE_HOME}/.cargo-build,sharing=locked     \
     --mount=type=cache,id=cargo-home-${B19_RUST_LIBC},target=${CARGO_HOME},sharing=locked                       \
     --mount=type=cache,target=${B19_COMPILE_CACHE_PATH},sharing=shared                                          \
