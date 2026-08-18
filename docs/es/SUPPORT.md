@@ -39,5 +39,4 @@ Hay soporte de pago disponible para B19/Rust:
 
 - [Apoyo del autor](https://dbuho.me)
 
-*Generado desde projectfile ([saber cómo](https://projectfile.org/how-to/support))*
 <!-- textlint-enable -->
