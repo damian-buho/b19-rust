@@ -30,7 +30,7 @@ jobs:
         B19_RUST_LIBC: ["gnu", "musl"]
     env:
       B19_RUST_LIBC: ${{ matrix.B19_RUST_LIBC }}
-      M6E_IMAGE_PUBLISHED: kiota.ch/b19/rust:latest
+      M6E_IMAGE_PUBLISHED: kiota.ch/b19/rust-${{ matrix.B19_RUST_LIBC }}:latest
     steps:
       - uses: actions/checkout@v7
         with:
@@ -43,7 +43,7 @@ jobs:
           run: auto-grype image
           env: |-
             B19_RUST_LIBC=${{ matrix.B19_RUST_LIBC }}
-            M6E_IMAGE_PUBLISHED=kiota.ch/b19/rust:latest
+            M6E_IMAGE_PUBLISHED=kiota.ch/b19/rust-${{ matrix.B19_RUST_LIBC }}:latest
           mounts: /app/data/ci-cache/grype-db:/app/.cache/grype:ro
       - name: trivy-scan-registry
         uses: projectfile/ci-actions/run-tool@v1
@@ -53,7 +53,7 @@ jobs:
           run: auto-trivy image
           env: |-
             B19_RUST_LIBC=${{ matrix.B19_RUST_LIBC }}
-            M6E_IMAGE_PUBLISHED=kiota.ch/b19/rust:latest
+            M6E_IMAGE_PUBLISHED=kiota.ch/b19/rust-${{ matrix.B19_RUST_LIBC }}:latest
             TRIVY_CACHE_BACKEND
           mounts: /app/data/ci-cache/trivy-db:/app/.cache/trivy:ro
       - uses: actions/upload-artifact@v3

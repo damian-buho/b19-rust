@@ -43,6 +43,10 @@ org:
       compile-stage: compile-rust
       root-stage: base
   projectfile:
+    image:
+      series: "{B19_RUST_LIBC}"
+      path: ${org}/${name}-${series}
+      flatpath: ${org}-${name}-${series}
     ci:
       image: b19/rust-{B19_RUST_LIBC}
       matrix:

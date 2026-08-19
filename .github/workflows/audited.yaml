@@ -30,7 +30,7 @@ jobs:
         B19_RUST_LIBC: ["gnu", "musl"]
     env:
       B19_RUST_LIBC: ${{ matrix.B19_RUST_LIBC }}
-      M6E_IMAGE_PUBLISHED: ghcr.io/damian-buho/b19/rust:latest
+      M6E_IMAGE_PUBLISHED: ghcr.io/damian-buho/b19/rust-${{ matrix.B19_RUST_LIBC }}:latest
     steps:
       - uses: actions/checkout@v7
         with:
@@ -50,7 +50,7 @@ jobs:
           run: auto-grype image
           env: |-
             B19_RUST_LIBC=${{ matrix.B19_RUST_LIBC }}
-            M6E_IMAGE_PUBLISHED=ghcr.io/damian-buho/b19/rust:latest
+            M6E_IMAGE_PUBLISHED=ghcr.io/damian-buho/b19/rust-${{ matrix.B19_RUST_LIBC }}:latest
           mounts: ${{ runner.temp }}/ci-cache/grype-db:/app/.cache/grype:ro
       - name: restore trivy-db
         uses: actions/cache/restore@v4
@@ -67,7 +67,7 @@ jobs:
           run: auto-trivy image
           env: |-
             B19_RUST_LIBC=${{ matrix.B19_RUST_LIBC }}
-            M6E_IMAGE_PUBLISHED=ghcr.io/damian-buho/b19/rust:latest
+            M6E_IMAGE_PUBLISHED=ghcr.io/damian-buho/b19/rust-${{ matrix.B19_RUST_LIBC }}:latest
             TRIVY_CACHE_BACKEND
           mounts: ${{ runner.temp }}/ci-cache/trivy-db:/app/.cache/trivy:ro
       - uses: actions/upload-artifact@v7
