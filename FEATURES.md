@@ -46,7 +46,7 @@ SPDX-License-Identifier: MIT
 - The version is pinned; per-arch URL and hash are resolved at build time.
 - Cargo is rebuilt from crates.io for the host triple, so the shipped cargo is the current crates.io build.
 
-## Inherited from B19/Ubuntu 1.4.1
+## Inherited from B19/Ubuntu
 
 ### Persistent APT cache across builds
 
@@ -113,7 +113,7 @@ SPDX-License-Identifier: MIT
 ### Feature toggles for all subsystems
 
 - Every major subsystem (entrypoint, healthchecks, bootstrap, tests, secrets, port validation, i18n, shell hooks) can be disabled at runtime via environment variables.
-- Individual entrypoint and bootstrap hooks can be skipped by name without disabling the whole subsystem.
+- Individual entrypoint, bootstrap and health-check hooks can be skipped by name without disabling the whole subsystem.
 - No image rebuild required — toggles are runtime-only.
 
 ### Built-in health monitoring (healthcheck.d)
