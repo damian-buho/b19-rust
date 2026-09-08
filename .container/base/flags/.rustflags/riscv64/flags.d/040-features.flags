@@ -1,5 +1,0 @@
-# SPDX-FileCopyrightText: 2026 Damián Búho <damian.buho@proton.me>
-#
-# SPDX-License-Identifier: MIT
-
--C target-feature=+m,+a,+f,+d,+c,+zicsr,+zifencei  # RV64GC — C910 / EM-RV1 baseline
