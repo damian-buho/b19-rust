@@ -1,0 +1,5 @@
+# SPDX-FileCopyrightText: 2026 Damián Búho <damian.buho@proton.me>
+#
+# SPDX-License-Identifier: MIT
+
+-C link-arg=-fuse-ld=mold           # Use mold linker (faster; filtered if mold absent)

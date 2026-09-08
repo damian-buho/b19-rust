@@ -85,13 +85,27 @@
                 "CARGO_TARGET_RISCV64GC_UNKNOWN_LINUX_MUSL_LINKER=riscv64-linux-gnu-gcc"
                 "CC_riscv64gc_unknown_linux_musl=riscv64-linux-gnu-gcc"
               )
+              # Explicit ISA baseline for RISE/Scaleway EM-RV1 (T-Head C910,
+              # RV64IMAFDC_Zicsr_Zifencei). riscv64gc-unknown-linux-musl defaults
+              # to generic-rv64 / +m,+a,+f,+d,+c,+zicsr,+zifencei, but that is
+              # implicit and LLVM may widen it (e.g. rva23u64, vector, bitmanip)
+              # in newer toolchains. Pin a portable baseline here; use
+              # B19_RUST_RISCV64_RUSTFLAGS to override wholesale or
+              # B19_RUST_RISCV64_TARGET_CPU / _TARGET_FEATURES for parts.
+              if [[ -n "${B19_RUST_RISCV64_RUSTFLAGS:-}" ]]; then
+                _RISCV_RUSTFLAGS="${B19_RUST_RISCV64_RUSTFLAGS}"
+              else
+                _RISCV_CPU="${B19_RUST_RISCV64_TARGET_CPU:-generic-rv64}"
+                _RISCV_FEATURES="${B19_RUST_RISCV64_TARGET_FEATURES:-+m,+a,+f,+d,+c,+zicsr,+zifencei}"
+                _RISCV_RUSTFLAGS="-C target-cpu=${_RISCV_CPU} -C target-feature=${_RISCV_FEATURES}"
+              fi
               # The GNU cross-sysroot does not auto-link libm (pow, sqrt, etc.)
               # while musl-native includes it; append -lm for riscv64 cross builds.
               # +crt-static forces Rust to use its own musl sysroot; without it,
               # riscv64gc-unknown-linux-musl does not auto-infer link-self-contained
               # (unlike aarch64-unknown-linux-musl) and the GNU linker's glibc
               # sysroot wins, producing a dynamic glibc binary instead of static musl.
-              CROSS_ENV[0]="${CROSS_ENV[0]} -C link-arg=-lm -C target-feature=+crt-static"
+              CROSS_ENV[0]="${CROSS_ENV[0]} ${_RISCV_RUSTFLAGS} -C link-arg=-lm -C target-feature=+crt-static"
               ;;
           esac
           b19-log info "RUSTCROSS" "$(_p "RUSTFLAGS (cross): %s" "${CROSS_ENV[0]}")"
