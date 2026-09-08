@@ -22,6 +22,15 @@ $(FETCH_PATH)/.rust.1.98.0.arm64.stamp: .container/base/deps/rust/arm64.url.deps
 
 PREREQUISITES += .container/base/deps/rust/arm64.hash.deps
 
+$(FETCH_PATH)/.rust-src.1.98.0.stamp: .container/base/deps/rust-src/url.deps .container/base/deps/rust-src/version.deps
+	M6E_DEPS_STAGE=base .makefile/container/scripts/fetch.sh rust-src
+	touch $@
+
+.container/base/deps/rust-src/hash.deps: $(FETCH_PATH)/.rust-src.1.98.0.stamp
+	M6E_DEPS_STAGE=base .makefile/container/scripts/update-hash.sh rust-src
+
+PREREQUISITES += .container/base/deps/rust-src/hash.deps
+
 $(FETCH_PATH)/.rust-std-musl.1.98.0.amd64.stamp: .container/base/deps/rust-std-musl/amd64.url.deps .container/base/deps/rust-std-musl/version.deps
 	M6E_DEPS_STAGE=base TARGETARCH=amd64 .makefile/container/scripts/fetch.sh rust-std-musl
 	touch $@
