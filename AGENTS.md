@@ -52,6 +52,21 @@ The musl variant supports cross-compilation to `amd64`, `arm64`, and `riscv64` f
 - Produces fully static musl binaries — no libc dependency at runtime
 - `build.cargo.deps` dep file triggers cross-build via `build-rust-from-deps`, outputting `<binary>.<arch>` files
 
+## riscv64 ISA baseline
+
+Cross builds pin `-C target-cpu=generic-rv64 -C target-feature=+m,+a,+f,+d,+c,+zicsr,+zifencei`
+(overridable via `B19_RUST_RISCV64_TARGET_CPU` / `_TARGET_FEATURES` / `_RUSTFLAGS`)
+to avoid SIGILL on RISE/Scaleway EM-RV1 hardware, whose riscv64gc core does not
+implement whatever a newer LLVM’s implicit `generic-rv64` default widens to.
+That flag only affects code compiled for the crate being built — the prebuilt
+`riscv64gc-unknown-linux-musl` std/core rlibs ship with upstream’s own
+baseline and are linked in unchanged. `build-rust-from-deps` therefore also
+sets `RUSTC_BOOTSTRAP=1` and `cargo install -Z build-std=std,panic_abort` for
+riscv64, rebuilding std from the `rust-src` component (`deps/rust-src/`)
+against the same pinned ISA. Both the flags and the rebuild have to move
+together — pinning target-feature without build-std still leaves a
+wider-than-pinned std linked into the final binary.
+
 ## Inheritable hooks
 
 `compile-rust/` hooks are `.i.` — downstream `compile-rust` stages inherit: `setup-build` (RUSTFLAGS probe, job count), `install-from-cargo`, `build-rust-from-deps`, lineage reading, sccache stats.

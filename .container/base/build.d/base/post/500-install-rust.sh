@@ -42,6 +42,20 @@
     b19-run "RUST-STD-MUSL" "$(_ "Install musl target")" --     \
       ./install.sh --without=rust-docs,rust-docs-json-preview
 
+    # rust-src: std sources for the riscv64 -Z build-std rebuild in build-rust-from-deps
+    eval "$(b19-resolve-dep rust-src)"
+
+    b19-fetch "RUST-SRC" "${M6E_UPSTREAM__URL}" "${M6E_UPSTREAM__FILE}" "${M6E_UPSTREAM__HASH}"
+
+    b19-run "RUST-SRC" "$(_p "Extract %s" "${B19_TEMP_PATH}/${M6E_UPSTREAM__FILE}")" --      \
+      tar --extract                                                                         \
+          --file "${B19_TEMP_PATH}/${M6E_UPSTREAM__FILE}"                                   \
+          --strip-components 1                                                              \
+          --use-compress-program pixz
+
+    b19-run "RUST-SRC" "$(_ "Install rust-src")" --     \
+      ./install.sh
+
     # Install rust-std for cross-compilation targets (non-host arches)
     CROSS_VARIANT="${B19_RUST_CROSS_VARIANT:-musl}"
     CROSS_TARGETS="${B19_RUST_CROSS_TARGETS:-}"

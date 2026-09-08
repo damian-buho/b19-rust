@@ -70,6 +70,7 @@
         TMPROOT="$(mktemp --directory)"
 
         # Build cross-env: strip host-only flags and set cross linker/CC
+        CROSS_CARGO_ARGS=()
         if [[ "${ARCH}" != "${TARGETARCH}" ]]; then
           CROSS_ENV=(
             "RUSTFLAGS=$(echo "${RUSTFLAGS}" | sed -E 's/-C (link-arg=-fuse-ld=mold|target-feature=[^ ]+) ?//g')"
@@ -106,6 +107,9 @@
               # (unlike aarch64-unknown-linux-musl) and the GNU linker's glibc
               # sysroot wins, producing a dynamic glibc binary instead of static musl.
               CROSS_ENV[0]="${CROSS_ENV[0]} ${_RISCV_RUSTFLAGS} -C link-arg=-lm -C target-feature=+crt-static"
+              # Rebuild std against the same baseline — the prebuilt rlib ships upstream's own
+              CROSS_ENV+=("RUSTC_BOOTSTRAP=1")
+              CROSS_CARGO_ARGS+=("-Z" "build-std=std,panic_abort")
               ;;
           esac
           b19-log info "RUSTCROSS" "$(_p "RUSTFLAGS (cross): %s" "${CROSS_ENV[0]}")"
@@ -115,7 +119,7 @@
 
         PKG_CONFIG_ALLOW_CROSS=1 b19-run "RUSTCROSS" "$(_p "Cross-build %s for %s (%s)" "${CRATE}" "${ARCH}" "${TRIPLE}")" --  \
           env "${CROSS_ENV[@]}" \
-          cargo install --locked --target "${TRIPLE}" --root "${TMPROOT}" "${PACKAGE}"
+          cargo install --locked "${CROSS_CARGO_ARGS[@]}" --target "${TRIPLE}" --root "${TMPROOT}" "${PACKAGE}"
 
         # Discover the actual binary name produced by cargo install
         # (crate name may differ from binary name, e.g. fd-find → fd)
