@@ -35,8 +35,7 @@ ENV B19_BUILD_PROC_RATIO=0.8                                  \
     CARGO_HOME=${B19_HOME}/.cargo                             \
     CARGO_INCREMENTAL=0                                       \
     CARGO_INSTALL_ROOT="/usr/local"                           \
-    CARGO_REGISTRIES_CRATES_IO_PROTOCOL=sparse                \
-    M6E_PROJECT="${M6E_PROJECT}-${B19_RUST_LIBC}"
+    CARGO_REGISTRIES_CRATES_IO_PROTOCOL=sparse
 
 
 WORKDIR ${B19_HOME}
