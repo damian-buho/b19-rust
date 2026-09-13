@@ -10,7 +10,7 @@ identity:
     en: Rust toolchain with cross-compilation for GNU and musl
     es: Cadena de herramientas de Rust con compilación cruzada para GNU y musl
     uk: Інструментальний ланцюг Rust із крос-компіляцією для GNU та musl
-  title: B19/Rust
+  title: B19 / Rust
 includes:
   - .makefile/b19/ci.yaml
   - .makefile/b19/images/ubuntu.yaml
@@ -20,18 +20,31 @@ includes:
 kind: SoftwareSourceCode
 links:
   - label: B19/Rust on Codeberg
+    tags:
+      - public
+      - badges
+      - badges-gitea
     type: source-code
     url: https://codeberg.org/b19/rust
   - label: B19/Rust on GitHub
+    tags:
+      - public
+      - badges
+      - badges-github
     type: source-code
     url: https://github.com/damian-buho/b19-rust
   - label: B19/Rust on kiota.ch
+    preferred: true
     type: source-code
     url: https://kiota.ch/b19/rust
   - label: Issues on Codeberg
+    tags:
+      - support
     type: bugs
     url: https://codeberg.org/b19/rust/issues
   - label: Issues on GitHub
+    tags:
+      - support
     type: bugs
     url: https://github.com/damian-buho/b19-rust/issues
   - label: Packages on crates.io

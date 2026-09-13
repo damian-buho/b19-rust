@@ -8,13 +8,18 @@ pf-cli-managed: yes
 
 # Getting Support
 
-Thanks for using **B19/Rust**!
+Thanks for using **B19 / Rust**!
 This document explains where to get help and how to ask effective questions.
+
+## Before You Ask
+
+Please check these first — your question may already be answered:
+
+- [Issues on Codeberg](https://codeberg.org/b19/rust/issues)
+- [Issues on GitHub](https://github.com/damian-buho/b19-rust/issues)
 
 ## Where to Ask
 
-- **Report a reproducible bug** — [Issues on Codeberg](https://codeberg.org/b19/rust/issues)
-- **Report a reproducible bug** — [Issues on GitHub](https://github.com/damian-buho/b19-rust/issues)
 - **Report a security vulnerability** — [SECURITY.md](SECURITY.md)
 - **Contribute to the project** — [CONTRIBUTING.md](CONTRIBUTING.md)
 
@@ -25,7 +30,7 @@ To help us help you, please include:
 1. **What you’re trying to do** — the goal, not just the error.
 2. **What you tried** — code, commands, config.
 3. **What happened** vs. what you expected.
-4. **Environment** — OS, version of B19/Rust, runtime version.
+4. **Environment** — OS, version of B19 / Rust, runtime version.
 5. **A minimal reproducible example**, if possible.
 
 ## Response Times
@@ -34,6 +39,6 @@ This is a community-maintained project. Maintainers respond when they can — ty
 
 ## Paid Support
 
-Paid support for B19/Rust is available:
+Paid support for B19 / Rust is available:
 
 - [Support from author](https://dbuho.me)
