@@ -11,6 +11,7 @@ identity:
     es: Cadena de herramientas de Rust con compilación cruzada para GNU y musl
     uk: Інструментальний ланцюг Rust із крос-компіляцією для GNU та musl
   title: B19 / Rust
+  version: 1.1.10
 includes:
   - .makefile/b19/ci.yaml
   - .makefile/b19/images/ubuntu.yaml
