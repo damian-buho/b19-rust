@@ -1,0 +1,19 @@
+# SPDX-FileCopyrightText: 2026 Damián Búho <damian.buho@proton.me>
+#
+# SPDX-License-Identifier: MIT
+
+# Declarative Rust crates to cross-compile for all arches in B19_RUST_CROSS_TARGETS.
+# Format: <crate@version> (one per line)
+# Only works with musl variant (B19_RUST_LIBC=musl).
+# Binary name is discovered from cargo install output (crate name may differ from binary).
+# Output: ${CARGO_INSTALL_ROOT}/bin/<binary>.<arch> (e.g. fd.amd64, fd.arm64, fd.riscv64).
+# Used to break OS-layer bootstrap cycles — downstream consumers pick the right arch binary.
+
+# Example: cross-compile fd for amd64, arm64, riscv64 (musl static)
+# fd-find@10.1.0
+
+# Example: cross-compile ripgrep for all supported arches
+# ripgrep@14.1.0
+
+# Example: cross-compile a custom crate
+# my-crate@1.0.0

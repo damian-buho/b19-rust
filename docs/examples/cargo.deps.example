@@ -1,0 +1,19 @@
+# SPDX-FileCopyrightText: 2026 Damián Búho <damian.buho@proton.me>
+#
+# SPDX-License-Identifier: MIT
+
+# Declarative Rust crates to install via 'cargo install --locked' during build.
+# Format: <crate@version> (one per line)
+# Empty lines and lines starting with # are ignored.
+
+# Example: install fd (file finder) at specific version
+# fd-find@10.1.0
+
+# Example: install ripgrep (fast search) at specific version
+# ripgrep@14.1.0
+
+# Example: install starship (prompt) at latest
+# starship@latest
+
+# Example: install any crate from crates.io
+# mytool@1.2.3
