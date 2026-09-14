@@ -19,6 +19,14 @@ includes:
   - https://kiota.ch/b19/metadata/raw/branch/main/include.yaml
   - https://kiota.ch/damian-buho/metadata/raw/branch/main/include.yaml
 kind: SoftwareSourceCode
+links:
+  - label:
+      en: B19 / Rust on kiota.ch
+      es: B19 / Rust en kiota.ch
+      uk: B19 / Rust на kiota.ch
+    preferred: true
+    type: source-code
+    url: https://kiota.ch/b19/rust
 org:
   b19:
     scaffold:
@@ -45,11 +53,3 @@ repositories:
   - role: origin
     type: git
     url: ssh://git@kiota.ch/b19/rust.git
-links:
-  - label:
-      en: B19 / Rust on kiota.ch
-      es: B19 / Rust en kiota.ch
-      uk: B19 / Rust на kiota.ch
-    preferred: true
-    type: source-code
-    url: https://kiota.ch/b19/rust
