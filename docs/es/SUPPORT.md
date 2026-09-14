@@ -12,13 +12,6 @@ pf-cli-managed: yes
 ¡Gracias por usar **B19 / Rust**!
 Este documento explica dónde conseguir ayuda y cómo formular buenas preguntas.
 
-## Antes de preguntar
-
-Revisa esto primero — puede que tu pregunta ya tenga respuesta:
-
-- [Issues on Codeberg](https://codeberg.org/b19/rust/issues)
-- [Issues on GitHub](https://github.com/damian-buho/b19-rust/issues)
-
 ## Dónde preguntar
 
 - **Informar de una vulnerabilidad de seguridad** — [SECURITY.md](SECURITY.md)
