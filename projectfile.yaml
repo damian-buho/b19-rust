@@ -19,38 +19,6 @@ includes:
   - https://kiota.ch/b19/metadata/raw/branch/main/include.yaml
   - https://kiota.ch/damian-buho/metadata/raw/branch/main/include.yaml
 kind: SoftwareSourceCode
-links:
-  - label: B19/Rust on Codeberg
-    tags:
-      - public
-      - badges
-      - badges-gitea
-    type: source-code
-    url: https://codeberg.org/b19/rust
-  - label: B19/Rust on GitHub
-    tags:
-      - public
-      - badges
-      - badges-github
-    type: source-code
-    url: https://github.com/damian-buho/b19-rust
-  - label: B19/Rust on kiota.ch
-    preferred: true
-    type: source-code
-    url: https://kiota.ch/b19/rust
-  - label: Issues on Codeberg
-    tags:
-      - support
-    type: bugs
-    url: https://codeberg.org/b19/rust/issues
-  - label: Issues on GitHub
-    tags:
-      - support
-    type: bugs
-    url: https://github.com/damian-buho/b19-rust/issues
-  - label: Packages on crates.io
-    type: package-registry
-    url: https://crates.io/crates/rust
 org:
   b19:
     scaffold:
@@ -74,13 +42,14 @@ org:
           - url: ssh://git@kiota.ch/b19/ubuntu.git
     status: maintained
 repositories:
-  - issues: true
-    role: mirror
-    type: git
-    url: ssh://git@codeberg.org/b19/rust.git
-  - role: mirror
-    type: git
-    url: git@github.com:damian-buho/b19-rust.git
   - role: origin
     type: git
     url: ssh://git@kiota.ch/b19/rust.git
+links:
+  - label:
+      en: B19 / Rust on kiota.ch
+      es: B19 / Rust en kiota.ch
+      uk: B19 / Rust на kiota.ch
+    preferred: true
+    type: source-code
+    url: https://kiota.ch/b19/rust
