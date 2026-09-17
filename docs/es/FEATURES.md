@@ -48,7 +48,7 @@ SPDX-License-Identifier: MIT
 - La versión está fijada; la URL y el hash por arquitectura se resuelven en tiempo de compilación.
 - Cargo se recompila desde crates.io para el triple del host, de modo que el cargo incluido es la compilación actual de crates.io.
 
-## Heredado de B19/Ubuntu
+## Heredado de B19 / Ubuntu
 
 ### Caché APT persistente entre compilaciones
 
