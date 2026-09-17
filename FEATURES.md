@@ -46,7 +46,7 @@ SPDX-License-Identifier: MIT
 - The version is pinned; per-arch URL and hash are resolved at build time.
 - Cargo is rebuilt from crates.io for the host triple, so the shipped cargo is the current crates.io build.
 
-## Inherited from B19/Ubuntu
+## Inherited from B19 / Ubuntu
 
 ### Persistent APT cache across builds
 
