@@ -78,7 +78,7 @@ jobs:
           submodules: true
           persist-credentials: false
       - uses: actions/download-artifact@v3
-        if: (vars.CI_ONLY_B19_RUST_LIBC == '' || contains(format(',{0},', vars.CI_ONLY_B19_RUST_LIBC), format(',{0},', matrix.B19_RUST_LIBC)))
+        if: (vars.CI_ONLY_B19_RUST_LIBC == '' || contains(format(',{0},', vars.CI_ONLY_B19_RUST_LIBC), format(',{0},', matrix.B19_RUST_LIBC))) && vars.CI_SKIP_IMAGE_IS_BUILT != 'true' && vars.CI_SKIP_CONTAINER_BUILD != 'true'
         with:
           name: image-${{ matrix.B19_RUST_LIBC }}-${{ github.run_id }}
       # The archive enters the runner's SHARED image store, where a sibling job's reap
@@ -232,7 +232,7 @@ jobs:
           submodules: true
           persist-credentials: false
       - uses: actions/download-artifact@v3
-        if: (vars.CI_ONLY_B19_RUST_LIBC == '' || contains(format(',{0},', vars.CI_ONLY_B19_RUST_LIBC), format(',{0},', matrix.B19_RUST_LIBC)))
+        if: (vars.CI_ONLY_B19_RUST_LIBC == '' || contains(format(',{0},', vars.CI_ONLY_B19_RUST_LIBC), format(',{0},', matrix.B19_RUST_LIBC))) && vars.CI_SKIP_IMAGE_IS_BUILT != 'true' && vars.CI_SKIP_CONTAINER_BUILD != 'true'
         with:
           name: image-${{ matrix.B19_RUST_LIBC }}-${{ github.run_id }}
       - name: grype-scan-tar
@@ -328,7 +328,7 @@ jobs:
           submodules: true
           persist-credentials: false
       - uses: actions/download-artifact@v3
-        if: (vars.CI_ONLY_B19_RUST_LIBC == '' || contains(format(',{0},', vars.CI_ONLY_B19_RUST_LIBC), format(',{0},', matrix.B19_RUST_LIBC))) && (vars.CI_ONLY_M6E_PUBLISH_SINK == '' || contains(format(',{0},', vars.CI_ONLY_M6E_PUBLISH_SINK), format(',{0},', matrix.M6E_PUBLISH_SINK)))
+        if: (vars.CI_ONLY_B19_RUST_LIBC == '' || contains(format(',{0},', vars.CI_ONLY_B19_RUST_LIBC), format(',{0},', matrix.B19_RUST_LIBC))) && (vars.CI_ONLY_M6E_PUBLISH_SINK == '' || contains(format(',{0},', vars.CI_ONLY_M6E_PUBLISH_SINK), format(',{0},', matrix.M6E_PUBLISH_SINK))) && vars.CI_SKIP_IMAGE_IS_BUILT != 'true' && vars.CI_SKIP_CONTAINER_BUILD != 'true'
         with:
           name: image-${{ matrix.B19_RUST_LIBC }}-${{ github.run_id }}
       - name: oci-push
