@@ -25,6 +25,7 @@ links:
       es: B19 / Rust en kiota.ch
       uk: B19 / Rust на kiota.ch
     preferred: true
+    priority: 10
     type: source-code
     url: https://kiota.ch/b19/rust
 org:
@@ -50,6 +51,7 @@ org:
           - url: ssh://git@kiota.ch/b19/ubuntu.git
     status: maintained
 repositories:
-  - role: origin
+  - branch: main
+    role: origin
     type: git
     url: ssh://git@kiota.ch/b19/rust.git
