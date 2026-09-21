@@ -16,3 +16,4 @@ rules:
     max: 120
 ignore: |
   .forgejo
+  .github

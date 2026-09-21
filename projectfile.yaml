@@ -17,7 +17,9 @@ includes:
   - .makefile/b19/images/ubuntu.yaml
   - .makefile/b19/vulnerabilities/linux-libc-dev.yaml
   - https://kiota.ch/b19/metadata/raw/branch/main/include.yaml
+  - https://kiota.ch/damian-buho/metadata/raw/branch/main/forge/github.yaml
   - https://kiota.ch/damian-buho/metadata/raw/branch/main/include.yaml
+  - https://kiota.ch/damian-buho/metadata/raw/branch/main/registry/dockerhub.yaml
 kind: SoftwareSourceCode
 links:
   - label:
