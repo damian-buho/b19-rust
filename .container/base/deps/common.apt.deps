@@ -3,11 +3,7 @@
 # SPDX-License-Identifier: MIT
 
 build-essential                          # Informational list of build-essential packages
-gcc-aarch64-linux-gnu                    # ARM64 cross-compiler (linker for aarch64 musl cross-compilation)
-gcc-riscv64-linux-gnu                    # RISC-V 64 cross-compiler (linker for riscv64gc musl cross-compilation)
 git                                      # fast, scalable, distributed revision control system
-libc6-dev-arm64-cross                    # ARM64 cross-libc headers and crt objects (sysroot for cross-C-compilation)
-libc6-dev-riscv64-cross                  # RISC-V 64 cross-libc headers and crt objects (sysroot for cross-C-compilation)
 libssl-dev                               # SSL development libraries (needed for cargo install)
 musl-tools                               # musl libc cross-compilation support (needed for musl Rust target)
 pkg-config                               # manage compile and link flags for libraries (transitional package)

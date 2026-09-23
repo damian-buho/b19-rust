@@ -48,7 +48,7 @@ The musl variant supports cross-compilation to `amd64`, `arm64`, and `riscv64` f
 
 - `B19_RUST_CROSS_TARGETS="amd64 arm64 riscv64"` — arches to cross-build
 - `B19_RUST_CROSS_VARIANT="musl"` — target libc (hardcoded for now)
-- Installs `rust-std` for all musl targets + cross-gcc linkers (`gcc-aarch64-linux-gnu`, `gcc-riscv64-linux-gnu`)
+- Installs `rust-std` for all musl targets; cross-gcc linkers come from `amd64.apt.deps`/`arm64.apt.deps` only, as Ubuntu ships none for a riscv64 host
 - Produces fully static musl binaries — no libc dependency at runtime
 - `build.cargo.deps` dep file triggers cross-build via `build-rust-from-deps`, outputting `<binary>.<arch>` files
 

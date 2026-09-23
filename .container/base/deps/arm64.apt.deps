@@ -1,0 +1,8 @@
+# SPDX-FileCopyrightText: 2026 Damián Búho <damian.buho@proton.me>
+#
+# SPDX-License-Identifier: MIT
+
+gcc-aarch64-linux-gnu                    # ARM64 cross-compiler (linker for aarch64 musl cross-compilation)
+gcc-riscv64-linux-gnu                    # RISC-V 64 cross-compiler (linker for riscv64gc musl cross-compilation)
+libc6-dev-arm64-cross                    # ARM64 cross-libc headers and crt objects (sysroot for cross-C-compilation)
+libc6-dev-riscv64-cross                  # RISC-V 64 cross-libc headers and crt objects (sysroot for cross-C-compilation)
