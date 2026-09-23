@@ -12,7 +12,7 @@ Rust toolchain image. Used as builder for minijinja, gleam, nginx (acme module),
 
 ## Key facts
 
-- Base: `b19/ubuntu/noble` (hardcoded — not resolute)
+- Base: `b19/ubuntu/resolute` (`B19_UBUNTU_BASE_IMAGE` default in `Dockerfile`)
 - Installed from upstream installer (not rustup, not apt)
 - Variants: `gnu`, `musl` (axis: `B19_RUST_LIBC`)
 - Image name: `b19/rust-{libc}`

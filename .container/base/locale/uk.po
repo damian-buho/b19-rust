@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: b19-rust\n"
-"Report-Msgid-Bugs-To: i18n@b19.dev\n"
-"POT-Creation-Date: 2026-05-10 12:00-0300\n"
+"Report-Msgid-Bugs-To: https://github.com/damian-buho/b19-rust/issues\n"
+"POT-Creation-Date: 2026-09-23 05:46+0000\n"
 "PO-Revision-Date: 2026-02-18 00:00+0000\n"
 "Last-Translator: b19 team\n"
 "Language-Team: Ukrainian\n"
@@ -17,108 +17,125 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
 
-#: .container/base/tools.d/install-from-cargo:19
-msgid "Install package"
-msgstr "Встановити"
-
-#: .container/base/tools.d/install-from-cargo:23
-msgid "Remove"
-msgstr "Видалити"
-
-#: .container/base/tools.d/setup-build:64
-msgid "Create sccache cache directory"
-msgstr "Створити директорію кешу sccache"
-
-#: .container/base/tools.d/setup-build:69
-msgid "Compile cache: sccache + Redis (%s)"
-msgstr "Кеш компіляції: sccache + Redis (%s)"
-
-#: .container/base/tools.d/setup-build:71
-msgid "Compile cache: sccache (%s)"
-msgstr "Кеш компіляції: sccache (%s)"
-
-#: .container/base/tools.d/setup-build:76
-msgid "Compile cache: %s"
-msgstr "Кеш компіляції: %s"
-
-#: .container/base/tools.d/setup-build:79
-msgid "%s does not support Rust, disabling compile cache"
-msgstr "%s не підтримує Rust, вимикаю кеш компіляції"
-
-#: .container/base/build.d/compile-rust/post/900-show-cache-stats.i.sh:4
-msgid "stats: %s"
-msgstr "статистика: %s"
-
-#: .container/base/build.d/compile-rust/post/900-show-cache-stats.i.sh:5
-msgid "Compile cache was disabled (%s), no stats"
-msgstr "Кеш компіляції вимкнено (%s), статистики немає"
-
-#: .container/base/build.d/compile-rust/post/900-show-cache-stats.i.sh:6
-msgid "ccache is not supported for Rust (%s), no stats"
-msgstr "ccache не підтримує Rust (%s), статистики немає"
-
-#: .container/base/build.d/base/post/050-install-compile-cache.sh:4
-msgid "Compile cache: off"
-msgstr "Кеш компіляції: вимкнено"
-
-#: .container/base/build.d/base/post/050-install-compile-cache.sh:9
-msgid "ccache does not support Rust, disabling compile cache"
-msgstr "ccache не підтримує Rust, вимикаю кеш компіляції"
-
-#: .container/base/build.d/base/post/050-install-compile-cache.sh:19
-#: .container/base/build.d/base/post/500-install-rust.sh:10
-#: .container/base/build.d/base/post/500-install-rust.sh:26
-msgid "Extract %s"
-msgstr "Розпакувати %s"
-
-#: .container/base/build.d/base/post/050-install-compile-cache.sh:25
-msgid "Install sccache"
-msgstr "Встановити sccache"
-
-#: .container/base/build.d/base/post/500-install-rust.sh:16
-msgid "Install"
-msgstr "Встановити"
-
-#: .container/base/build.d/base/post/500-install-rust.sh:32
-msgid "Install musl target"
-msgstr "Встановити musl target"
-
-#: .container/base/build.d/base/post/500-install-rust.sh:74
-msgid "Install cross-target %s"
-msgstr "Встановити крос-target %s"
-
-#: .container/base/build.d/base/post/500-install-rust.sh:82
-msgid "Configured linker for %s: %s"
-msgstr "Налаштовано лінкер для %s: %s"
-
-#: .container/base/build.d/base/post/500-install-rust.sh:86
-msgid "Cargo config:%s"
-msgstr "Конфіг Cargo:%s"
-
-#: .container/base/tools.d/build-rust-from-deps:22
+#: .container/base/tools.d/build-rust-from-deps:30
 msgid "Cross-build dep list detected: %s"
 msgstr "Виявлено список deps cross-build: %s"
 
-#: .container/base/tools.d/build-rust-from-deps:31
+#: .container/base/tools.d/build-rust-from-deps:38
 msgid "Target arches: %s"
 msgstr "Цільові архітектури: %s"
 
-#: .container/base/tools.d/build-rust-from-deps:32
+#: .container/base/tools.d/build-rust-from-deps:39
 msgid "Variant: %s"
 msgstr "Варіант: %s"
 
-#: .container/base/tools.d/build-rust-from-deps:36
+#: .container/base/tools.d/build-rust-from-deps:52
+msgid "Symlinked %s → %s"
+msgstr "Створено символьне посилання %s → %s"
+
+#: .container/base/tools.d/build-rust-from-deps:66
 msgid "Unknown arch: %s"
 msgstr "Невідома архітектура: %s"
 
-#: .container/base/tools.d/build-rust-from-deps:42
+#: .container/base/tools.d/build-rust-from-deps:97
+msgid "RUSTFLAGS (cross): %s"
+msgstr "RUSTFLAGS (крос): %s"
+
+#: .container/base/tools.d/build-rust-from-deps:102
 msgid "Cross-build %s for %s (%s)"
 msgstr "Крос-збірка %s для %s (%s)"
 
-#: .container/base/tools.d/build-rust-from-deps:50
+#: .container/base/tools.d/build-rust-from-deps:110
+msgid "No binary found in %s for %s"
+msgstr "У %s не знайдено бінарного файлу для %s"
+
+#: .container/base/tools.d/build-rust-from-deps:126
 msgid "Remove %s"
 msgstr "Видалити %s"
 
-#: .container/base/tools.d/build-rust-from-deps:53
+#: .container/base/tools.d/build-rust-from-deps:129
 msgid "Cross-build dep list not found: %s"
 msgstr "Список deps cross-build не знайдено: %s"
+
+#: .container/base/tools.d/install-from-cargo:23
+msgid "Install package"
+msgstr "Встановити"
+
+#: .container/base/tools.d/install-from-cargo:27
+msgid "Remove"
+msgstr "Видалити"
+
+#: .container/base/tools.d/setup-build:83
+msgid "Create sccache cache directory"
+msgstr "Створити директорію кешу sccache"
+
+#: .container/base/tools.d/setup-build:86
+msgid "Compile cache: sccache + remote (%s)"
+msgstr "Кеш компіляції: sccache + віддалений (%s)"
+
+#: .container/base/tools.d/setup-build:95
+msgid "Compile cache: sccache (%s)"
+msgstr "Кеш компіляції: sccache (%s)"
+
+#: .container/base/tools.d/setup-build:100
+msgid "Compile cache: %s"
+msgstr "Кеш компіляції: %s"
+
+#: .container/base/tools.d/setup-build:103
+msgid "%s does not support Rust, disabling compile cache"
+msgstr "%s не підтримує Rust, вимикаю кеш компіляції"
+
+#: .container/base/build.d/base/post/050-install-compile-cache.sh:8
+msgid "Compile cache: off"
+msgstr "Кеш компіляції: вимкнено"
+
+#: .container/base/build.d/base/post/050-install-compile-cache.sh:13
+msgid "ccache does not support Rust, disabling compile cache"
+msgstr "ccache не підтримує Rust, вимикаю кеш компіляції"
+
+#: .container/base/build.d/base/post/050-install-compile-cache.sh:23
+#: .container/base/build.d/base/post/500-install-rust.sh:14
+#: .container/base/build.d/base/post/500-install-rust.sh:36
+#: .container/base/build.d/base/post/500-install-rust.sh:60
+msgid "Extract %s"
+msgstr "Розпакувати %s"
+
+#: .container/base/build.d/base/post/050-install-compile-cache.sh:29
+msgid "Install sccache"
+msgstr "Встановити sccache"
+
+#: .container/base/build.d/base/post/500-install-rust.sh:20
+msgid "Install"
+msgstr "Встановити"
+
+#: .container/base/build.d/base/post/500-install-rust.sh:42
+msgid "Install musl target"
+msgstr "Встановити musl target"
+
+#: .container/base/build.d/base/post/500-install-rust.sh:66
+msgid "Install cross-target %s"
+msgstr "Встановити крос-target %s"
+
+#: .container/base/build.d/compile-rust/post/900-show-cache-stats.i.sh:8
+msgid "stats: %s"
+msgstr "статистика: %s"
+
+#: .container/base/build.d/compile-rust/post/900-show-cache-stats.i.sh:9
+msgid "Compile cache was disabled (%s), no stats"
+msgstr "Кеш компіляції вимкнено (%s), статистики немає"
+
+#: .container/base/build.d/compile-rust/post/900-show-cache-stats.i.sh:10
+msgid "ccache is not supported for Rust (%s), no stats"
+msgstr "ccache не підтримує Rust (%s), статистики немає"
+
+#: .container/user/build.d/user/post/350-write-cargo-config.i.sh:47
+msgid "Configured linker for %s: %s"
+msgstr "Налаштовано лінкер для %s: %s"
+
+#: .container/user/test.d/1500-test-compilation.sh:24
+msgid "rustc-%s compile test passed"
+msgstr "Тест компіляції rustc-%s пройдено"
+
+#: .container/user/test.d/1500-test-compilation.sh:33
+msgid "cargo-%s build test passed"
+msgstr "Тест збирання cargo-%s пройдено"

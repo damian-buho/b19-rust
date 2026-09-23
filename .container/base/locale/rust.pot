@@ -4,9 +4,9 @@
 # SPDX-License-Identifier: MIT
 msgid ""
 msgstr ""
-"Project-Id-Version: rust 1.1.7\n"
-"Report-Msgid-Bugs-To: https://codeberg.org/b19/rust/issues\n"
-"POT-Creation-Date: 2026-09-07 03:45+0000\n"
+"Project-Id-Version: rust 1.3.1-1-gcbe6f90\n"
+"Report-Msgid-Bugs-To: https://github.com/damian-buho/b19-rust/issues\n"
+"POT-Creation-Date: 2026-09-23 05:46+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -112,10 +112,6 @@ msgstr ""
 
 #: .container/base/build.d/base/post/500-install-rust.sh:66
 msgid "Install cross-target %s"
-msgstr ""
-
-#: .container/base/build.d/base/post/510-keep-cargo-fresh.sh:9
-msgid "Upgrade cargo from crates.io"
 msgstr ""
 
 #: .container/base/build.d/compile-rust/post/900-show-cache-stats.i.sh:8
