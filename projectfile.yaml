@@ -15,6 +15,7 @@ identity:
 includes:
   - .makefile/b19/ci.yaml
   - .makefile/b19/images/ubuntu.yaml
+  - .makefile/b19/traits/release.yaml
   - .makefile/b19/vulnerabilities/linux-libc-dev.yaml
   - https://kiota.ch/b19/metadata/raw/branch/main/include.yaml
   - https://kiota.ch/damian-buho/metadata/raw/branch/main/forge/github.yaml
@@ -30,6 +31,50 @@ links:
     priority: 10
     type: source-code
     url: https://kiota.ch/b19/rust
+  - label:
+      en: B19 / Rust on GitHub
+      es: B19 / Rust en GitHub
+      uk: B19 / Rust на GitHub
+    priority: 80
+    tags:
+      - public
+      - badges
+      - badges-github
+    type: source-code
+    url: https://github.com/damian-buho/b19-rust
+  - label:
+      en: Issues on GitHub
+      es: Incidencias en GitHub
+      uk: Задачі на GitHub
+    priority: 80
+    tags:
+      - support
+    type: bugs
+    url: https://github.com/damian-buho/b19-rust/issues
+  - label:
+      en: Packages on GHCR
+      es: Paquetes en GHCR
+      uk: Пакунки на GHCR
+    type: package-registry
+    url: https://github.com/damian-buho/b19-rust/pkgs/container/b19%2Frust-gnu
+  - label:
+      en: Packages on GHCR
+      es: Paquetes en GHCR
+      uk: Пакунки на GHCR
+    type: package-registry
+    url: https://github.com/damian-buho/b19-rust/pkgs/container/b19%2Frust-musl
+  - label:
+      en: Packages on Docker Hub
+      es: Paquetes en Docker Hub
+      uk: Пакунки на Docker Hub
+    type: package-registry
+    url: https://hub.docker.com/r/damianbuho/b19-rust-gnu
+  - label:
+      en: Packages on Docker Hub
+      es: Paquetes en Docker Hub
+      uk: Пакунки на Docker Hub
+    type: package-registry
+    url: https://hub.docker.com/r/damianbuho/b19-rust-musl
 org:
   b19:
     scaffold:
@@ -61,3 +106,6 @@ repositories:
     role: origin
     type: git
     url: ssh://git@kiota.ch/b19/rust.git
+  - role: mirror
+    type: git
+    url: git@github.com:damian-buho/b19-rust.git
