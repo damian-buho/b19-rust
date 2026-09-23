@@ -36,6 +36,10 @@ org:
       compile-stage: compile-rust
       root-stage: base
   projectfile:
+    architecture:
+      - amd64
+      - arm64
+      - riscv64
     image:
       series: "{B19_RUST_LIBC}"
       path: ${org}/${name}-${series}
