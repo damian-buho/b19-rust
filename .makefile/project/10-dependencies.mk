@@ -22,6 +22,15 @@ $(FETCH_PATH)/.rust.1.98.0.arm64.stamp: .container/base/deps/rust/arm64.url.deps
 
 PREREQUISITES += .container/base/deps/rust/arm64.hash.deps
 
+$(FETCH_PATH)/.rust.1.98.0.riscv64.stamp: .container/base/deps/rust/riscv64.url.deps .container/base/deps/rust/version.deps
+	M6E_DEPS_STAGE=base TARGETARCH=riscv64 .makefile/container/scripts/fetch.sh rust
+	touch $@
+
+.container/base/deps/rust/riscv64.hash.deps: $(FETCH_PATH)/.rust.1.98.0.riscv64.stamp
+	M6E_DEPS_STAGE=base TARGETARCH=riscv64 .makefile/container/scripts/update-hash.sh rust
+
+PREREQUISITES += .container/base/deps/rust/riscv64.hash.deps
+
 $(FETCH_PATH)/.rust-std-musl.1.98.0.amd64.stamp: .container/base/deps/rust-std-musl/amd64.url.deps .container/base/deps/rust-std-musl/version.deps
 	M6E_DEPS_STAGE=base TARGETARCH=amd64 .makefile/container/scripts/fetch.sh rust-std-musl
 	touch $@
@@ -66,4 +75,13 @@ $(FETCH_PATH)/.sccache.0.14.0.arm64.stamp: .container/base/deps/sccache/arm64.ur
 	M6E_DEPS_STAGE=base TARGETARCH=arm64 .makefile/container/scripts/update-hash.sh sccache
 
 PREREQUISITES += .container/base/deps/sccache/arm64.hash.deps
+
+$(FETCH_PATH)/.sccache.0.14.0.riscv64.stamp: .container/base/deps/sccache/riscv64.url.deps .container/base/deps/sccache/version.deps
+	M6E_DEPS_STAGE=base TARGETARCH=riscv64 .makefile/container/scripts/fetch.sh sccache
+	touch $@
+
+.container/base/deps/sccache/riscv64.hash.deps: $(FETCH_PATH)/.sccache.0.14.0.riscv64.stamp
+	M6E_DEPS_STAGE=base TARGETARCH=riscv64 .makefile/container/scripts/update-hash.sh sccache
+
+PREREQUISITES += .container/base/deps/sccache/riscv64.hash.deps
 
