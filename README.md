@@ -27,79 +27,44 @@ Rust toolchain with cross-compilation for GNU and musl
 - sccache compile cache
 - Rust toolchain from the upstream installer
 
-### Inherited from B19 / Ubuntu
-
-- Persistent APT cache across builds
-- Service process management with log routing (b19-exec)
-- Cached artifact downloads with integrity verification
-- Timed command execution with failure reporting (b19-run)
-- Run-once initialization (bootstrap.d)
-- Modular build hooks (build.d)
-- Automatic CPU count detection
-- Declarative dependency management (b19-deps)
-- Pluggable startup system (entrypoint.d)
-- Feature toggles for all subsystems
-- Built-in health monitoring (healthcheck.d)
-- Multilingual shell output (b19-i18n)
-- Image lineage tracking
-- Structured, level-filtered logging (b19-log)
-- Non-root container by default
-- Air-gapped / offline build and runtime support
-- Runtime overlay injection
-- Reproducible base image (pinned by digest)
-- Port validation
-- Unified lifecycle runner family
-- Docker secrets auto-loading
-- Interactive shell hooks
-- Graceful signal handling
-- Jinja2 configuration templates (minijinja-cli)
-- Built-in test framework (test.d)
-- Pre-installed utility tools
-- XDG Base Directory paths
-
-See [FEATURES.md](FEATURES.md) for the full list.
+It also inherits the features of Inherited from B19 / Ubuntu — see [FEATURES.md](FEATURES.md) for the full list.
 
 ## What this provides
 
 - **Container image** `ghcr.io/damian-buho/b19/rust-gnu:latest`
 - **Container image** `ghcr.io/damian-buho/b19/rust-musl:latest`
-- **Container image** `docker.io/damianbuho/b19-rust-gnu:latest`
-- **Container image** `docker.io/damianbuho/b19-rust-musl:latest`
-
-## Supported platforms
-
-- `linux/amd64`
-- `linux/arm64`
-- `linux/riscv64`
+- **Container image** `damianbuho/b19-rust-gnu:latest`
+- **Container image** `damianbuho/b19-rust-musl:latest`
 
 ## Installation
 
 Pull the published container image:
 
-### Pull from GHCR
+### Pull from GHCR — linux/amd64, linux/arm64, linux/riscv64
 
 ```sh
 docker pull ghcr.io/damian-buho/b19/rust-gnu:latest
-docker pull ghcr.io/damian-buho/b19/rust-musl:latest
 ```
 
-### Pull from DockerHub
+### Pull from DockerHub — linux/amd64
 
 ```sh
-docker pull docker.io/damianbuho/b19-rust-gnu:latest
-docker pull docker.io/damianbuho/b19-rust-musl:latest
+docker pull damianbuho/b19-rust-gnu:latest
 ```
+
+Series: `gnu` | `musl`
 
 Stable releases also publish `X.Y.Z`, `X.Y` and `X` tags — pull the precision you want to pin.
 
 If the registries above are unreachable, pull from the origin instead:
 
-### Pull from Kiota
+### Pull from Kiota — linux/amd64
 
 ```sh
 docker pull kiota.ch/b19/rust-gnu:latest
-docker pull kiota.ch/b19/rust-musl:latest
 ```
+
+Series: `gnu` | `musl`
 
 ## Usage
 
@@ -109,19 +74,33 @@ Build on top of this image:
 
 ```dockerfile
 FROM ghcr.io/damian-buho/b19/rust-gnu:latest
-FROM ghcr.io/damian-buho/b19/rust-musl:latest
 ```
 
 ### From DockerHub
 
 ```dockerfile
-FROM docker.io/damianbuho/b19-rust-gnu:latest
-FROM docker.io/damianbuho/b19-rust-musl:latest
+FROM damianbuho/b19-rust-gnu:latest
 ```
+
+Series: `gnu` | `musl`
 
 For the recommended multi-stage pattern and the build-hook system (build.d), scaffold a derivative with `b19/scripts/scaffold.sh` from [m6e/b19](https://kiota.ch/m6e/b19).
 
 ## Building
+
+Clone the repository with its submodules:
+
+```sh
+git clone --recurse-submodules https://github.com/damian-buho/b19-rust rust && cd rust
+```
+
+Build the container image locally:
+
+```sh
+make container-build
+```
+
+- [Makefile reference](docs/how-to/MAKEFILE.md)
 
 Run `make` with no arguments for the default target; run `make help` to list every target.
 

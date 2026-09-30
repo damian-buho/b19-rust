@@ -29,79 +29,44 @@ pf-cli-managed: yes
 - Кеш збирання sccache
 - Інструментальний ланцюжок Rust з upstream-інсталятора
 
-### Успадковано від B19 / Ubuntu
-
-- Постійний APT-кеш між збираннями
-- Керування службовими процесами зі спрямуванням журналів (b19-exec)
-- Кешовані завантаження артефактів із перевіркою цілісності (b19-fetch)
-- Вимірюване виконання команд зі звітуванням про збої (b19-run)
-- Одноразова ініціалізація (bootstrap.d)
-- Модульні хуки збирання (build.d)
-- Автоматичне визначення кількості CPU (NUMPROCS)
-- Декларативне керування залежностями (b19-deps)
-- Підключована система запуску (entrypoint.d)
-- Перемикачі функцій для всіх підсистем
-- Вбудований моніторинг стану (healthcheck.d)
-- Багатомовний вивід shell (b19-i18n)
-- Відстеження лініжу образу
-- Структуроване журналування з фільтром за рівнем (b19-log)
-- Контейнер без прав root за замовчуванням
-- Підтримка ізольованих від інтернету (air-gapped/offline) збирання й виконання
-- Ін’єкція оверлеїв під час виконання
-- Відтворюваний базовий образ (зафіксований за digest)
-- Перевірка портів
-- Уніфіковане сімейство ранерів життєвого циклу
-- Автозавантаження Docker-секретів (secrets)
-- Хуки інтерактивної shell (shell.d)
-- Плавна обробка сигналів
-- Шаблони конфігурації Jinja2 (minijinja-cli)
-- Вбудований тестовий фреймворк (test.d)
-- Попередньо встановлені службові інструменти
-- Шляхи XDG Base Directory
-
-Див. [FEATURES.md](FEATURES.md), щоб переглянути повний перелік.
+Також успадковує можливості Успадковано від B19 / Ubuntu — повний перелік див. у [FEATURES.md](FEATURES.md).
 
 ## Що надає цей проєкт
 
 - **Образ контейнера** `ghcr.io/damian-buho/b19/rust-gnu:latest`
 - **Образ контейнера** `ghcr.io/damian-buho/b19/rust-musl:latest`
-- **Образ контейнера** `docker.io/damianbuho/b19-rust-gnu:latest`
-- **Образ контейнера** `docker.io/damianbuho/b19-rust-musl:latest`
-
-## Підтримувані платформи
-
-- `linux/amd64`
-- `linux/arm64`
-- `linux/riscv64`
+- **Образ контейнера** `damianbuho/b19-rust-gnu:latest`
+- **Образ контейнера** `damianbuho/b19-rust-musl:latest`
 
 ## Встановлення
 
 Завантажте опублікований образ контейнера:
 
-### Завантажити з GHCR
+### Завантажити з GHCR — linux/amd64, linux/arm64, linux/riscv64
 
 ```sh
 docker pull ghcr.io/damian-buho/b19/rust-gnu:latest
-docker pull ghcr.io/damian-buho/b19/rust-musl:latest
 ```
 
-### Завантажити з DockerHub
+### Завантажити з DockerHub — linux/amd64
 
 ```sh
-docker pull docker.io/damianbuho/b19-rust-gnu:latest
-docker pull docker.io/damianbuho/b19-rust-musl:latest
+docker pull damianbuho/b19-rust-gnu:latest
 ```
+
+Серія: `gnu` | `musl`
 
 Стабільні випуски також публікують теґи `X.Y.Z`, `X.Y` і `X` — завантажте той рівень точності, який хочете зафіксувати.
 
 Якщо наведені вище реєстри недоступні, завантажте з джерела:
 
-### Завантажити з Kiota
+### Завантажити з Kiota — linux/amd64
 
 ```sh
 docker pull kiota.ch/b19/rust-gnu:latest
-docker pull kiota.ch/b19/rust-musl:latest
 ```
+
+Серія: `gnu` | `musl`
 
 ## Використання
 
@@ -111,19 +76,33 @@ docker pull kiota.ch/b19/rust-musl:latest
 
 ```dockerfile
 FROM ghcr.io/damian-buho/b19/rust-gnu:latest
-FROM ghcr.io/damian-buho/b19/rust-musl:latest
 ```
 
 ### З DockerHub
 
 ```dockerfile
-FROM docker.io/damianbuho/b19-rust-gnu:latest
-FROM docker.io/damianbuho/b19-rust-musl:latest
+FROM damianbuho/b19-rust-gnu:latest
 ```
+
+Серія: `gnu` | `musl`
 
 Для рекомендованого багатоетапного шаблону та системи хуків збірки (build.d) створіть похідний проєкт за допомогою `b19/scripts/scaffold.sh` з [m6e/b19](https://kiota.ch/m6e/b19).
 
 ## Збирання
+
+Клонуйте репозиторій разом із підмодулями:
+
+```sh
+git clone --recurse-submodules https://github.com/damian-buho/b19-rust rust && cd rust
+```
+
+Зберіть образ контейнера локально:
+
+```sh
+make container-build
+```
+
+- [Довідник із Makefile](../how-to/MAKEFILE.md)
 
 Виконайте `make` без аргументів для типової цілі; виконайте `make help`, щоб переглянути всі цілі.
 
@@ -131,10 +110,10 @@ FROM docker.io/damianbuho/b19-rust-musl:latest
 
 Точки входу конвеєра:
 
-- `make analyze` — Run the heavy analysis sweep (mutation testing, benchmarks)
-- `make audited` — Re-scan the pinned dependencies and published artifacts for new vulnerabilities
-- `make check-outdated` — Report every pinned dependency that lags upstream
-- `make ready-to-publish` — Run the pseudo-CI pipeline locally — build, test and scan, without publishing
+- `make analyze` — Запускає важкий аналіз (мутаційне тестування, бенчмарки)
+- `make audited` — Повторно сканує закріплені залежності й опубліковані артефакти на нові вразливості
+- `make check-outdated` — Звітує про кожну закріплену залежність, що відстає від upstream
+- `make ready-to-publish` — Запускає псевдо-CI локально — збирає, тестує й сканує без публікації
 
 ## Політики
 
