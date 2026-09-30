@@ -33,10 +33,10 @@ También hereda las características de B19 / Ubuntu; consulta [Características
 
 ## Qué entrega este proyecto
 
-- **Imagen de contenedor** `ghcr.io/damian-buho/b19/rust-gnu:latest`
-- **Imagen de contenedor** `ghcr.io/damian-buho/b19/rust-musl:latest`
-- **Imagen de contenedor** `damianbuho/b19-rust-gnu:latest`
-- **Imagen de contenedor** `damianbuho/b19-rust-musl:latest`
+- **Imagen de contenedor** `ghcr.io/damian-buho/b19/rust:gnu`
+- **Imagen de contenedor** `ghcr.io/damian-buho/b19/rust:musl`
+- **Imagen de contenedor** `damianbuho/b19-rust:gnu`
+- **Imagen de contenedor** `damianbuho/b19-rust:musl`
 
 ## Instalación
 
@@ -45,13 +45,13 @@ Descarga la imagen de contenedor publicada:
 ### Descargar de GHCR — linux/amd64, linux/arm64, linux/riscv64
 
 ```sh
-docker pull ghcr.io/damian-buho/b19/rust-gnu:latest
+docker pull ghcr.io/damian-buho/b19/rust:gnu
 ```
 
 ### Descargar de DockerHub — linux/amd64
 
 ```sh
-docker pull damianbuho/b19-rust-gnu:latest
+docker pull damianbuho/b19-rust:gnu
 ```
 
 Serie: `gnu` | `musl`
@@ -63,7 +63,7 @@ Si los registros anteriores no están disponibles, descarga desde el origen:
 ### Descargar de Kiota — linux/amd64
 
 ```sh
-docker pull kiota.ch/b19/rust-gnu:latest
+docker pull kiota.ch/b19/rust:gnu
 ```
 
 Serie: `gnu` | `musl`
@@ -75,13 +75,13 @@ Construye sobre esta imagen:
 ### Desde GHCR
 
 ```dockerfile
-FROM ghcr.io/damian-buho/b19/rust-gnu:latest
+FROM ghcr.io/damian-buho/b19/rust:gnu
 ```
 
 ### Desde DockerHub
 
 ```dockerfile
-FROM damianbuho/b19-rust-gnu:latest
+FROM damianbuho/b19-rust:gnu
 ```
 
 Serie: `gnu` | `musl`

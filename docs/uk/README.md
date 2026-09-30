@@ -33,10 +33,10 @@ pf-cli-managed: yes
 
 ## Що надає цей проєкт
 
-- **Образ контейнера** `ghcr.io/damian-buho/b19/rust-gnu:latest`
-- **Образ контейнера** `ghcr.io/damian-buho/b19/rust-musl:latest`
-- **Образ контейнера** `damianbuho/b19-rust-gnu:latest`
-- **Образ контейнера** `damianbuho/b19-rust-musl:latest`
+- **Образ контейнера** `ghcr.io/damian-buho/b19/rust:gnu`
+- **Образ контейнера** `ghcr.io/damian-buho/b19/rust:musl`
+- **Образ контейнера** `damianbuho/b19-rust:gnu`
+- **Образ контейнера** `damianbuho/b19-rust:musl`
 
 ## Встановлення
 
@@ -45,13 +45,13 @@ pf-cli-managed: yes
 ### Завантажити з GHCR — linux/amd64, linux/arm64, linux/riscv64
 
 ```sh
-docker pull ghcr.io/damian-buho/b19/rust-gnu:latest
+docker pull ghcr.io/damian-buho/b19/rust:gnu
 ```
 
 ### Завантажити з DockerHub — linux/amd64
 
 ```sh
-docker pull damianbuho/b19-rust-gnu:latest
+docker pull damianbuho/b19-rust:gnu
 ```
 
 Серія: `gnu` | `musl`
@@ -63,7 +63,7 @@ docker pull damianbuho/b19-rust-gnu:latest
 ### Завантажити з Kiota — linux/amd64
 
 ```sh
-docker pull kiota.ch/b19/rust-gnu:latest
+docker pull kiota.ch/b19/rust:gnu
 ```
 
 Серія: `gnu` | `musl`
@@ -75,13 +75,13 @@ docker pull kiota.ch/b19/rust-gnu:latest
 ### З GHCR
 
 ```dockerfile
-FROM ghcr.io/damian-buho/b19/rust-gnu:latest
+FROM ghcr.io/damian-buho/b19/rust:gnu
 ```
 
 ### З DockerHub
 
 ```dockerfile
-FROM damianbuho/b19-rust-gnu:latest
+FROM damianbuho/b19-rust:gnu
 ```
 
 Серія: `gnu` | `musl`
