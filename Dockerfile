@@ -4,7 +4,7 @@
 
 ARG B19_COMPILE_CACHE=sccache
 ARG B19_RUST_LIBC=gnu
-ARG B19_UBUNTU_BASE_IMAGE=registry.invalid/b19/ubuntu/resolute:latest
+ARG B19_UBUNTU_BASE_IMAGE=registry.invalid/b19/ubuntu:resolute
 
 FROM ${B19_UBUNTU_BASE_IMAGE} AS b19-rust
 
