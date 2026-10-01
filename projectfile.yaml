@@ -84,7 +84,6 @@ org:
         parts:
           - series
     ci:
-      image: b19/rust-{B19_RUST_LIBC}
       matrix:
         axes:
           B19_RUST_LIBC:
