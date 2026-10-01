@@ -8,7 +8,7 @@ SPDX-License-Identifier: MIT
 
 # Variantes de libc GNU y musl
 
-- Dos variantes de compilación seleccionadas por el eje `B19_RUST_LIBC`: `gnu` y `musl`; la imagen se publica como `b19/rust-{libc}`.
+- Dos variantes de compilación seleccionadas por el eje `B19_RUST_LIBC`: `gnu` y `musl`; la imagen se publica como `b19/rust:{libc}`.
 - La variante `musl` fija musl como objetivo de compilación por defecto, de modo que cada `cargo build` derivado emite binarios musl estáticos sin flags extra.
 
 <!-- textlint-enable -->
