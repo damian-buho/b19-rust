@@ -16,7 +16,7 @@ Cadena de herramientas de Rust con compilación cruzada para GNU y musl
 
 ![Project status](https://badges.kiota.ch/static/v1?label=status&message=maintained&color=1d63ed&style=flat-square) [![Last commit on GitHub](https://badges.kiota.ch/github/last-commit/damian-buho/b19-rust?label=last%20commit%20on%20GitHub&style=flat-square)](https://github.com/damian-buho/b19-rust) [![Last commit on kiota.ch](https://badges.kiota.ch/gitea/last-commit/b19/rust?gitea_url=https://kiota.ch&label=last%20commit%20on%20kiota.ch&style=flat-square)](https://kiota.ch/b19/rust)
 
-[![Publish pipeline on GitHub](https://github.com/damian-buho/b19-rust/actions/workflows/published.yaml/badge.svg?style=flat-square)](https://github.com/damian-buho/b19-rust/actions) [![Vulnerability audit on GitHub](https://github.com/damian-buho/b19-rust/actions/workflows/audited.yaml/badge.svg?style=flat-square)](https://github.com/damian-buho/b19-rust/actions) [![Dependency freshness on GitHub](https://github.com/damian-buho/b19-rust/actions/workflows/check-outdated.yaml/badge.svg?style=flat-square)](https://github.com/damian-buho/b19-rust/actions) [![Analysis sweep on GitHub](https://github.com/damian-buho/b19-rust/actions/workflows/analyze.yaml/badge.svg?style=flat-square)](https://github.com/damian-buho/b19-rust/actions)
+[![Publish pipeline on GitHub](https://github.com/damian-buho/b19-rust/actions/workflows/published.yaml/badge.svg?style=flat-square)](https://github.com/damian-buho/b19-rust/actions) [![Vulnerability audit on GitHub](https://github.com/damian-buho/b19-rust/actions/workflows/audited.yaml/badge.svg?style=flat-square)](https://github.com/damian-buho/b19-rust/actions) [![Dependency freshness on GitHub](https://github.com/damian-buho/b19-rust/actions/workflows/check-outdated.yaml/badge.svg?style=flat-square)](https://github.com/damian-buho/b19-rust/actions) [![Analysis sweep on GitHub](https://github.com/damian-buho/b19-rust/actions/workflows/analyzed.yaml/badge.svg?style=flat-square)](https://github.com/damian-buho/b19-rust/actions)
 
 [![Publish pipeline on kiota.ch](https://kiota.ch/b19/rust/badges/workflows/published.yaml/badge.svg?style=flat-square)](https://kiota.ch/b19/rust/actions) [![Vulnerability audit on kiota.ch](https://kiota.ch/b19/rust/badges/workflows/audited.yaml/badge.svg?style=flat-square)](https://kiota.ch/b19/rust/actions) [![Dependency freshness on kiota.ch](https://kiota.ch/b19/rust/badges/workflows/check-outdated.yaml/badge.svg?style=flat-square)](https://kiota.ch/b19/rust/actions) [![Analysis sweep on kiota.ch](https://kiota.ch/b19/rust/badges/workflows/analyze.yaml/badge.svg?style=flat-square)](https://kiota.ch/b19/rust/actions)
 
@@ -110,7 +110,7 @@ Para el bucle de desarrollo local, `make dev-container` levanta el dev-container
 
 Puntos de entrada de la canalización:
 
-- `make analyze` — Ejecuta el análisis pesado (pruebas de mutación, benchmarks)
+- `make analyzed` — Ejecuta el análisis pesado (pruebas de mutación, benchmarks)
 - `make audited` — Vuelve a escanear las dependencias fijadas y los artefactos publicados en busca de vulnerabilidades nuevas
 - `make check-outdated` — Informa de cada dependencia fijada que va por detrás de su versión upstream
 - `make ready-to-publish` — Ejecuta localmente el pipeline pseudo-CI — compila, prueba y escanea, sin publicar
