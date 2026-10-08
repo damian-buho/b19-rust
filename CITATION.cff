@@ -28,5 +28,5 @@ contact:
     website: https://dbuho.me
 license: MIT
 repository-code: https://kiota.ch/b19/rust
-version: 0.4.6
-date-released: "2026-10-07"
+version: 0.4.7
+date-released: "2026-10-08"
