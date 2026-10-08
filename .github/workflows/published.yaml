@@ -484,7 +484,7 @@ jobs:
           sink: ${{ matrix.M6E_PUBLISH_SINK }}
   published:
     runs-on: ubuntu-26.04
-    needs: ["publish-image", "ready-to-publish"]
+    needs: ["publish-image", "ready-to-publish", "release-is-published", "release-notes-are-published"]
     steps:
       - run: echo published
   ready-to-publish:
@@ -492,6 +492,50 @@ jobs:
     needs: ["artifacts-are-ok"]
     steps:
       - run: echo ready-to-publish
+  release-is-published:
+    runs-on: ubuntu-26.04
+    needs: ["publish-image"]
+    permissions:
+      contents: write
+    if: startsWith(github.ref, 'refs/tags/')
+    env:
+      RELEASE_TAG: ${{ github.ref_name }}
+      RELEASE_URL: ${{ github.server_url }}/${{ github.repository }}/blob/${{ github.ref_name }}
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          submodules: true
+          persist-credentials: false
+      - name: gh-release
+        if: vars.CI_SKIP_RELEASE_IS_PUBLISHED != 'true' && vars.CI_SKIP_GH_RELEASE != 'true'
+        run: .makefile/core/scripts/gh-release.sh "$RELEASE_TAG"
+  release-notes-are-published:
+    runs-on: ubuntu-26.04
+    needs: ["release-is-published"]
+    permissions:
+      contents: write
+    if: startsWith(github.ref, 'refs/tags/')
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          submodules: true
+          persist-credentials: false
+      - name: release-notes-gha
+        if: vars.CI_SKIP_RELEASE_NOTES_ARE_PUBLISHED != 'true' && vars.CI_SKIP_RELEASE_NOTES_GHA != 'true'
+        uses: projectfile-org/actions/run-tool@643052a02d1358d0f5a078a7f434166011d36d64 # v1
+        with:
+          image: ${{ vars.PF_BRIDGE_IMAGE || format('{0}/bridge', vars.SOURCE_DOCKER_REGISTRY || 'ghcr.io/projectfile-org') }}
+          version: ${{ env.M6E_TAG }}
+          run: pf-bridge release-notes publish
+          env: |-
+            GH_TOKEN=${{ secrets.GITHUB_TOKEN }}
+            GITHUB_API_URL
+            GITHUB_REF_NAME
+            GITHUB_REPOSITORY
+            GITHUB_SERVER_URL
   secrets-ready:
     runs-on: ubuntu-26.04
     needs: ["image-is-built"]
