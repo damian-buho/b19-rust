@@ -30,3 +30,9 @@ license: MIT
 repository-code: https://kiota.ch/b19/rust
 version: 0.4.10
 date-released: "2026-10-15"
+keywords:
+  - rust
+  - cargo
+  - musl
+  - cross-compilation
+  - toolchain
