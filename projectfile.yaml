@@ -13,6 +13,7 @@ identity:
   title: B19 / Rust
   version: 0.4.10
   released: "2026-10-15"
+  visibility: public
 includes:
   - .makefile/b19/ci.yaml
   - .makefile/b19/images/ubuntu.yaml
