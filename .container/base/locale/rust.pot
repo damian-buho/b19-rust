@@ -4,9 +4,9 @@
 # SPDX-License-Identifier: MIT
 msgid ""
 msgstr ""
-"Project-Id-Version: rust 1.3.1-1-gcbe6f90\n"
+"Project-Id-Version: rust 0.4.10-7-ga306de1\n"
 "Report-Msgid-Bugs-To: https://github.com/damian-buho/b19-rust/issues\n"
-"POT-Creation-Date: 2026-09-23 05:46+0000\n"
+"POT-Creation-Date: 2026-10-17 03:09+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -128,6 +128,64 @@ msgstr ""
 
 #: .container/user/build.d/user/post/350-write-cargo-config.i.sh:47
 msgid "Configured linker for %s: %s"
+msgstr ""
+
+#: .container/user/command.d/auto-cargo-build:12
+msgid "unknown argument %s, the artifact record says what to build"
+msgstr ""
+
+#: .container/user/command.d/auto-cargo-build:25
+msgid ""
+"the %s/%s cell needs a cross toolchain, this %s/%s image builds only its own "
+"cell"
+msgstr ""
+
+#: .container/user/command.d/auto-cargo-build:39
+msgid "ignoring %s=%s, an unexpanded placeholder"
+msgstr ""
+
+#: .container/user/command.d/auto-cargo-build:42
+msgid "version %s from %s"
+msgstr ""
+
+#: .container/user/command.d/auto-cargo-build:47
+msgid "version %s, no ref, M6E_VERSION or git tag to read"
+msgstr ""
+
+#: .container/user/command.d/auto-cargo-build:61
+msgid "no kind: binary artifact in %s, nothing to build"
+msgstr ""
+
+#: .container/user/command.d/auto-cargo-build:74
+msgid "%s is not built for %s/%s, its record lists %s × %s"
+msgstr ""
+
+#: .container/user/command.d/auto-cargo-build:85
+msgid "%s excludes the %s/%s cell"
+msgstr ""
+
+#: .container/user/command.d/auto-cargo-build:95
+msgid "asset %s keeps a placeholder, only {command} {os} {arch} {ext} exist"
+msgstr ""
+
+#: .container/user/command.d/auto-cargo-build:106
+msgid "building %s %s for %s/%s from %s into %s"
+msgstr ""
+
+#: .container/user/command.d/auto-cargo-build:112
+msgid "cargo reported no executable for %s"
+msgstr ""
+
+#: .container/user/command.d/auto-cargo-build:117
+msgid "copied %s to %s, stamped through %s"
+msgstr ""
+
+#: .container/user/command.d/auto-cargo-build:122
+msgid "no binary artifact is built for %s/%s, the cell is outside the record"
+msgstr ""
+
+#: .container/user/command.d/auto-cargo-build:125
+msgid "built %s binaries for %s/%s"
 msgstr ""
 
 #: .container/user/test.d/1500-test-compilation.sh:24

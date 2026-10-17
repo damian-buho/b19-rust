@@ -89,6 +89,7 @@ org:
     build:
       args:
         B19_RUST_LIBC: gnu
+        PF_CLI_IMAGE: ""
     image:
       series: "{B19_RUST_LIBC}"
       tag: ${series}

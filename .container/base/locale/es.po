@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: b19-rust\n"
 "Report-Msgid-Bugs-To: https://github.com/damian-buho/b19-rust/issues\n"
-"POT-Creation-Date: 2026-09-23 05:46+0000\n"
+"POT-Creation-Date: 2026-10-17 03:09+0000\n"
 "PO-Revision-Date: 2026-02-18 00:00+0000\n"
 "Last-Translator: b19 team\n"
 "Language-Team: Spanish\n"
@@ -130,6 +130,64 @@ msgstr "ccache no soporta Rust (%s), sin estadísticas"
 #: .container/user/build.d/user/post/350-write-cargo-config.i.sh:47
 msgid "Configured linker for %s: %s"
 msgstr "Linker configurado para %s: %s"
+
+#: .container/user/command.d/auto-cargo-build:12
+msgid "unknown argument %s, the artifact record says what to build"
+msgstr "argumento desconocido %s, el registro de artefactos indica qué compilar"
+
+#: .container/user/command.d/auto-cargo-build:25
+msgid ""
+"the %s/%s cell needs a cross toolchain, this %s/%s image builds only its own "
+"cell"
+msgstr "la celda %s/%s necesita una cadena cruzada, esta imagen %s/%s solo compila su propia celda"
+
+#: .container/user/command.d/auto-cargo-build:39
+msgid "ignoring %s=%s, an unexpanded placeholder"
+msgstr "se ignora %s=%s, un marcador sin expandir"
+
+#: .container/user/command.d/auto-cargo-build:42
+msgid "version %s from %s"
+msgstr "versión %s de %s"
+
+#: .container/user/command.d/auto-cargo-build:47
+msgid "version %s, no ref, M6E_VERSION or git tag to read"
+msgstr "versión %s, no hay ref, M6E_VERSION ni etiqueta git que leer"
+
+#: .container/user/command.d/auto-cargo-build:61
+msgid "no kind: binary artifact in %s, nothing to build"
+msgstr "no hay ningún artefacto kind: binary en %s, nada que compilar"
+
+#: .container/user/command.d/auto-cargo-build:74
+msgid "%s is not built for %s/%s, its record lists %s × %s"
+msgstr "%s no se compila para %s/%s, su registro indica %s × %s"
+
+#: .container/user/command.d/auto-cargo-build:85
+msgid "%s excludes the %s/%s cell"
+msgstr "%s excluye la celda %s/%s"
+
+#: .container/user/command.d/auto-cargo-build:95
+msgid "asset %s keeps a placeholder, only {command} {os} {arch} {ext} exist"
+msgstr "el recurso %s conserva un marcador, solo existen {command} {os} {arch} {ext}"
+
+#: .container/user/command.d/auto-cargo-build:106
+msgid "building %s %s for %s/%s from %s into %s"
+msgstr "compilando %s %s para %s/%s desde %s en %s"
+
+#: .container/user/command.d/auto-cargo-build:112
+msgid "cargo reported no executable for %s"
+msgstr "cargo no informó ningún ejecutable para %s"
+
+#: .container/user/command.d/auto-cargo-build:117
+msgid "copied %s to %s, stamped through %s"
+msgstr "copiado %s a %s, versión inyectada mediante %s"
+
+#: .container/user/command.d/auto-cargo-build:122
+msgid "no binary artifact is built for %s/%s, the cell is outside the record"
+msgstr "no se compila ningún artefacto binario para %s/%s, la celda está fuera del registro"
+
+#: .container/user/command.d/auto-cargo-build:125
+msgid "built %s binaries for %s/%s"
+msgstr "compilados %s binarios para %s/%s"
 
 #: .container/user/test.d/1500-test-compilation.sh:24
 msgid "rustc-%s compile test passed"

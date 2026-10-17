@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: b19-rust\n"
 "Report-Msgid-Bugs-To: https://github.com/damian-buho/b19-rust/issues\n"
-"POT-Creation-Date: 2026-09-23 05:46+0000\n"
+"POT-Creation-Date: 2026-10-17 03:09+0000\n"
 "PO-Revision-Date: 2026-02-18 00:00+0000\n"
 "Last-Translator: b19 team\n"
 "Language-Team: Ukrainian\n"
@@ -131,6 +131,64 @@ msgstr "ccache не підтримує Rust (%s), статистики нема�
 #: .container/user/build.d/user/post/350-write-cargo-config.i.sh:47
 msgid "Configured linker for %s: %s"
 msgstr "Налаштовано лінкер для %s: %s"
+
+#: .container/user/command.d/auto-cargo-build:12
+msgid "unknown argument %s, the artifact record says what to build"
+msgstr "невідомий аргумент %s, що збирати, визначає запис артефактів"
+
+#: .container/user/command.d/auto-cargo-build:25
+msgid ""
+"the %s/%s cell needs a cross toolchain, this %s/%s image builds only its own "
+"cell"
+msgstr "комірці %s/%s потрібен крос-інструментарій, цей образ %s/%s збирає лише власну комірку"
+
+#: .container/user/command.d/auto-cargo-build:39
+msgid "ignoring %s=%s, an unexpanded placeholder"
+msgstr "ігнорується %s=%s, нерозгорнутий заповнювач"
+
+#: .container/user/command.d/auto-cargo-build:42
+msgid "version %s from %s"
+msgstr "версія %s з %s"
+
+#: .container/user/command.d/auto-cargo-build:47
+msgid "version %s, no ref, M6E_VERSION or git tag to read"
+msgstr "версія %s, немає ref, M6E_VERSION чи тегу git"
+
+#: .container/user/command.d/auto-cargo-build:61
+msgid "no kind: binary artifact in %s, nothing to build"
+msgstr "у %s немає артефакту kind: binary, нічого збирати"
+
+#: .container/user/command.d/auto-cargo-build:74
+msgid "%s is not built for %s/%s, its record lists %s × %s"
+msgstr "%s не збирається для %s/%s, його запис містить %s × %s"
+
+#: .container/user/command.d/auto-cargo-build:85
+msgid "%s excludes the %s/%s cell"
+msgstr "%s виключає комірку %s/%s"
+
+#: .container/user/command.d/auto-cargo-build:95
+msgid "asset %s keeps a placeholder, only {command} {os} {arch} {ext} exist"
+msgstr "ресурс %s містить заповнювач, існують лише {command} {os} {arch} {ext}"
+
+#: .container/user/command.d/auto-cargo-build:106
+msgid "building %s %s for %s/%s from %s into %s"
+msgstr "збирання %s %s для %s/%s з %s у %s"
+
+#: .container/user/command.d/auto-cargo-build:112
+msgid "cargo reported no executable for %s"
+msgstr "cargo не повідомив про виконуваний файл для %s"
+
+#: .container/user/command.d/auto-cargo-build:117
+msgid "copied %s to %s, stamped through %s"
+msgstr "скопійовано %s у %s, версію передано через %s"
+
+#: .container/user/command.d/auto-cargo-build:122
+msgid "no binary artifact is built for %s/%s, the cell is outside the record"
+msgstr "для %s/%s не збирається жоден бінарний артефакт, комірка поза записом"
+
+#: .container/user/command.d/auto-cargo-build:125
+msgid "built %s binaries for %s/%s"
+msgstr "зібрано бінарних файлів: %s для %s/%s"
 
 #: .container/user/test.d/1500-test-compilation.sh:24
 msgid "rustc-%s compile test passed"
