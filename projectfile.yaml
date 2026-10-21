@@ -15,7 +15,7 @@ identity:
     en: Rust toolchain without rustup in GNU and musl variants, with sccache, tuned flags, and single-builder cross-compilation to amd64, arm64 and riscv64.
     es: Cadena Rust sin rustup en variantes GNU y musl, con sccache, flags afinados y compilación cruzada a amd64, arm64 y riscv64 desde un solo constructor.
     uk: Інструментарій Rust без rustup у варіантах GNU та musl, із sccache, налаштованими прапорами й крос-компіляцією на amd64, arm64 і riscv64 з одного збирача.
-  version: 0.5.3
+  version: 0.5.4
   released: "2026-10-21"
   visibility: public
 includes:
