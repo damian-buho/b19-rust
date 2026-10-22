@@ -28,8 +28,8 @@ contact:
     website: https://dbuho.me
 license: MIT
 repository-code: https://kiota.ch/b19/rust
-version: 0.5.4
-date-released: "2026-10-21"
+version: 0.5.5
+date-released: "2026-10-22"
 keywords:
   - rust
   - cargo
