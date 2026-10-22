@@ -37,6 +37,10 @@ asset="${project}/dist/fx-cli-${host_os}-$(uname -m)"
 (cd "${project}" && GITHUB_REF_NAME='{tag}' M6E_VERSION=4.5.6 TARGET_OS="${host_os}" TARGET_ARCH="${host_arch}" auto-cargo-build)
 [[ "$("${asset}")" == 4.5.6 ]] || { echo "FATAL: the second build reads $("${asset}"), expected 4.5.6" >&2; exit 1; }
 
+# The release tag wins over the branch name a main run carries
+(cd "${project}" && GITHUB_REF_NAME=main M6E_RELEASE_TAG=7.8.9 auto-cargo-build)
+[[ "$("${asset}")" == 7.8.9 ]] || { echo "FATAL: the release tag lost to the ref name, ${asset} reads $("${asset}")" >&2; exit 1; }
+
 # A foreign cell fails rather than ship a host binary under its name
 foreign=riscv64
 [[ "${host_arch}" == riscv64 ]] && foreign=amd64
