@@ -26,7 +26,6 @@ Rust toolchain image. Used as builder for minijinja, gleam, nginx (acme module),
 - RUSTFLAGS probed per-flag per arch (17 CPU feature flags on amd64)
 - `install-from-cargo` tool — reads `cargo.deps` dep file, calls `cargo install --locked`
 - `build-rust-from-deps` tool — reads `build.cargo.deps`, cross-builds for all arches in `B19_RUST_CROSS_TARGETS`
-- `auto-cargo-build` command — builds each `kind: binary` artifact (`cargo build --release --locked --bin <command>`) for the host cell into `dirname(path)/<asset>`, stamping the version through `version-env` (default `<COMMAND>_VERSION`); a foreign `TARGET_OS`/`TARGET_ARCH` cell fails until it gains cross linkers; `pf-cli` is COPY’d from `projectfile/cli`
 
 ## sccache deletes environment variables
 
