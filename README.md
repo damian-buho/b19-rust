@@ -18,6 +18,11 @@ Rust toolchain without rustup in GNU and musl variants, with sccache, tuned flag
 
 [![Publish pipeline on kiota.ch](https://kiota.ch/b19/rust/badges/workflows/published.yaml/badge.svg?style=flat-square)](https://kiota.ch/b19/rust/actions) [![Vulnerability audit on kiota.ch](https://kiota.ch/b19/rust/badges/workflows/audited.yaml/badge.svg?style=flat-square)](https://kiota.ch/b19/rust/actions) [![Dependency freshness on kiota.ch](https://kiota.ch/b19/rust/badges/workflows/check-outdated.yaml/badge.svg?style=flat-square)](https://kiota.ch/b19/rust/actions) [![Analysis sweep on kiota.ch](https://kiota.ch/b19/rust/badges/workflows/analyzed.yaml/badge.svg?style=flat-square)](https://kiota.ch/b19/rust/actions)
 
+## Upstream
+
+This project packages [Rust](https://www.rust-lang.org) (`MIT OR Apache-2.0`).
+Thanks to: The Rust Project Contributors
+
 ## Features
 
 - Cross-compilation to multiple architectures
@@ -124,11 +129,6 @@ Pipeline entry points:
 ## Links
 
 - [Projectfile Specification](https://projectfile.org)
-
-## Upstream
-
-This project packages [Rust](https://www.rust-lang.org) (`MIT OR Apache-2.0`).
-Thanks to: The Rust Project Developers
 
 ## License
 

@@ -20,6 +20,11 @@ pf-cli-managed: yes
 
 [![Publish pipeline on kiota.ch](https://kiota.ch/b19/rust/badges/workflows/published.yaml/badge.svg?style=flat-square)](https://kiota.ch/b19/rust/actions) [![Vulnerability audit on kiota.ch](https://kiota.ch/b19/rust/badges/workflows/audited.yaml/badge.svg?style=flat-square)](https://kiota.ch/b19/rust/actions) [![Dependency freshness on kiota.ch](https://kiota.ch/b19/rust/badges/workflows/check-outdated.yaml/badge.svg?style=flat-square)](https://kiota.ch/b19/rust/actions) [![Analysis sweep on kiota.ch](https://kiota.ch/b19/rust/badges/workflows/analyzed.yaml/badge.svg?style=flat-square)](https://kiota.ch/b19/rust/actions)
 
+## Першоджерело
+
+Цей проєкт пакує [Rust](https://www.rust-lang.org) (`MIT OR Apache-2.0`).
+Дякуємо: учасники проєкту Rust
+
 ## Можливості
 
 - Крос-компіляція на кілька архітектур
@@ -126,11 +131,6 @@ make container-build
 ## Посилання
 
 - [Специфікація Projectfile](https://projectfile.org)
-
-## Першоджерело
-
-Цей проєкт пакує [Rust](https://www.rust-lang.org) (`MIT OR Apache-2.0`).
-Дякуємо: The Rust Project Developers
 
 ## Ліцензія
 

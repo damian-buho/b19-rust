@@ -20,6 +20,11 @@ Cadena Rust sin rustup en variantes GNU y musl, con sccache, flags afinados y co
 
 [![Publish pipeline on kiota.ch](https://kiota.ch/b19/rust/badges/workflows/published.yaml/badge.svg?style=flat-square)](https://kiota.ch/b19/rust/actions) [![Vulnerability audit on kiota.ch](https://kiota.ch/b19/rust/badges/workflows/audited.yaml/badge.svg?style=flat-square)](https://kiota.ch/b19/rust/actions) [![Dependency freshness on kiota.ch](https://kiota.ch/b19/rust/badges/workflows/check-outdated.yaml/badge.svg?style=flat-square)](https://kiota.ch/b19/rust/actions) [![Analysis sweep on kiota.ch](https://kiota.ch/b19/rust/badges/workflows/analyzed.yaml/badge.svg?style=flat-square)](https://kiota.ch/b19/rust/actions)
 
+## Proyecto original
+
+Este proyecto empaqueta [Rust](https://www.rust-lang.org) (`MIT OR Apache-2.0`).
+Gracias a: los colaboradores del proyecto Rust
+
 ## Características
 
 - Compilación cruzada a múltiples arquitecturas
@@ -126,11 +131,6 @@ Puntos de entrada de la canalización:
 ## Enlaces
 
 - [Especificación de Projectfile](https://projectfile.org)
-
-## Proyecto original
-
-Este proyecto empaqueta [Rust](https://www.rust-lang.org) (`MIT OR Apache-2.0`).
-Gracias a: The Rust Project Developers
 
 ## Licencia
 
