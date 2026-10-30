@@ -127,8 +127,13 @@ Puntos de entrada de la canalización:
 
 - [Especificación de Projectfile](https://projectfile.org)
 
+## Proyecto original
+
+Este proyecto empaqueta [Rust](https://www.rust-lang.org) (`MIT OR Apache-2.0`).
+Gracias a: The Rust Project Developers
+
 ## Licencia
 
-Este proyecto se publica bajo la licencia MIT — consulta el archivo [LICENSE](LICENSE) para más detalles.
+El empaquetado de este repositorio se publica bajo la licencia MIT — consulta el archivo [LICENSE](LICENSE) para más detalles.
 
 <!-- textlint-enable -->

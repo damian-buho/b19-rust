@@ -114,3 +114,8 @@ repositories:
   - role: mirror
     type: git
     url: git@github.com:damian-buho/b19-rust.git
+upstream:
+  - authors: The Rust Project Developers
+    license: MIT OR Apache-2.0
+    name: Rust
+    url: https://www.rust-lang.org

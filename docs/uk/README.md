@@ -127,8 +127,13 @@ make container-build
 
 - [Специфікація Projectfile](https://projectfile.org)
 
+## Першоджерело
+
+Цей проєкт пакує [Rust](https://www.rust-lang.org) (`MIT OR Apache-2.0`).
+Дякуємо: The Rust Project Developers
+
 ## Ліцензія
 
-Цей проєкт ліцензовано на умовах MIT — див. файл [LICENSE](LICENSE) для подробиць.
+Пакування в цьому репозиторії ліцензовано на умовах MIT — див. файл [LICENSE](LICENSE) для подробиць.
 
 <!-- textlint-enable -->

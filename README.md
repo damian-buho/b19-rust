@@ -125,6 +125,11 @@ Pipeline entry points:
 
 - [Projectfile Specification](https://projectfile.org)
 
+## Upstream
+
+This project packages [Rust](https://www.rust-lang.org) (`MIT OR Apache-2.0`).
+Thanks to: The Rust Project Developers
+
 ## License
 
-This project is licensed under MIT — see the [LICENSE](LICENSE) file for details.
+The packaging in this repository is licensed under MIT — see the [LICENSE](LICENSE) file for details.
