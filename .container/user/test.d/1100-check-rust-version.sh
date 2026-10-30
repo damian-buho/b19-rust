@@ -9,4 +9,4 @@
   EXPECTED_VERSION=$(decomment < "/deps/rust/version.deps") || exit 1
   ACTUAL_VERSION=$(get-rust-version)
 
-  [ "${EXPECTED_VERSION}" != "${ACTUAL_VERSION}" ] && exit 1 || exit 0
+  b19-assert equals "RUST" "${EXPECTED_VERSION}" "${ACTUAL_VERSION}"
